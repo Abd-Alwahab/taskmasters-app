@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { ReactNode } from "react";
+import Header from "./_components/Header";
 
 const sourceSans3 = Source_Sans_3({ subsets: ["latin"] });
 
@@ -18,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={sourceSans3.className}>{children}</body>
+      <body
+        className={`${sourceSans3.className} mx-auto max-w-[90%] bg-quill-gray-100`}
+      >
+        <Header />
+        <main className="py-4">{children}</main>
+      </body>
     </html>
   );
 }
