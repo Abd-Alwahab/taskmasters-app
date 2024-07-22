@@ -12,12 +12,6 @@ const HeaderNavigation = () => {
           </li>
 
           <li>
-            <Link className="text-sm" href="/tasks">
-              Tasks
-            </Link>
-          </li>
-
-          <li>
             <Link className="text-sm" href="/about">
               About
             </Link>

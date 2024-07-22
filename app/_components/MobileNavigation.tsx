@@ -46,28 +46,23 @@ function MobileNavigation({ session }: Props) {
 
           <ul className="flex flex-col items-center justify-center gap-8">
             <li>
-              <Link
-                href="/"
-                className="text-2xl transition-colors hover:text-white"
-              >
+              <Link href="/" className="text-2xl transition-colors">
                 Home
               </Link>
             </li>
 
             <li>
               <Link
-                href="/cabins"
-                className="hover:text-accent-400 text-2xl transition-colors"
-              >
-                Cabins
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/about"
                 className="hover:text-accent-400 text-2xl transition-colors"
               >
                 About
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/developer" className="text-2xl transition-colors">
+                Developer
               </Link>
             </li>
             <li>
@@ -91,7 +86,11 @@ function MobileNavigation({ session }: Props) {
                   href="/account"
                   className="hover:text-accent-400 text-2xl transition-colors"
                 >
-                  Guest area
+                  <button className="group flex items-center rounded-full border border-quill-gray-950 px-5 py-2 transition-all hover:bg-quill-gray-950">
+                    <span className="text-lg text-quill-gray-950 transition-all group-hover:text-white">
+                      Login / Signup
+                    </span>
+                  </button>
                 </Link>
               )}
             </li>
