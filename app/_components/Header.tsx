@@ -8,7 +8,7 @@ const Header = async () => {
   return (
     <div className="flex justify-between py-4">
       <Logo />
-      <div className="z-10 hidden transition-all lg:block">
+      <div className="z-10 hidden flex-1 transition-all lg:block">
         <HeaderNavigation />
       </div>
 
