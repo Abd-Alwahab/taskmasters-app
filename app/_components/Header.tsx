@@ -1,4 +1,5 @@
 import { auth } from "../_lib/auth";
+import CurrentUserBadge from "./CurrentUserBadge";
 import HeaderNavigation from "./HeaderNavigation";
 import Logo from "./Logo";
 import MobileNavigation from "./MobileNavigation";
@@ -13,7 +14,9 @@ const Header = async () => {
       </div>
 
       <div className="relative z-20 block lg:hidden">
-        <MobileNavigation session={session} />
+        <MobileNavigation session={session}>
+          <CurrentUserBadge />
+        </MobileNavigation>
       </div>
     </div>
   );

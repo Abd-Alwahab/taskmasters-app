@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi"; // Hamburger icon
 import { AiOutlineClose } from "react-icons/ai"; // Close icon
 import Link from "next/link";
 import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import SignOutButton from "./SignoutButton";
 
 type Props = {
   session: Session | null;
+  children: ReactNode;
 };
-function MobileNavigation({ session }: Props) {
+function MobileNavigation({ children, session }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
@@ -67,20 +69,11 @@ function MobileNavigation({ session }: Props) {
             </li>
             <li>
               {session?.user ? (
-                <Link
-                  href="/account"
-                  className="hover:text-accent-400 flex justify-center gap-4 transition-colors"
-                >
-                  <img
-                    src={session.user.image ?? ""}
-                    alt="user image"
-                    className="size-8 rounded-full"
-                    referrerPolicy="no-referrer"
-                    width={32}
-                    height={32}
-                  />
-                  <span className="text-2xl">Guest area</span>
-                </Link>
+                <div className="flex flex-col items-center gap-6">
+                  {children}
+
+                  <SignOutButton />
+                </div>
               ) : (
                 <Link
                   href="/account"

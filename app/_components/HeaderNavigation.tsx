@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
 import SignOutButton from "./SignoutButton";
+import CurrentUserBadge from "./CurrentUserBadge";
 
 async function HeaderNavigation() {
   const session = await auth();
@@ -30,17 +31,7 @@ async function HeaderNavigation() {
 
       {session?.user ? (
         <div className="flex items-center gap-5">
-          <div className="flex items-center justify-center gap-2 transition-colors">
-            <img
-              src={session.user.image ?? ""}
-              alt="user image"
-              className="size-8 rounded-full"
-              referrerPolicy="no-referrer"
-              width={32}
-              height={32}
-            />
-            <span className="text-sm">{session?.user?.name}</span>
-          </div>
+          <CurrentUserBadge />
 
           <SignOutButton />
         </div>

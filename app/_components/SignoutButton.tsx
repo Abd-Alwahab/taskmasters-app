@@ -6,7 +6,7 @@ import { logoutAction } from "../_lib/actions";
 function SignOutButton() {
   return (
     <button onClick={() => logoutAction()}>
-      <LuLogOut />
+      <LuLogOut className="text-3xl lg:text-2xl" />
     </button>
   );
 }
