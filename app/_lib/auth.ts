@@ -11,4 +11,13 @@ export const {
       clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    authorized({ auth }) {
+      return !!auth?.user;
+    },
+  },
+
+  pages: {
+    signIn: "/login",
+  },
 });
