@@ -17,6 +17,12 @@ async function HeaderNavigation() {
           </li>
 
           <li>
+            <Link className="text-sm" href="/planner">
+              Planner
+            </Link>
+          </li>
+
+          <li>
             <Link className="text-sm" href="/about">
               About
             </Link>
