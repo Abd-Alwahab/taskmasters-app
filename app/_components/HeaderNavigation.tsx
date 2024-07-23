@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { auth } from "../_lib/auth";
 import SignOutButton from "./SignoutButton";
 import CurrentUserBadge from "./CurrentUserBadge";
+import { createClient } from "../_utils/supabase/server";
 
 async function HeaderNavigation() {
-  const session = await auth();
+  const { data: session } = await createClient().auth.getUser();
+
   return (
     <div className="ml-auto flex max-w-[60%] items-center justify-between gap-8 py-6">
       <nav>

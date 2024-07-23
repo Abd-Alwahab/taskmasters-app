@@ -1,11 +1,12 @@
-import { auth } from "../_lib/auth";
+import { createClient } from "../_utils/supabase/server";
 import CurrentUserBadge from "./CurrentUserBadge";
 import HeaderNavigation from "./HeaderNavigation";
 import Logo from "./Logo";
 import MobileNavigation from "./MobileNavigation";
 
 const Header = async () => {
-  const session = await auth();
+  const { data: session } = await createClient().auth.getUser();
+
   return (
     <div className="flex justify-between py-4">
       <Logo />

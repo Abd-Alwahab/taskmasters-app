@@ -4,13 +4,13 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi"; // Hamburger icon
 import { AiOutlineClose } from "react-icons/ai"; // Close icon
 import Link from "next/link";
-import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import SignOutButton from "./SignoutButton";
+import { User } from "@supabase/supabase-js";
 
 type Props = {
-  session: Session | null;
+  session: { user: User | null } | null;
   children: ReactNode;
 };
 function MobileNavigation({ children, session }: Props) {
