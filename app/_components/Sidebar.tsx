@@ -10,7 +10,7 @@ const Sidebar = async () => {
   const { data: session } = await createClient().auth.getUser();
 
   return (
-    <div className="flex flex-col justify-between rounded-sm bg-white pt-4">
+    <div className="flex flex-col justify-between rounded-lg bg-[#011627] pt-4 shadow-lg">
       <div className="mx-auto">
         <Logo />
       </div>
@@ -18,7 +18,7 @@ const Sidebar = async () => {
         <Navigation />
 
         {session?.user ? (
-          <div className="flex items-center gap-2 pl-3">
+          <div className="flex items-center gap-2 pl-3 text-white">
             {/* <CurrentUserBadge /> */}
 
             <SignOutButton />
@@ -27,9 +27,9 @@ const Sidebar = async () => {
         ) : (
           <Link
             href="/login"
-            className="group rounded-full border border-quill-gray-950 px-4 py-2 transition-all hover:bg-quill-gray-950"
+            className="group mx-4 flex justify-center rounded-full border border-white px-4 py-3 transition-all hover:bg-quill-gray-950"
           >
-            <span className="text-sm text-quill-gray-950 transition-all group-hover:text-white">
+            <span className="text-sm text-white transition-all group-hover:text-white">
               Login / Signup
             </span>
           </Link>

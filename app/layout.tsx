@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceSans3.className} grid h-screen grid-cols-[20rem_1fr] gap-3 overflow-hidden bg-gray-200 p-4`}
+        className={`${sourceSans3.className} grid h-screen grid-cols-[20rem_1fr] gap-3 overflow-hidden bg-white p-4`}
       >
         <Sidebar />
         <main>{children}</main>
