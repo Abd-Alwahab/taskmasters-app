@@ -21,11 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceSans3.className} grid h-screen grid-cols-[20rem_1fr] gap-3 overflow-hidden bg-white p-4`}
+        className={`${sourceSans3.className} grid h-screen w-screen grid-cols-[18rem_1fr] gap-3 overflow-hidden bg-white p-4`}
       >
         <Sidebar />
 
-        <div className="flex h-full flex-col gap-4">
+        <div className="flex size-full flex-col gap-4 overflow-hidden">
           <header className="flex justify-end rounded-lg bg-[#FBB13C] px-6 py-4">
             <CurrentUserBadge />
           </header>

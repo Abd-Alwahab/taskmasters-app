@@ -1,17 +1,19 @@
+import { Tables } from "@/database.types";
+import { getCategories } from "@/app/_services/categoriesService";
 import { getTasks } from "../_services/tasksServices";
 
 function TasksColumn({
   tasks,
-  category,
   label,
+  categoryId,
 }: {
-  tasks: any[];
-  category: string;
+  tasks: Tables<"tasks">[];
   label: string;
+  categoryId: number;
 }) {
-  const columnTasks = tasks?.filter((task) => task.status === category);
+  const columnTasks = tasks?.filter((task) => task.category === categoryId);
   return (
-    <div className="rounded-lg bg-gray-200 shadow-lg">
+    <div className="h-full rounded-lg bg-gray-200 shadow-lg">
       <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
         {label}
       </h3>
@@ -29,11 +31,19 @@ function TasksColumn({
 
 async function Planner() {
   const tasks = await getTasks();
+  const categories = await getCategories();
 
   return (
-    <div className="grid h-full grid-cols-4 gap-4">
-      <TasksColumn label="TODO" tasks={tasks} category="TODO" />
-      <TasksColumn label="IN PROGRESS" tasks={tasks} category="IN_PROGRESS" />
+    <div className={`flex h-full  gap-4 overflow-x-auto`}>
+      {categories?.map((category) => (
+        <div className="h-full min-w-[335px]" key={category.id}>
+          <TasksColumn
+            label={category.name}
+            tasks={tasks}
+            categoryId={category.id}
+          />
+        </div>
+      ))}
     </div>
   );
 }
