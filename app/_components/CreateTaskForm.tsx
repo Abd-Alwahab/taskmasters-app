@@ -40,7 +40,10 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
     }
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex w-[600px] flex-col gap-5"
+    >
       <FormRow error={errors?.title?.message ?? ''}>
         <Controller
           name="title"
