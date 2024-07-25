@@ -4,6 +4,7 @@ import { Tables } from '@/database.types'
 import Modal, { ModalWindow } from './Modal'
 import Menus from './Menus'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
+import DeleteTask from './DeleteTask'
 
 function TasksColumn({
   tasks,
@@ -15,6 +16,7 @@ function TasksColumn({
   categoryId: number
 }) {
   const columnTasks = tasks?.filter((task) => task.category === categoryId)
+
   return (
     <Menus>
       <Modal>
@@ -50,7 +52,7 @@ function TasksColumn({
                     </ModalWindow>
 
                     <ModalWindow name="delete-task" label="Delete">
-                      <span>Delete Task</span>
+                      <DeleteTask taskId={task.id} />
                     </ModalWindow>
                   </Menus.Menu>
                 </div>
