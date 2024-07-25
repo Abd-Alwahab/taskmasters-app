@@ -61,7 +61,7 @@ export const ModalWindow = ({
 
   return createPortal(
     <div className="fixed left-0 top-0 z-10 h-screen w-screen  backdrop-blur transition-all">
-      <div className="absolute left-1/2 top-1/2 h-[500px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4">
+      <div className="absolute left-1/2 top-1/2 h-fit w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4">
         <div onClick={close} className="absolute right-4 top-4 cursor-pointer">
           <IoCloseCircleOutline fontSize={30} />
         </div>

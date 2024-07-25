@@ -7,7 +7,7 @@ type Props = {
 };
 const FormRow = ({ error, children }: Props) => {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {children}
       {error && <ErrorMessage message={error} />}
     </div>

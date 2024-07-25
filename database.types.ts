@@ -15,20 +15,34 @@ export type Database = {
           id: number;
           maxTasksNum: number | null;
           name: string | null;
+          orderIndex: number | null;
+          userId: string | null;
         };
         Insert: {
           created_at?: string;
           id?: number;
           maxTasksNum?: number | null;
           name?: string | null;
+          orderIndex?: number | null;
+          userId?: string | null;
         };
         Update: {
           created_at?: string;
           id?: number;
           maxTasksNum?: number | null;
           name?: string | null;
+          orderIndex?: number | null;
+          userId?: string | null;
         };
-        Relationships: [];
+        Relationships: [
+          {
+            foreignKeyName: "categories_userId_fkey";
+            columns: ["userId"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       tasks: {
         Row: {

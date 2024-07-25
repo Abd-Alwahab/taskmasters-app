@@ -7,15 +7,17 @@ async function Categories() {
   const categories = await getCategories();
   return (
     <div className={`flex h-full  gap-4 overflow-x-auto`}>
-      {categories?.map((category) => (
-        <div className="h-full min-w-[335px]" key={category.id}>
-          <TasksColumn
-            label={category.name}
-            tasks={tasks}
-            categoryId={category.id}
-          />
-        </div>
-      ))}
+      {categories
+        ?.sort((a, b) => a.orderIndex - b.orderIndex)
+        ?.map((category) => (
+          <div className="h-full min-w-[335px]" key={category.id}>
+            <TasksColumn
+              label={category.name}
+              tasks={tasks}
+              categoryId={category.id}
+            />
+          </div>
+        ))}
     </div>
   );
 }
