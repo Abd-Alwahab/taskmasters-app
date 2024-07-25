@@ -1,5 +1,5 @@
 const Developer = () => {
-  return <div>Developer Page</div>;
-};
+  return <div>Developer Page</div>
+}
 
-export default Developer;
+export default Developer

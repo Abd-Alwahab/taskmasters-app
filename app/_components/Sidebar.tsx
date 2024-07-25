@@ -1,13 +1,13 @@
-import Link from "next/link";
-import { createClient } from "../_utils/supabase/server";
-import CurrentUserBadge from "./CurrentUserBadge";
-import Navigation from "./Navigation";
-import Logo from "./Logo";
-import MobileNavigation from "./MobileNavigation";
-import SignOutButton from "./SignoutButton";
+import Link from 'next/link'
+import { createClient } from '../_utils/supabase/server'
+import CurrentUserBadge from './CurrentUserBadge'
+import Navigation from './Navigation'
+import Logo from './Logo'
+import MobileNavigation from './MobileNavigation'
+import SignOutButton from './SignoutButton'
 
 const Sidebar = async () => {
-  const { data: session } = await createClient().auth.getUser();
+  const { data: session } = await createClient().auth.getUser()
 
   return (
     <div className="flex flex-col justify-between rounded-lg bg-[#011627] pt-4 shadow-lg">
@@ -42,7 +42,7 @@ const Sidebar = async () => {
         </MobileNavigation>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

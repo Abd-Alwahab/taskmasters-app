@@ -1,21 +1,21 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
 // The client you created from the Server-Side Auth instructions
-import { createClient } from "@/app/_utils/supabase/server";
+import { createClient } from '@/app/_utils/supabase/server'
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
-  const code = searchParams.get("code");
+  const { searchParams, origin } = new URL(request.url)
+  const code = searchParams.get('code')
   // if "next" is in param, use it as the redirect URL
-  const next = searchParams.get("next") ?? "/";
+  const next = searchParams.get('next') ?? '/'
 
   if (code) {
-    const supabaseClient = createClient();
-    const { error } = await supabaseClient.auth.exchangeCodeForSession(code);
+    const supabaseClient = createClient()
+    const { error } = await supabaseClient.auth.exchangeCodeForSession(code)
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      return NextResponse.redirect(`${origin}${next}`)
     }
   }
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }

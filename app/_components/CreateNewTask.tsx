@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import { HiOutlinePlus } from "react-icons/hi";
-import Modal, { ModalWindow, OpenModal } from "./Modal";
-import { Tables } from "@/database.types";
-import CreateTaskForm from "./CreateTaskForm";
+import { HiOutlinePlus } from 'react-icons/hi'
+import Modal, { ModalWindow, OpenModal } from './Modal'
+import { Tables } from '@/database.types'
+import CreateTaskForm from './CreateTaskForm'
 
 type Props = {
-  categories: Tables<"categories">[];
-};
+  categories: Tables<'categories'>[]
+}
 const CreateNewTask = ({ categories }: Props) => {
   return (
     <Modal>
@@ -22,7 +22,7 @@ const CreateNewTask = ({ categories }: Props) => {
         <CreateTaskForm categories={categories} />
       </ModalWindow>
     </Modal>
-  );
-};
+  )
+}
 
-export default CreateNewTask;
+export default CreateNewTask

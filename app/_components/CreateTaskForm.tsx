@@ -1,18 +1,18 @@
-import { Controller, useForm } from "react-hook-form";
-import FormRow from "./FormRow";
-import Select from "./Select";
-import TextArea from "./TextArea";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createNewTaskAction } from "../_services/actoins";
-import { taskSchema } from "../_utils/validations/taskSchema";
-import Input from "./Input";
-import { Tables } from "@/database.types";
-import SubmitFormButton from "./SubmitFormButton";
+import { Controller, useForm } from 'react-hook-form'
+import FormRow from './FormRow'
+import Select from './Select'
+import TextArea from './TextArea'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { createNewTaskAction } from '../_services/actoins'
+import { taskSchema } from '../_utils/validations/taskSchema'
+import Input from './Input'
+import { Tables } from '@/database.types'
+import SubmitFormButton from './SubmitFormButton'
 
 type Props = {
-  categories: Tables<"categories">[];
-  onCloseModal?: () => void;
-};
+  categories: Tables<'categories'>[]
+  onCloseModal?: () => void
+}
 
 const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
   const {
@@ -22,26 +22,26 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
     setValue,
     reset,
   } = useForm<{
-    title: string;
-    description: string;
-    points: number;
-    priority: string;
-    category: number;
+    title: string
+    description: string
+    points: number
+    priority: string
+    category: number
   }>({
     resolver: zodResolver(taskSchema),
-  });
+  })
 
   const onSubmit = async (data: any) => {
-    const result = await createNewTaskAction(data);
+    const result = await createNewTaskAction(data)
 
     if (result?.success) {
-      reset();
-      onCloseModal?.();
+      reset()
+      onCloseModal?.()
     }
-  };
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-      <FormRow error={errors?.title?.message ?? ""}>
+      <FormRow error={errors?.title?.message ?? ''}>
         <Controller
           name="title"
           control={control}
@@ -49,7 +49,7 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
         />
       </FormRow>
 
-      <FormRow error={errors?.description?.message ?? ""}>
+      <FormRow error={errors?.description?.message ?? ''}>
         <Controller
           name="description"
           control={control}
@@ -63,7 +63,7 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
         />
       </FormRow>
 
-      <FormRow error={errors?.points?.message ?? ""}>
+      <FormRow error={errors?.points?.message ?? ''}>
         <Controller
           name="points"
           control={control}
@@ -73,15 +73,15 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
               type="number"
               {...field}
               onChange={(e) => {
-                field.onChange(parseInt(e.target.value, 10));
-                setValue("points", parseInt(e.target.value, 10));
+                field.onChange(parseInt(e.target.value, 10))
+                setValue('points', parseInt(e.target.value, 10))
               }}
             />
           )}
         />
       </FormRow>
 
-      <FormRow error={errors?.priority?.message ?? ""}>
+      <FormRow error={errors?.priority?.message ?? ''}>
         <Controller
           name="priority"
           control={control}
@@ -91,18 +91,18 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
               placeholder="Priority"
               options={[
                 {
-                  label: "Low",
-                  value: "Low",
+                  label: 'Low',
+                  value: 'Low',
                 },
-                { label: "Medium", value: "Medium" },
-                { label: "High", value: "High" },
+                { label: 'Medium', value: 'Medium' },
+                { label: 'High', value: 'High' },
               ]}
             />
           )}
         />
       </FormRow>
 
-      <FormRow error={errors?.category?.message ?? ""}>
+      <FormRow error={errors?.category?.message ?? ''}>
         <Controller
           name="category"
           control={control}
@@ -110,14 +110,14 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
             <Select
               {...field}
               onChange={(e) => {
-                field.onChange(parseInt(e.target.value, 10));
-                setValue("category", parseInt(e.target.value, 10));
+                field.onChange(parseInt(e.target.value, 10))
+                setValue('category', parseInt(e.target.value, 10))
               }}
               placeholder="Category"
               options={
                 categories.map((category) => ({
-                  label: category.name ?? "",
-                  value: category.id.toString() ?? "",
+                  label: category.name ?? '',
+                  value: category.id.toString() ?? '',
                 })) ?? []
               }
             />
@@ -127,7 +127,7 @@ const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
 
       <SubmitFormButton label="Create Task" pending={isSubmitting} />
     </form>
-  );
-};
+  )
+}
 
-export default CreateTaskForm;
+export default CreateTaskForm

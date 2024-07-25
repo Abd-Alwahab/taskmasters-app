@@ -1,22 +1,22 @@
-import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
-import "./globals.css";
-import { ReactNode } from "react";
-import Sidebar from "./_components/Sidebar";
-import CurrentUserBadge from "./_components/CurrentUserBadge";
+import type { Metadata } from 'next'
+import { Source_Sans_3 } from 'next/font/google'
+import './globals.css'
+import { ReactNode } from 'react'
+import Sidebar from './_components/Sidebar'
+import CurrentUserBadge from './_components/CurrentUserBadge'
 
-const sourceSans3 = Source_Sans_3({ subsets: ["latin"] });
+const sourceSans3 = Source_Sans_3({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Task Planner - Organize Your Day & Boost Productivity",
+  title: 'Task Planner - Organize Your Day & Boost Productivity',
   description:
-    "Simplify your life with our easy-to-use task planner. Manage to-do lists, set reminders, and achieve your goals.",
-};
+    'Simplify your life with our easy-to-use task planner. Manage to-do lists, set reminders, and achieve your goals.',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: ReactNode;
+  children: ReactNode
 }>) {
   return (
     <html lang="en">
@@ -33,5 +33,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }

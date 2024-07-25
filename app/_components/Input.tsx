@@ -1,16 +1,16 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef } from 'react'
 
-type Props = ComponentPropsWithRef<"input"> & {
-  hasError?: string;
-};
+type Props = ComponentPropsWithRef<'input'> & {
+  hasError?: string
+}
 
 function Input({ hasError, ...props }: Props) {
   return (
     <input
-      className={`w-full rounded-lg border ${hasError ? "border-red-500" : "border-gray-300"} px-2.5 py-3`}
+      className={`w-full rounded-lg border ${hasError ? 'border-red-500' : 'border-gray-300'} px-2.5 py-3`}
       {...props}
     />
-  );
+  )
 }
 
-export default Input;
+export default Input

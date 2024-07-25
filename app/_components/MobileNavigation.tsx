@@ -1,26 +1,26 @@
-"use client";
+'use client'
 
-import React, { ReactNode, useEffect, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi"; // Hamburger icon
-import { AiOutlineClose } from "react-icons/ai"; // Close icon
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import Logo from "./Logo";
-import SignOutButton from "./SignoutButton";
-import { User } from "@supabase/supabase-js";
+import React, { ReactNode, useEffect, useState } from 'react'
+import { GiHamburgerMenu } from 'react-icons/gi' // Hamburger icon
+import { AiOutlineClose } from 'react-icons/ai' // Close icon
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import Logo from './Logo'
+import SignOutButton from './SignoutButton'
+import { User } from '@supabase/supabase-js'
 
 type Props = {
-  session: { user: User | null } | null;
-  children: ReactNode;
-};
+  session: { user: User | null } | null
+  children: ReactNode
+}
 function MobileNavigation({ children, session }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+    setIsOpen(false)
+  }, [pathname])
 
   return (
     <nav className="w-fit bg-transparent">
@@ -40,7 +40,7 @@ function MobileNavigation({ children, session }: Props) {
         </div>
 
         <div
-          className={` fixed left-0 top-0 z-10 mt-2 flex h-screen w-screen flex-col gap-11 space-y-1 bg-white pt-40  transition-all ${isOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+          className={` fixed left-0 top-0 z-10 mt-2 flex h-screen w-screen flex-col gap-11 space-y-1 bg-white pt-40  transition-all ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
         >
           <div className="flex justify-center">
             <Logo />
@@ -91,7 +91,7 @@ function MobileNavigation({ children, session }: Props) {
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default MobileNavigation;
+export default MobileNavigation

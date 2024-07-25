@@ -1,4 +1,4 @@
-import { MdOutlineError } from "react-icons/md";
+import { MdOutlineError } from 'react-icons/md'
 
 function ErrorMessage({ message }: { message: string }) {
   return (
@@ -6,7 +6,7 @@ function ErrorMessage({ message }: { message: string }) {
       <MdOutlineError />
       <span>{message}</span>
     </div>
-  );
+  )
 }
 
-export default ErrorMessage;
+export default ErrorMessage

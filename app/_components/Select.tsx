@@ -1,9 +1,9 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef } from 'react'
 
-type Props = ComponentPropsWithRef<"select"> & {
-  options: { label: string; value: string }[];
-  placeholder?: string;
-};
+type Props = ComponentPropsWithRef<'select'> & {
+  options: { label: string; value: string }[]
+  placeholder?: string
+}
 const Select = ({ placeholder, options, ...props }: Props) => {
   return (
     <select
@@ -17,7 +17,7 @@ const Select = ({ placeholder, options, ...props }: Props) => {
         </option>
       ))}
     </select>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

@@ -1,7 +1,7 @@
 type Props = {
-  label: string;
-  pending?: boolean;
-};
+  label: string
+  pending?: boolean
+}
 const SubmitFormButton = ({ label, pending }: Props) => {
   return pending ? (
     <button
@@ -31,7 +31,7 @@ const SubmitFormButton = ({ label, pending }: Props) => {
     <button className="rounded-lg bg-gray-900 px-2 py-3 text-white">
       {label}
     </button>
-  );
-};
+  )
+}
 
-export default SubmitFormButton;
+export default SubmitFormButton

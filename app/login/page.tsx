@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { loginAction } from "../_lib/actions";
+import Image from 'next/image'
+import { loginAction } from '../_lib/actions'
 
 const Login = () => {
   return (
@@ -20,7 +20,7 @@ const Login = () => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

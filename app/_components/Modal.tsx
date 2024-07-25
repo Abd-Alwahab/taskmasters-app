@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   cloneElement,
@@ -7,59 +7,59 @@ import {
   ReactNode,
   useContext,
   useState,
-} from "react";
-import { createPortal } from "react-dom";
-import { IoCloseCircleOutline } from "react-icons/io5";
+} from 'react'
+import { createPortal } from 'react-dom'
+import { IoCloseCircleOutline } from 'react-icons/io5'
 
 type Context = {
-  openName: string;
-  close: () => void;
-  open: (name: string) => void;
-};
+  openName: string
+  close: () => void
+  open: (name: string) => void
+}
 
 const ModalContext = createContext<Context>({
-  openName: "",
+  openName: '',
   close: () => {},
   open: () => {},
-});
+})
 
 const Modal = ({ children }: { children: ReactNode }) => {
-  const [openName, setOpenName] = useState("");
-  const close = () => setOpenName("");
-  const open = setOpenName;
+  const [openName, setOpenName] = useState('')
+  const close = () => setOpenName('')
+  const open = setOpenName
 
   return (
     <ModalContext.Provider value={{ openName, close, open }}>
       {children}
     </ModalContext.Provider>
-  );
-};
+  )
+}
 
 export const OpenModal = ({
   name,
   children,
 }: {
-  name: string;
-  children: ReactElement;
+  name: string
+  children: ReactElement
 }) => {
-  const { open } = useContext(ModalContext);
+  const { open } = useContext(ModalContext)
 
-  return cloneElement(children, { onClick: () => open(name) });
-};
+  return cloneElement(children, { onClick: () => open(name) })
+}
 
 export const ModalWindow = ({
   name,
   children,
   label,
 }: {
-  name: string;
-  children: ReactElement;
-  label: string;
+  name: string
+  children: ReactElement
+  label: string
 }) => {
-  const { openName, close } = useContext(ModalContext);
-  const isOpen = openName === name;
+  const { openName, close } = useContext(ModalContext)
+  const isOpen = openName === name
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return createPortal(
     <div className="fixed left-0 top-0 z-10 h-screen w-screen  backdrop-blur transition-all">
@@ -75,11 +75,11 @@ export const ModalWindow = ({
         </div>
       </div>
     </div>,
-    document.body
-  );
-};
+    document.body,
+  )
+}
 
 // Modal.Open = Open;
 // Modal.Window = Window;
 
-export default Modal;
+export default Modal

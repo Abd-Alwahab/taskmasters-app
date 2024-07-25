@@ -1,6 +1,6 @@
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef } from 'react'
 
-type Props = ComponentPropsWithRef<"textarea">;
+type Props = ComponentPropsWithRef<'textarea'>
 
 function TextArea({ ...props }: Props) {
   return (
@@ -8,7 +8,7 @@ function TextArea({ ...props }: Props) {
       className="w-full rounded-lg border border-gray-300 px-2.5 py-3"
       {...props}
     />
-  );
+  )
 }
 
-export default TextArea;
+export default TextArea

@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
+import NextAuth from 'next-auth'
+import Google from 'next-auth/providers/google'
 
 export const {
   auth,
   handlers: { GET, POST },
-  signIn, 
-  signOut
+  signIn,
+  signOut,
 } = NextAuth({
   providers: [
     Google({
@@ -15,11 +15,11 @@ export const {
   ],
   callbacks: {
     authorized({ auth }) {
-      return !!auth?.user;
+      return !!auth?.user
     },
   },
 
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
-});
+})

@@ -1,9 +1,9 @@
-import Categories from "../_components/Categories";
-import CreateNewCategory from "../_components/CreateNewTask";
-import { getCategories } from "../_services/categoriesService";
+import Categories from '../_components/Categories'
+import CreateNewCategory from '../_components/CreateNewTask'
+import { getCategories } from '../_services/categoriesService'
 
 async function Planner() {
-  const categories = await getCategories();
+  const categories = await getCategories()
   return (
     <div className="h-full">
       <div className="mb-4 ml-auto w-fit">
@@ -11,7 +11,7 @@ async function Planner() {
       </div>
       <Categories />
     </div>
-  );
+  )
 }
 
-export default Planner;
+export default Planner

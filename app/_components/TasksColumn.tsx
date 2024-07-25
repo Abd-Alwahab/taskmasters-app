@@ -1,15 +1,15 @@
-import { Tables } from "@/database.types";
+import { Tables } from '@/database.types'
 
 function TasksColumn({
   tasks,
   label,
   categoryId,
 }: {
-  tasks: Tables<"tasks">[];
-  label: string;
-  categoryId: number;
+  tasks: Tables<'tasks'>[]
+  label: string
+  categoryId: number
 }) {
-  const columnTasks = tasks?.filter((task) => task.category === categoryId);
+  const columnTasks = tasks?.filter((task) => task.category === categoryId)
   return (
     <div className="h-full rounded-lg bg-gray-200 shadow-lg">
       <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
@@ -24,7 +24,7 @@ function TasksColumn({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default TasksColumn;
+export default TasksColumn

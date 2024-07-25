@@ -1,15 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { createClient } from "../_utils/supabase/server";
+import { createClient } from '../_utils/supabase/server'
 
 async function CurrentUserBadge() {
   const {
     data: { user },
-  } = await createClient().auth.getUser();
+  } = await createClient().auth.getUser()
 
   return (
     <div className="flex items-center justify-center gap-2 transition-colors">
       <img
-        src={user?.user_metadata?.picture ?? ""}
+        src={user?.user_metadata?.picture ?? ''}
         alt="user image"
         className="size-8 rounded-full"
         referrerPolicy="no-referrer"
@@ -18,7 +18,7 @@ async function CurrentUserBadge() {
       />
       <span className="text-lg">{user?.user_metadata?.name}</span>
     </div>
-  );
+  )
 }
 
-export default CurrentUserBadge;
+export default CurrentUserBadge

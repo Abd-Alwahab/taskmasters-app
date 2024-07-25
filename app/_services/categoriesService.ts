@@ -1,21 +1,22 @@
-import { createClient } from "../_utils/supabase/server";
+import { Tables } from '@/database.types'
+import { createClient } from '../_utils/supabase/server'
 
 export async function getCategories() {
   const {
     data: { session },
-  } = await createClient().auth.getSession();
+  } = await createClient().auth.getSession()
 
-  if (!session) return null;
-  const { user } = session;
+  if (!session) return null
+  const { user } = session
 
   const { data: categories, error } = await createClient()
-    .from("categories")
-    .select("*")
-    .eq("userId", user?.id);
+    .from('categories')
+    .select('*')
+    .eq('userId', user?.id)
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(error.message)
   }
 
-  return categories;
+  return categories as Tables<'categories'>[]
 }
