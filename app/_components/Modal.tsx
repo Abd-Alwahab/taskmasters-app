@@ -79,7 +79,7 @@ export const ModalWindow = ({
   )
 }
 
-// Modal.Open = Open;
-// Modal.Window = Window;
+Modal.Open = OpenModal
+Modal.Window = ModalWindow
 
 export default Modal
