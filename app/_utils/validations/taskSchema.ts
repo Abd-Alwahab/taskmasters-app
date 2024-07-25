@@ -12,15 +12,8 @@ export const taskSchema = z.object({
   priority: z.enum(["Low", "Medium", "High"]),
   category: z.number({ required_error: "Category is required" }),
   points: z
-    .string({ required_error: "Task points is required" }) // Expect a string initially
-    .refine(
-      (val) => {
-        const parsedVal = parseInt(val, 10);
-        return !isNaN(parsedVal) && parsedVal >= 1 && parsedVal <= 100;
-      },
-      {
-        message: "Task points must be a number between 1 and 100",
-      }
-    )
-    .transform((val) => parseInt(val, 10)), // Transform to number after validation
+    .number({ required_error: "Task points is required" })
+    .refine((val) => val >= 1 && val <= 100, {
+      message: "Task points must be a number between 1 and 100",
+    }),
 });

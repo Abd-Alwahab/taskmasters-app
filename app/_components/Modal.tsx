@@ -50,9 +50,11 @@ export const OpenModal = ({
 export const ModalWindow = ({
   name,
   children,
+  label,
 }: {
   name: string;
-  children: ReactNode;
+  children: ReactElement;
+  label: string;
 }) => {
   const { openName, close } = useContext(ModalContext);
   const isOpen = openName === name;
@@ -66,7 +68,11 @@ export const ModalWindow = ({
           <IoCloseCircleOutline fontSize={30} />
         </div>
 
-        {children}
+        <div>
+          <h3 className="mb-6 text-lg font-bold">{label}</h3>
+
+          {cloneElement(children, { onCloseModal: close })}
+        </div>
       </div>
     </div>,
     document.body
