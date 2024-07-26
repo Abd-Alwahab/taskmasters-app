@@ -8,7 +8,6 @@ import {
   RefObject,
   MouseEvent,
 } from 'react'
-import { createPortal } from 'react-dom'
 import { HiEllipsisVertical } from 'react-icons/hi2'
 import { useClickOutside } from '../hooks/useClickOutside'
 
@@ -64,10 +63,11 @@ export function Toggle({ id }: ToggleProps) {
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
     e.stopPropagation()
+    const rect = e?.currentTarget?.closest?.('button')?.getBoundingClientRect()
 
     setPosition({
-      x: e.currentTarget.getBoundingClientRect().left,
-      y: e.currentTarget.getBoundingClientRect().top + 30,
+      x: 8,
+      y: rect?.height ?? 0 + 12,
     })
 
     openId === '' || openId !== id ? open(id) : close()
@@ -92,19 +92,19 @@ export function List({ children, id }: ListProps) {
   const { position, openId, close } = useContext(MenusContext)
   const { ref } = useClickOutside(close)
 
-  if (openId !== id) return null
-  return createPortal(
+  return (
     <ul
       ref={ref as RefObject<HTMLUListElement>}
-      className="fixed rounded-md bg-gray-100 shadow-md"
+      className={`absolute z-10 rounded-md bg-gray-100 shadow-md transition-all ${
+        openId === id ? 'visible opacity-100' : 'invisible opacity-0'
+      }`}
       style={{
         top: `${position.y}px`,
         left: `${position.x}px`,
       }}
     >
       {children}
-    </ul>,
-    document.body,
+    </ul>
   )
 }
 
@@ -135,7 +135,9 @@ export function Button({ children, icon, onClick, disabled }: ButtonProps) {
 }
 
 export const Menu = ({ children }: { children: ReactNode }) => {
-  return <div className="flex items-center justify-center">{children}</div>
+  return (
+    <div className="relative flex items-center justify-center">{children}</div>
+  )
 }
 
 Menus.Menu = Menu
