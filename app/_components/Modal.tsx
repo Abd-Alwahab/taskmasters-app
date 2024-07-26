@@ -54,7 +54,7 @@ export const ModalWindow = ({
 }: {
   name: string
   children: ReactElement
-  label: string
+  label: ReactNode
 }) => {
   const { openName, close } = useContext(ModalContext)
   const isOpen = openName === name

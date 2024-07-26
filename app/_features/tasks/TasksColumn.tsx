@@ -1,10 +1,7 @@
 import { Tables } from '@/database.types'
-import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
-import Menus, { Button, List, Menu, Toggle } from '../../_components/Menus'
-import { HiPencil, HiTrash } from 'react-icons/hi2'
-import DeleteTask from './DeleteTask'
-import EditTask from './EditTask'
-import { Suspense } from 'react'
+import Modal from '../../_components/Modal'
+import Menus from '../../_components/Menus'
+import TaskCard from './TaskCard'
 function TasksColumn({
   tasks,
   label,
@@ -24,41 +21,7 @@ function TasksColumn({
             {label}
           </h3>
           <div className="flex flex-col gap-3 p-3 ">
-            {columnTasks?.map((task) => (
-              <div
-                className="relative cursor-pointer rounded-lg bg-white p-3"
-                key={task.id}
-              >
-                <h3 className="mb-2 font-bold">{task.title}</h3>
-                <p>{task.description}</p>
-
-                <div className="absolute right-3 top-2">
-                  <Menu>
-                    <Toggle id={String(task.id) ?? ''} />
-
-                    <List id={String(task.id) ?? ''}>
-                      <OpenModal name="edit-task">
-                        <Button icon={<HiPencil />}>Edit</Button>
-                      </OpenModal>
-
-                      <OpenModal name="delete-task">
-                        <Button icon={<HiTrash />}>Delete</Button>
-                      </OpenModal>
-                    </List>
-
-                    <ModalWindow name="edit-task" label={task?.title ?? ''}>
-                      <Suspense fallback={<span>Loading</span>}>
-                        <EditTask taskId={task.id} />
-                      </Suspense>
-                    </ModalWindow>
-
-                    <ModalWindow name="delete-task" label="Delete">
-                      <DeleteTask taskId={task.id} />
-                    </ModalWindow>
-                  </Menu>
-                </div>
-              </div>
-            ))}
+            {columnTasks?.map((task) => <TaskCard key={task.id} task={task} />)}
           </div>
         </div>
       </Modal>

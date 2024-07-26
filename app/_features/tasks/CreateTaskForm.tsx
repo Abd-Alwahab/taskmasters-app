@@ -26,6 +26,14 @@ type Props = {
   taskToEdit?: TaskFormData
 }
 
+const defaultValues = {
+  title: '',
+  description: '',
+  points: 0,
+  priority: 'Low',
+  category: 1,
+}
+
 const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
   const {
     formState: { errors, isSubmitting },
@@ -35,7 +43,7 @@ const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
     reset,
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
-    defaultValues: taskToEdit || {},
+    defaultValues: taskToEdit || defaultValues,
   })
 
   const onSubmit = async (data: any) => {
@@ -48,11 +56,8 @@ const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
     }
 
     if (result?.success) {
-      if (result?.data) {
-        reset(result?.data)
-      } else {
-        reset()
-      }
+      reset(result?.data ?? defaultValues)
+
       onCloseModal?.()
     }
   }
