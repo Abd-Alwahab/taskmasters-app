@@ -1,8 +1,8 @@
 'use client'
 
-import DeleteModal from './DeleteModal'
+import DeleteModal from '../../_components/DeleteModal'
 import { useTransition } from 'react'
-import { deleteTaskAction } from '../_services/actoins'
+import { deleteTaskAction } from '../../_services/actoins'
 
 type Props = {
   onCloseModal?: () => void

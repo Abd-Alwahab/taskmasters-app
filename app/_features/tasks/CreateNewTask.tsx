@@ -1,7 +1,7 @@
 'use client'
 
 import { HiOutlinePlus } from 'react-icons/hi'
-import Modal, { ModalWindow, OpenModal } from './Modal'
+import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
 import { Tables } from '@/database.types'
 import CreateTaskForm from './CreateTaskForm'
 

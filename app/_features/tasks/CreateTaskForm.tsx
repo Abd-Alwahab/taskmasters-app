@@ -1,15 +1,15 @@
 'use client'
 
 import { Controller, useForm } from 'react-hook-form'
-import FormRow from './FormRow'
-import Select from './Select'
-import TextArea from './TextArea'
+import FormRow from '../../_components/FormRow'
+import Select from '../../_components/Select'
+import TextArea from '../../_components/TextArea'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createNewTaskAction, updateTaskAction } from '../_services/actoins'
-import { taskSchema } from '../_utils/validations/taskSchema'
-import Input from './Input'
+import { createNewTaskAction, updateTaskAction } from '../../_services/actoins'
+import { taskSchema } from '../../_utils/validations/taskSchema'
+import Input from '../../_components/Input'
 import { Tables } from '@/database.types'
-import SubmitFormButton from './SubmitFormButton'
+import SubmitFormButton from '../../_components/SubmitFormButton'
 
 type TaskFormData = {
   title: string

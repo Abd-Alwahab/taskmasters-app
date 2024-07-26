@@ -1,5 +1,5 @@
 import Categories from '../_components/Categories'
-import CreateNewCategory from '../_components/CreateNewTask'
+import CreateNewCategory from '../_features/tasks/CreateNewTask'
 import { getCategories } from '../_services/categoriesService'
 
 async function Planner() {

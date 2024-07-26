@@ -1,5 +1,5 @@
-import { getCategories } from '../_services/categoriesService'
-import { getTask } from '../_services/tasksServices'
+import { getCategories } from '../../_services/categoriesService'
+import { getTask } from '../../_services/tasksServices'
 import CreateTaskForm from './CreateTaskForm'
 
 async function EditTask({

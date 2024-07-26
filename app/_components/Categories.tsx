@@ -1,6 +1,6 @@
 import { getCategories } from '../_services/categoriesService'
 import { getTasks } from '../_services/tasksServices'
-import TasksColumn from './TasksColumn'
+import TasksColumn from '../_features/tasks/TasksColumn'
 
 async function Categories() {
   const tasks = await getTasks()

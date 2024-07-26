@@ -1,6 +1,6 @@
 import { Tables } from '@/database.types'
-import Modal, { ModalWindow, OpenModal } from './Modal'
-import Menus, { Button, List, Menu, Toggle } from './Menus'
+import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
+import Menus, { Button, List, Menu, Toggle } from '../../_components/Menus'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 import DeleteTask from './DeleteTask'
 import EditTask from './EditTask'
