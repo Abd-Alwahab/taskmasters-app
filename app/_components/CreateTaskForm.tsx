@@ -5,7 +5,7 @@ import FormRow from './FormRow'
 import Select from './Select'
 import TextArea from './TextArea'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createNewTaskAction } from '../_services/actoins'
+import { createNewTaskAction, updateTaskAction } from '../_services/actoins'
 import { taskSchema } from '../_utils/validations/taskSchema'
 import Input from './Input'
 import { Tables } from '@/database.types'
@@ -17,6 +17,7 @@ type TaskFormData = {
   points: number
   priority: string
   category: number
+  id?: number
 }
 
 type Props = {
@@ -38,10 +39,20 @@ const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
   })
 
   const onSubmit = async (data: any) => {
-    const result = await createNewTaskAction(data)
+    let result: { success: boolean; data?: any } | null
+
+    if (taskToEdit) {
+      result = await updateTaskAction(taskToEdit.id, data)
+    } else {
+      result = await createNewTaskAction(data)
+    }
 
     if (result?.success) {
-      reset()
+      if (result?.data) {
+        reset(result?.data)
+      } else {
+        reset()
+      }
       onCloseModal?.()
     }
   }
@@ -134,7 +145,10 @@ const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
         />
       </FormRow>
 
-      <SubmitFormButton label="Create Task" pending={isSubmitting} />
+      <SubmitFormButton
+        label={taskToEdit ? 'Update Task' : 'Create Task'}
+        pending={isSubmitting}
+      />
     </form>
   )
 }

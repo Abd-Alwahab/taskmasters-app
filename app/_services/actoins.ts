@@ -66,3 +66,31 @@ export async function deleteTaskAction(id: number) {
 
   return { success: true }
 }
+
+export async function updateTaskAction(id: any, data: any) {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { error, data: updatedTask } = await createClient()
+    .from('tasks')
+    .update({
+      ...data,
+    })
+    .eq('id', id)
+    .eq('userId', user?.id)
+    .select()
+    .single()
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/planner')
+
+  return { success: true, data: updatedTask }
+}
