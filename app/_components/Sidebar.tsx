@@ -18,11 +18,8 @@ const Sidebar = async () => {
         <Navigation />
 
         {session?.user ? (
-          <div className="flex items-center gap-2 pl-3 text-white">
-            {/* <CurrentUserBadge /> */}
-
+          <div>
             <SignOutButton />
-            <span className="text-base">Logout</span>
           </div>
         ) : (
           <Link

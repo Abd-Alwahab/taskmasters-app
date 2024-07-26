@@ -3,7 +3,7 @@ import { Source_Sans_3 } from 'next/font/google'
 import './globals.css'
 import { ReactNode } from 'react'
 import Sidebar from './_components/Sidebar'
-import CurrentUserBadge from './_components/CurrentUserBadge'
+import Header from './_components/Header'
 
 const sourceSans3 = Source_Sans_3({ subsets: ['latin'] })
 
@@ -26,9 +26,7 @@ export default function RootLayout({
         <Sidebar />
 
         <div className="flex size-full flex-col gap-4 overflow-hidden">
-          <header className="flex justify-end rounded-lg bg-[#FBB13C] px-6 py-4">
-            <CurrentUserBadge />
-          </header>
+          <Header />
           <main className="flex-1">{children}</main>
         </div>
       </body>

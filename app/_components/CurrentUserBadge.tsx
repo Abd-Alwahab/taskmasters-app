@@ -6,6 +6,7 @@ async function CurrentUserBadge() {
     data: { user },
   } = await createClient().auth.getUser()
 
+  if (!user) return null
   return (
     <div className="flex items-center justify-center gap-2 transition-colors">
       <img

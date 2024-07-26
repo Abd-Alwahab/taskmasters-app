@@ -23,4 +23,5 @@ export async function loginAction() {
 
 export async function logoutAction() {
   await createClient().auth.signOut()
+  redirect('/login')
 }
