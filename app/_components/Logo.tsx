@@ -5,6 +5,7 @@ const Logo = () => {
   return (
     <Link href="/">
       <Image
+        priority
         src="/logo.png"
         alt="logo"
         width={70}

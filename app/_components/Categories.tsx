@@ -1,10 +1,14 @@
-import { getCategories } from '../_services/categoriesService'
 import { getTasks } from '../_services/tasksServices'
 import TasksColumn from '../_features/tasks/TasksColumn'
+import { Tables } from '@/database.types'
+import { cache } from 'react'
 
-async function Categories() {
-  const tasks = await getTasks()
-  const categories = await getCategories()
+type Props = {
+  categories: Tables<'categories'>[]
+}
+async function Categories({ categories = [] }: Props) {
+  const tasks = cache(async () => await getTasks())
+  const tasksResult = await tasks()
   return (
     <div className={`flex h-full  gap-4 overflow-x-auto`}>
       {categories
@@ -13,7 +17,7 @@ async function Categories() {
           <div className="h-full min-w-[335px]" key={category.id}>
             <TasksColumn
               label={category.name ?? ''}
-              tasks={tasks ?? []}
+              tasks={tasksResult ?? []}
               categoryId={category.id}
             />
           </div>
