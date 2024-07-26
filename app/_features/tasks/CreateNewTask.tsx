@@ -1,14 +1,14 @@
-'use client'
-
 import { HiOutlinePlus } from 'react-icons/hi'
 import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
 import { Tables } from '@/database.types'
-import CreateTaskForm from './CreateTaskForm'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+const CreateTaskForm = dynamic(() => import('./CreateTaskForm'))
 
 type Props = {
   categories: Tables<'categories'>[]
 }
-const CreateNewTask = ({ categories }: Props) => {
+function CreateNewTask({ categories }: Props) {
   return (
     <Modal>
       <OpenModal name="new-task">
@@ -19,7 +19,9 @@ const CreateNewTask = ({ categories }: Props) => {
       </OpenModal>
 
       <ModalWindow name="new-task" label="Create New Task">
-        <CreateTaskForm categories={categories} />
+        <Suspense fallback={<span>Loading</span>}>
+          <CreateTaskForm categories={categories} />
+        </Suspense>
       </ModalWindow>
     </Modal>
   )

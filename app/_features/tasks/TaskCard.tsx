@@ -3,9 +3,10 @@ import { OpenModal, ModalWindow } from '@/app/_components/Modal'
 import { Tables } from '@/database.types'
 import { Suspense } from 'react'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
-import DeleteTask from './DeleteTask'
-import EditTask from './EditTask'
-import TaskDetailsModal from './TaskDetailsModal'
+import dynamic from 'next/dynamic'
+const TaskDetailsModal = dynamic(() => import('./TaskDetailsModal'))
+const DeleteTask = dynamic(() => import('./DeleteTask'))
+const EditTask = dynamic(() => import('./EditTask'))
 
 function TaskCard({ task }: { task: Tables<'tasks'> }) {
   return (
@@ -23,11 +24,15 @@ function TaskCard({ task }: { task: Tables<'tasks'> }) {
 
             <List id={String(task.id) ?? ''}>
               <OpenModal name="edit-task">
-                <Button icon={<HiPencil />}>Edit</Button>
+                <Button ariaLabel="Edit" icon={<HiPencil />}>
+                  Edit
+                </Button>
               </OpenModal>
 
               <OpenModal name="delete-task">
-                <Button icon={<HiTrash />}>Delete</Button>
+                <Button ariaLabel="Delete" icon={<HiTrash />}>
+                  Delete
+                </Button>
               </OpenModal>
             </List>
 

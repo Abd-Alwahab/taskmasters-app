@@ -8,6 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        modalBounce: 'modalBounce 0.15s ease-in-out',
+      },
+      keyframes: {
+        modalBounce: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
       colors: {
         'curious-blue': {
           '50': '#eff9ff',

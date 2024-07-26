@@ -75,6 +75,7 @@ export function Toggle({ id }: ToggleProps) {
 
   return (
     <button
+      aria-label="open menu"
       onClick={handleClick}
       className="translate-x-3 rounded-sm border-none bg-transparent p-1 transition-all duration-200 hover:bg-gray-100"
     >
@@ -92,12 +93,11 @@ export function List({ children, id }: ListProps) {
   const { position, openId, close } = useContext(MenusContext)
   const { ref } = useClickOutside(close)
 
+  if (openId !== id) return null
   return (
     <ul
       ref={ref as RefObject<HTMLUListElement>}
-      className={`absolute z-10 rounded-md bg-gray-100 shadow-md transition-all ${
-        openId === id ? 'visible opacity-100' : 'invisible opacity-0'
-      }`}
+      className={`absolute z-10 animate-modalBounce rounded-md bg-gray-100 opacity-100 shadow-md transition-all`}
       style={{
         top: `${position.y}px`,
         left: `${position.x}px`,
@@ -113,9 +113,16 @@ interface ButtonProps {
   icon: ReactNode
   onClick?: () => void
   disabled?: boolean
+  ariaLabel?: string
 }
 
-export function Button({ children, icon, onClick, disabled }: ButtonProps) {
+export function Button({
+  children,
+  icon,
+  onClick,
+  disabled,
+  ariaLabel,
+}: ButtonProps) {
   const { close } = useContext(MenusContext)
   function handleClick() {
     onClick?.()
@@ -124,6 +131,7 @@ export function Button({ children, icon, onClick, disabled }: ButtonProps) {
   return (
     <li>
       <button
+        aria-label={ariaLabel}
         onClick={handleClick}
         disabled={disabled}
         className="flex w-full items-center gap-4 border-none bg-transparent p-3 text-left text-base transition-all duration-200 hover:bg-gray-50"
