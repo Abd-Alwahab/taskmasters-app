@@ -1,3 +1,5 @@
+'use client'
+
 import DeleteModal from './DeleteModal'
 import { useTransition } from 'react'
 import { deleteTaskAction } from '../_services/actoins'

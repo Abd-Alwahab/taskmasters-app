@@ -1,3 +1,5 @@
+'use client'
+
 import {
   createContext,
   useContext,
@@ -57,7 +59,7 @@ interface ToggleProps {
   id: string
 }
 
-function Toggle({ id }: ToggleProps) {
+export function Toggle({ id }: ToggleProps) {
   const { open, openId, close, setPosition } = useContext(MenusContext)
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
@@ -86,7 +88,7 @@ interface ListProps {
   id: string
 }
 
-function List({ children, id }: ListProps) {
+export function List({ children, id }: ListProps) {
   const { position, openId, close } = useContext(MenusContext)
   const { ref } = useClickOutside(close)
 
@@ -113,7 +115,7 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-function Button({ children, icon, onClick, disabled }: ButtonProps) {
+export function Button({ children, icon, onClick, disabled }: ButtonProps) {
   const { close } = useContext(MenusContext)
   function handleClick() {
     onClick?.()
@@ -132,7 +134,7 @@ function Button({ children, icon, onClick, disabled }: ButtonProps) {
   )
 }
 
-const Menu = ({ children }: { children: ReactNode }) => {
+export const Menu = ({ children }: { children: ReactNode }) => {
   return <div className="flex items-center justify-center">{children}</div>
 }
 

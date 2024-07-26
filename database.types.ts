@@ -51,6 +51,7 @@ export type Database = {
           description: string | null
           id: number
           points: number | null
+          priority: string | null
           title: string | null
           userId: string | null
         }
@@ -60,6 +61,7 @@ export type Database = {
           description?: string | null
           id?: number
           points?: number | null
+          priority?: string | null
           title?: string | null
           userId?: string | null
         }
@@ -69,6 +71,7 @@ export type Database = {
           description?: string | null
           id?: number
           points?: number | null
+          priority?: string | null
           title?: string | null
           userId?: string | null
         }

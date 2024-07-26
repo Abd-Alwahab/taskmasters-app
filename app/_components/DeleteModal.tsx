@@ -1,3 +1,5 @@
+'use client'
+
 import { FaTrashCan } from 'react-icons/fa6'
 
 type Props = {

@@ -1,3 +1,5 @@
+'use client'
+
 import { Controller, useForm } from 'react-hook-form'
 import FormRow from './FormRow'
 import Select from './Select'
@@ -9,26 +11,30 @@ import Input from './Input'
 import { Tables } from '@/database.types'
 import SubmitFormButton from './SubmitFormButton'
 
+type TaskFormData = {
+  title: string
+  description: string
+  points: number
+  priority: string
+  category: number
+}
+
 type Props = {
   categories: Tables<'categories'>[]
   onCloseModal?: () => void
+  taskToEdit?: TaskFormData
 }
 
-const CreateTaskForm = ({ categories, onCloseModal }: Props) => {
+const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
   const {
     formState: { errors, isSubmitting },
     control,
     handleSubmit,
     setValue,
     reset,
-  } = useForm<{
-    title: string
-    description: string
-    points: number
-    priority: string
-    category: number
-  }>({
+  } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
+    defaultValues: taskToEdit || {},
   })
 
   const onSubmit = async (data: any) => {

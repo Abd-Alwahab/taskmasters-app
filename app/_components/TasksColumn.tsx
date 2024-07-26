@@ -1,11 +1,10 @@
-'use client'
-
 import { Tables } from '@/database.types'
-import Modal, { ModalWindow } from './Modal'
-import Menus from './Menus'
+import Modal, { ModalWindow, OpenModal } from './Modal'
+import Menus, { Button, List, Menu, Toggle } from './Menus'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 import DeleteTask from './DeleteTask'
-
+import EditTask from './EditTask'
+import { Suspense } from 'react'
 function TasksColumn({
   tasks,
   label,
@@ -34,27 +33,29 @@ function TasksColumn({
                 <p>{task.description}</p>
 
                 <div className="absolute right-3 top-2">
-                  <Menus.Menu>
-                    <Menus.Toggle id={String(task.id) ?? ''} />
+                  <Menu>
+                    <Toggle id={String(task.id) ?? ''} />
 
-                    <Menus.List id={String(task.id) ?? ''}>
-                      <Modal.Open name="edit-task">
-                        <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-                      </Modal.Open>
+                    <List id={String(task.id) ?? ''}>
+                      <OpenModal name="edit-task">
+                        <Button icon={<HiPencil />}>Edit</Button>
+                      </OpenModal>
 
-                      <Modal.Open name="delete-task">
-                        <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
-                      </Modal.Open>
-                    </Menus.List>
+                      <OpenModal name="delete-task">
+                        <Button icon={<HiTrash />}>Delete</Button>
+                      </OpenModal>
+                    </List>
 
                     <ModalWindow name="edit-task" label={task?.title ?? ''}>
-                      <span>Edit </span>
+                      <Suspense fallback={<span>Loading</span>}>
+                        <EditTask taskId={task.id} />
+                      </Suspense>
                     </ModalWindow>
 
                     <ModalWindow name="delete-task" label="Delete">
                       <DeleteTask taskId={task.id} />
                     </ModalWindow>
-                  </Menus.Menu>
+                  </Menu>
                 </div>
               </div>
             ))}
