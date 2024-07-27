@@ -15,7 +15,7 @@ async function Categories({ categories = [], filter }: Props) {
       {categories
         ?.sort((a, b) => (a?.orderIndex ?? 0) - (b?.orderIndex ?? 0))
         ?.map((category) => (
-          <div className="h-full min-w-[335px]" key={category.id}>
+          <div className="h-full min-w-[325px]" key={category.id}>
             <TasksColumn
               label={category.name ?? ''}
               tasks={tasksResult ?? []}

@@ -4,6 +4,7 @@ import { Tables } from '@/database.types'
 import { Suspense } from 'react'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 import dynamic from 'next/dynamic'
+import { getPriorityBorderColor } from '@/app/_utils/helpers'
 const TaskDetailsModal = dynamic(() => import('./TaskDetailsModal'))
 const DeleteTask = dynamic(() => import('./DeleteTask'))
 const EditTask = dynamic(() => import('./EditTask'))
@@ -11,7 +12,9 @@ const EditTask = dynamic(() => import('./EditTask'))
 function TaskCard({ task }: { task: Tables<'tasks'> }) {
   return (
     <>
-      <div className="relative cursor-pointer rounded-lg bg-white p-3">
+      <div
+        className={`relative h-40 cursor-pointer rounded-lg border-b-8 bg-white p-3 ${getPriorityBorderColor(task.priority ?? '')}`}
+      >
         <OpenModal name="task-details">
           <div className="absolute right-0 top-0 size-full " />
         </OpenModal>
