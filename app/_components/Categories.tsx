@@ -11,11 +11,16 @@ async function Categories({ categories = [], filter }: Props) {
   const tasks = cache(async () => await getTasks())
   const tasksResult = await tasks()
   return (
-    <div className={`flex h-full  gap-4 overflow-x-auto`}>
+    <div
+      className="grid h-full gap-4 overflow-x-auto"
+      style={{
+        gridTemplateColumns: `repeat(${categories.length}, minmax(300px, 1fr))`,
+      }}
+    >
       {categories
         ?.sort((a, b) => (a?.orderIndex ?? 0) - (b?.orderIndex ?? 0))
         ?.map((category) => (
-          <div className="h-full min-w-[325px]" key={category.id}>
+          <div className="h-full" key={category.id}>
             <TasksColumn
               label={category.name ?? ''}
               tasks={tasksResult ?? []}
