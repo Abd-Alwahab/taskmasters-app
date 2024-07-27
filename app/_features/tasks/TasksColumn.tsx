@@ -2,6 +2,13 @@ import { Tables } from '@/database.types'
 import Modal from '../../_components/Modal'
 import Menus from '../../_components/Menus'
 import TaskCard from './TaskCard'
+
+const priorityOrder: Record<'high' | 'medium' | 'low', number> = {
+  high: 0,
+  medium: 1,
+  low: 2,
+}
+
 function TasksColumn({
   tasks,
   label,
@@ -13,7 +20,19 @@ function TasksColumn({
   categoryId: number
   filter?: string
 }) {
-  const columnTasks = tasks?.filter((task) => task.category === categoryId)
+  const columnTasks = tasks
+    ?.filter((task) => task.category === categoryId)
+    .sort((a, b) => {
+      return (
+        (priorityOrder[
+          a.priority?.toLowerCase() as 'high' | 'medium' | 'low'
+        ] ?? 0) -
+        (priorityOrder[
+          b.priority?.toLowerCase() as 'high' | 'medium' | 'low'
+        ] ?? 0)
+      )
+    })
+
   let filteredTasks = columnTasks
 
   if (filter !== 'all')
