@@ -1,20 +1,8 @@
+import { getPriorityBackgroundColor } from '@/app/_utils/helpers'
 import { Tables } from '@/database.types'
 
 type Props = {
   task?: Tables<'tasks'>
-}
-
-function getPriorityBackgroundColor(priority: string): string {
-  switch (priority.toLowerCase()) {
-    case 'low':
-      return 'bg-green-200' // Light green for low priority
-    case 'medium':
-      return 'bg-yellow-300' // Yellow for medium priority
-    case 'high':
-      return 'bg-red-400' // Light red for high priority
-    default:
-      return 'bg-gray-200' // Default to gray if priority is invalid
-  }
 }
 
 function TaskDetailsModal({ task }: Props) {

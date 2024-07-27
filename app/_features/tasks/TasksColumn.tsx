@@ -6,12 +6,20 @@ function TasksColumn({
   tasks,
   label,
   categoryId,
+  filter,
 }: {
   tasks: Tables<'tasks'>[]
   label: string
   categoryId: number
+  filter?: string
 }) {
   const columnTasks = tasks?.filter((task) => task.category === categoryId)
+  let filteredTasks = columnTasks
+
+  if (filter !== 'all')
+    filteredTasks = columnTasks?.filter(
+      (task) => task.priority?.toLowerCase() === filter?.toLowerCase(),
+    )
 
   return (
     <Menus>
@@ -21,7 +29,9 @@ function TasksColumn({
             {label}
           </h3>
           <div className="flex flex-col gap-3 p-3 ">
-            {columnTasks?.map((task) => <TaskCard key={task.id} task={task} />)}
+            {filteredTasks?.map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
           </div>
         </div>
       </Modal>

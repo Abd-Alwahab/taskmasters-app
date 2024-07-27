@@ -5,8 +5,9 @@ import { cache } from 'react'
 
 type Props = {
   categories: Tables<'categories'>[]
+  filter?: string
 }
-async function Categories({ categories = [] }: Props) {
+async function Categories({ categories = [], filter }: Props) {
   const tasks = cache(async () => await getTasks())
   const tasksResult = await tasks()
   return (
@@ -19,6 +20,7 @@ async function Categories({ categories = [] }: Props) {
               label={category.name ?? ''}
               tasks={tasksResult ?? []}
               categoryId={category.id}
+              filter={filter}
             />
           </div>
         ))}
