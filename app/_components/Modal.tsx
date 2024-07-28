@@ -57,30 +57,39 @@ export const ModalWindow = ({
   label: ReactNode
 }) => {
   const { openName, close } = useContext(ModalContext)
-  const isOpen = openName === name
 
-  if (!isOpen) return null
-  return createPortal(
-    <div
-      className={`fixed left-0 top-0 z-10 h-screen w-screen  animate-modalBounce bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur transition-all`}
-    >
-      <div className="absolute left-1/2 top-1/2 size-fit -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4">
-        <div onClick={close} className="absolute right-4 top-4 cursor-pointer">
-          <IoCloseCircleOutline fontSize={30} />
+  return (
+    openName === name &&
+    createPortal(
+      <div
+        className={`fixed left-0 top-0 z-10 h-screen w-screen  animate-modalBounce bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur transition-all`}
+      >
+        <div className="absolute left-1/2 top-1/2 size-fit -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4">
+          <div
+            onClick={close}
+            className="absolute right-4 top-4 cursor-pointer"
+          >
+            <IoCloseCircleOutline fontSize={30} />
+          </div>
+
+          <div>
+            <h3 className="mb-6 text-lg font-bold">{label}</h3>
+
+            {cloneElement(children, {
+              key: Math.random(),
+              onCloseModal: () => close(),
+            })}
+          </div>
         </div>
-
-        <div>
-          <h3 className="mb-6 text-lg font-bold">{label}</h3>
-
-          {cloneElement(children, { onCloseModal: close })}
-        </div>
-      </div>
-    </div>,
-    document.body,
+      </div>,
+      document.body,
+    )
   )
 }
 
 Modal.Open = OpenModal
 Modal.Window = ModalWindow
+
+export const useModal = () => useContext(ModalContext)
 
 export default Modal

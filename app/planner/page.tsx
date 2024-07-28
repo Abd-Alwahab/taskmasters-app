@@ -27,7 +27,7 @@ async function Planner({ searchParams }: Props) {
           ]}
           filterField="priority"
         />
-        <CreateNewTask categories={categoriesResult ?? []} />
+        <CreateNewTask />
       </div>
 
       <Suspense

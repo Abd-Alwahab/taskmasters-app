@@ -8,8 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { createNewTaskAction, updateTaskAction } from '../../_services/actoins'
 import { taskSchema } from '../../_utils/validations/taskSchema'
 import Input from '../../_components/Input'
-import { Tables } from '@/database.types'
 import SubmitFormButton from '../../_components/SubmitFormButton'
+import { useCategories } from '@/app/context/categories'
 
 type TaskFormData = {
   title: string
@@ -21,7 +21,6 @@ type TaskFormData = {
 }
 
 type Props = {
-  categories: Tables<'categories'>[]
   onCloseModal?: () => void
   taskToEdit?: TaskFormData
 }
@@ -34,7 +33,8 @@ const defaultValues = {
   category: 1,
 }
 
-const CreateTaskForm = ({ categories, onCloseModal, taskToEdit }: Props) => {
+const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
+  const { categories } = useCategories()
   const {
     formState: { errors, isSubmitting },
     control,

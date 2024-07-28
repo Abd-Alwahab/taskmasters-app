@@ -1,5 +1,4 @@
 import { Tables } from '@/database.types'
-import Modal from '../../_components/Modal'
 import Menus from '../../_components/Menus'
 import TaskCard from './TaskCard'
 
@@ -42,18 +41,14 @@ function TasksColumn({
 
   return (
     <Menus>
-      <Modal>
-        <div className="h-full rounded-lg bg-gray-200 shadow-lg">
-          <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
-            {label}
-          </h3>
-          <div className="flex flex-col gap-3 p-3 ">
-            {filteredTasks?.map((task) => (
-              <TaskCard key={task.id} task={task} />
-            ))}
-          </div>
+      <div className="h-full rounded-lg bg-gray-200 shadow-lg">
+        <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
+          {label}
+        </h3>
+        <div className="flex flex-col gap-3 p-3 ">
+          {filteredTasks?.map((task) => <TaskCard key={task.id} task={task} />)}
         </div>
-      </Modal>
+      </div>
     </Menus>
   )
 }

@@ -30,6 +30,7 @@ function MobileNavigation({ children, session }: Props) {
           <button
             className="fixed right-4 top-9 z-20 text-black hover:text-black focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Open Mobile Menu"
           >
             {isOpen ? (
               <AiOutlineClose size={24} /> // Close icon when open
@@ -79,7 +80,10 @@ function MobileNavigation({ children, session }: Props) {
                   href="/account"
                   className="hover:text-accent-400 text-2xl transition-colors"
                 >
-                  <button className="group flex items-center rounded-full border border-quill-gray-950 px-5 py-2 transition-all hover:bg-quill-gray-950">
+                  <button
+                    className="group flex items-center rounded-full border border-quill-gray-950 px-5 py-2 transition-all hover:bg-quill-gray-950"
+                    aria-label="Login"
+                  >
                     <span className="text-lg text-quill-gray-950 transition-all group-hover:text-white">
                       Login / Signup
                     </span>

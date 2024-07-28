@@ -1,30 +1,30 @@
-import { getCategories } from '../../_services/categoriesService'
-import { getTask } from '../../_services/tasksServices'
-import CreateTaskForm from './CreateTaskForm'
+'use client'
 
-async function EditTask({
-  taskId,
+import { useModal } from '@/app/_components/Modal'
+import CreateTaskForm from './CreateTaskForm'
+import { Tables } from '@/database.types'
+
+function EditTask({
+  taskToEdit,
   onCloseModal,
+  ...others
 }: {
-  taskId: number
+  taskToEdit?: Tables<'tasks'>
   onCloseModal?: () => void
 }) {
-  const categories = await getCategories()
-  const task = await getTask(taskId)
-
+  const { close } = useModal()
   return (
     <div>
       <CreateTaskForm
-        categories={categories ?? []}
         taskToEdit={{
-          title: task?.title ?? '',
-          description: task?.description ?? '',
-          points: task?.points ?? 0,
-          priority: task?.priority ?? '',
-          category: task?.category ?? 0,
-          id: task?.id ?? 0,
+          title: taskToEdit?.title ?? '',
+          description: taskToEdit?.description ?? '',
+          points: taskToEdit?.points ?? 0,
+          priority: taskToEdit?.priority ?? '',
+          category: taskToEdit?.category ?? 0,
+          id: taskToEdit?.id ?? 0,
         }}
-        onCloseModal={onCloseModal}
+        onCloseModal={close}
       />
     </div>
   )
