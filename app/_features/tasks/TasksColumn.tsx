@@ -44,7 +44,7 @@ function TasksColumn({ tasks, label, categoryId, filter }: Props) {
 
   return (
     <Menus>
-      <div className="h-full rounded-lg bg-gray-200 shadow-lg">
+      <div className="flex h-full flex-col rounded-lg bg-gray-200  shadow-lg">
         <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
           {label}
         </h3>
