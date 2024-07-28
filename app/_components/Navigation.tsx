@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { FaTasks } from 'react-icons/fa'
 import { FaCircleInfo } from 'react-icons/fa6'
 import { IoMdHome } from 'react-icons/io'
+import { TbCategory } from 'react-icons/tb'
 
 function Navigation() {
   const pathname = usePathname()
@@ -30,6 +31,16 @@ function Navigation() {
             >
               <FaTasks fontSize={20} />
               <span>Planner</span>
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              className={`flex w-full items-center gap-2 text-white ${pathname === '/categories' ? 'bg-gray-800 text-white' : ''} py-3 pl-3 text-base`}
+              href="/categories"
+            >
+              <TbCategory fontSize={20} />
+              <span>Categories</span>
             </Link>
           </li>
 
