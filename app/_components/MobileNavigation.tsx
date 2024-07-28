@@ -55,10 +55,7 @@ function MobileNavigation({ children, session }: Props) {
             </li>
 
             <li>
-              <Link
-                href="/about"
-                className="hover:text-accent-400 text-2xl transition-colors"
-              >
+              <Link href="/about" className="text-2xl transition-colors">
                 About
               </Link>
             </li>
@@ -76,10 +73,7 @@ function MobileNavigation({ children, session }: Props) {
                   <SignOutButton />
                 </div>
               ) : (
-                <Link
-                  href="/account"
-                  className="hover:text-accent-400 text-2xl transition-colors"
-                >
+                <Link href="/account" className="text-2xl transition-colors">
                   <button
                     className="group flex items-center rounded-full border border-quill-gray-950 px-5 py-2 transition-all hover:bg-quill-gray-950"
                     aria-label="Login"
