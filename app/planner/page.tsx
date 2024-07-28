@@ -1,9 +1,9 @@
 import { cache, Suspense } from 'react'
-import Categories from '../_components/Categories'
 import CreateNewTask from '../_features/tasks/CreateNewTask'
 import { getCategories } from '../_services/categoriesService'
 import Spinner from '../_components/Spinner'
 import Filter from '../_components/Filter'
+import Categories from '../_features/tasks/Categories'
 
 type Props = {
   searchParams: {

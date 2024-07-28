@@ -2,7 +2,7 @@
 
 import DeleteModal from '../../_components/DeleteModal'
 import { useTransition } from 'react'
-import { deleteTaskAction } from '../../_services/actoins'
+import { deleteTaskAction } from '@/app/_lib/actions'
 
 type Props = {
   onCloseModal?: () => void

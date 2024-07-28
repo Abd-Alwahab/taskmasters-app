@@ -1,6 +1,13 @@
+'use client'
+
 import { Tables } from '@/database.types'
 import Menus from '../../_components/Menus'
 import TaskCard from './TaskCard'
+import {
+  Droppable,
+  DroppableProvided,
+  DroppableStateSnapshot,
+} from '@hello-pangea/dnd'
 
 const priorityOrder: Record<'high' | 'medium' | 'low', number> = {
   high: 0,
@@ -8,17 +15,13 @@ const priorityOrder: Record<'high' | 'medium' | 'low', number> = {
   low: 2,
 }
 
-function TasksColumn({
-  tasks,
-  label,
-  categoryId,
-  filter,
-}: {
+type Props = {
   tasks: Tables<'tasks'>[]
   label: string
   categoryId: number
   filter?: string
-}) {
+}
+function TasksColumn({ tasks, label, categoryId, filter }: Props) {
   const columnTasks = tasks
     ?.filter((task) => task.category === categoryId)
     .sort((a, b) => {
@@ -45,9 +48,22 @@ function TasksColumn({
         <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
           {label}
         </h3>
-        <div className="flex flex-col gap-3 p-3 ">
-          {filteredTasks?.map((task) => <TaskCard key={task.id} task={task} />)}
-        </div>
+        <Droppable droppableId={String(categoryId) ?? ''} direction="vertical">
+          {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => {
+            return (
+              <div
+                className={`flex h-full flex-col gap-3 p-3 transition-all ${snapshot.isDraggingOver ? 'bg-gray-300 shadow-2xl' : ''}`}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {filteredTasks?.map((task, index) => (
+                  <TaskCard key={task.id} task={task} index={index} />
+                ))}
+                {provided.placeholder}
+              </div>
+            )
+          }}
+        </Droppable>
       </div>
     </Menus>
   )
