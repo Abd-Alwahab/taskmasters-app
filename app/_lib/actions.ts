@@ -118,3 +118,28 @@ export async function updateTaskAction(id: any, data: any) {
 
   return { success: true, data: updatedTask }
 }
+
+export async function deleteCategoryAction(id: number) {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { error } = await createClient()
+    .from('categories')
+    .delete()
+    .eq('id', id)
+    .eq('userId', user?.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/planner')
+  revalidatePath('/categories')
+
+  return { success: true }
+}
