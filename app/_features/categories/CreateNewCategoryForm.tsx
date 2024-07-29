@@ -3,7 +3,10 @@
 import { Controller, useForm } from 'react-hook-form'
 import FormRow from '../../_components/FormRow'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createNewCategoryAction, updateTaskAction } from '@/app/_lib/actions'
+import {
+  createNewCategoryAction,
+  updateCategoryAction,
+} from '@/app/_lib/actions'
 import { categorySchema } from '../../_utils/validations/categorySchema'
 import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
@@ -40,7 +43,7 @@ const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
     let result: { success: boolean; data?: any } | null
 
     if (categoryToEdit) {
-      result = await updateTaskAction(categoryToEdit.id, data)
+      result = await updateCategoryAction(categoryToEdit?.id as number, data)
     } else {
       result = await createNewCategoryAction(data)
     }

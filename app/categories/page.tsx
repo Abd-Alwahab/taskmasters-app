@@ -5,6 +5,7 @@ import { HiOutlinePlus, HiPencil, HiTrash } from 'react-icons/hi2'
 import Modal, { ModalWindow, OpenModal } from '../_components/Modal'
 import DeleteCategory from '../_features/categories/DeleteCategory'
 import CreateNewCategoryForm from '../_features/categories/CreateNewCategoryForm'
+import EditCategory from '../_features/categories/EditCategory'
 
 async function Categories() {
   const categoriesPromise = cache(async () => await getCategories())
@@ -38,9 +39,11 @@ async function Categories() {
                 <Menu>
                   <Toggle id={String(category.id)} />
                   <List id={String(category.id)}>
-                    <Button icon={<HiPencil />} ariaLabel="Edit">
-                      Edit
-                    </Button>
+                    <OpenModal name="edit-category">
+                      <Button icon={<HiPencil />} ariaLabel="Edit">
+                        Edit
+                      </Button>
+                    </OpenModal>
 
                     <OpenModal name="delete-category">
                       <Button icon={<HiTrash />} ariaLabel="Delete">
@@ -53,6 +56,10 @@ async function Categories() {
 
               <ModalWindow name="delete-category" label="Delete Category">
                 <DeleteCategory categoryId={category.id} />
+              </ModalWindow>
+
+              <ModalWindow name="edit-category" label="Edit Category">
+                <EditCategory categoryToEdit={category} />
               </ModalWindow>
             </Modal>
           ))}

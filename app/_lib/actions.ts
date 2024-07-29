@@ -180,3 +180,32 @@ export async function createNewCategoryAction(formData: {
 
   return { success: true }
 }
+
+export async function updateCategoryAction(id: number, data: any) {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { error, data: updatedCategory } = await createClient()
+    .from('categories')
+    .update({
+      ...data,
+    })
+    .eq('id', id)
+    .eq('userId', user?.id)
+    .select()
+    .single()
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/planner')
+  revalidatePath('/categories')
+
+  return { success: true, data: updatedCategory }
+}
