@@ -5,6 +5,7 @@ import { createClient } from '../_utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { taskSchema } from '../_utils/validations/taskSchema'
+import { categorySchema } from '../_utils/validations/categorySchema'
 
 export async function loginAction() {
   const origin = headers().get('origin')
@@ -133,6 +134,42 @@ export async function deleteCategoryAction(id: number) {
     .delete()
     .eq('id', id)
     .eq('userId', user?.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/planner')
+  revalidatePath('/categories')
+
+  return { success: true }
+}
+
+export async function createNewCategoryAction(formData: {
+  name: string
+  orderIndex: number
+}) {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const validatedCategory = categorySchema.safeParse(formData)
+
+  if (!validatedCategory.success) return null
+
+  const { error } = await createClient()
+    .from('categories')
+    .insert([
+      {
+        ...validatedCategory.data,
+        userId: user?.id,
+      },
+    ])
+    .select()
 
   if (error) {
     throw new Error(error.message)
