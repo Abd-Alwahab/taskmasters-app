@@ -65,3 +65,24 @@ export async function getCategoriesTasks() {
 
   return tasks
 }
+
+export async function getTasksCount() {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { data: tasks, error } = await createClient()
+    .from('tasks')
+    .select('*', { count: 'exact', head: true })
+    .eq('userId', user?.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return tasks
+}

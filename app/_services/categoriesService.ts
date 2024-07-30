@@ -40,3 +40,24 @@ export async function getCategoriesIndexes() {
 
   return categories as Tables<'categories'>[]
 }
+
+export async function getCategoriesCount() {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { data: tasks, error } = await createClient()
+    .from('categories')
+    .select('*', { count: 'exact', head: true })
+    .eq('userId', user?.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return tasks
+}
