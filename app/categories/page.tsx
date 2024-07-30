@@ -6,6 +6,9 @@ import Modal, { ModalWindow, OpenModal } from '../_components/Modal'
 import CreateNewCategoryForm from '../_features/categories/CreateNewCategoryForm'
 import CategoriesIIndexList from '../_features/categories/CategoriesIIndexList'
 import { getCategoriesTasks } from '../_services/tasksServices'
+import { RiErrorWarningFill } from 'react-icons/ri'
+
+const MAX_CATEGORIES = 10
 
 async function Categories() {
   const categoriesPromise = cache(async () => await getCategories())
@@ -28,8 +31,25 @@ async function Categories() {
               </button>
             </OpenModal>
 
-            <ModalWindow name="add-category" label="Create New Category">
-              <CreateNewCategoryForm />
+            <ModalWindow
+              name="add-category"
+              label={
+                (categories?.length ?? 0) === MAX_CATEGORIES
+                  ? 'Reach the maximum number of categories'
+                  : 'Create New Category'
+              }
+            >
+              {(categories?.length ?? 0) === MAX_CATEGORIES ? (
+                <div className="flex flex-col items-center justify-center gap-4 text-xl">
+                  <RiErrorWarningFill fontSize={80} color="red" />
+                  <span>
+                    You have already created the maximum number of{' '}
+                    {MAX_CATEGORIES} categories.
+                  </span>
+                </div>
+              ) : (
+                <CreateNewCategoryForm />
+              )}
             </ModalWindow>
           </Modal>
         </div>

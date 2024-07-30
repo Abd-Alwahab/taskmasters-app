@@ -10,6 +10,8 @@ import { taskSchema } from '../../_utils/validations/taskSchema'
 import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
 import { useCategories } from '@/app/context/categories'
+import { useTasks } from '@/app/context/tasks'
+import ErrorMessage from '@/app/_components/ErrorMessage'
 
 type TaskFormData = {
   title: string
@@ -33,18 +35,24 @@ const defaultValues = {
   category: 1,
 }
 
+const MAX_TASKS_PER_CATEGORY = 10
+
 const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
   const { categories } = useCategories()
+  const { tasks } = useTasks()
   const {
     formState: { errors, isSubmitting },
     control,
     handleSubmit,
     setValue,
     reset,
+    watch,
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
     defaultValues: taskToEdit || defaultValues,
   })
+
+  const selectedCategory = watch('category')
 
   const onSubmit = async (data: any) => {
     let result: { success: boolean; data?: any } | null
@@ -61,6 +69,11 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
       onCloseModal?.()
     }
   }
+
+  const tasksWithSameCategory = tasks.filter(
+    (task) => task.category === selectedCategory,
+  ).length
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -150,10 +163,16 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
         />
       </FormRow>
 
-      <SubmitFormButton
-        label={taskToEdit ? 'Update Task' : 'Create Task'}
-        pending={isSubmitting}
-      />
+      {tasksWithSameCategory === MAX_TASKS_PER_CATEGORY ? (
+        <div className="flex justify-center text-base">
+          <ErrorMessage message="You have already created the maximum number of tasks in this category" />
+        </div>
+      ) : (
+        <SubmitFormButton
+          label={taskToEdit ? 'Update Task' : 'Create Task'}
+          pending={isSubmitting}
+        />
+      )}
     </form>
   )
 }
