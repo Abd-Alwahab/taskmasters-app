@@ -1,0 +1,123 @@
+'use client'
+
+import { Tables } from '@/database.types'
+import CategoryCard from './CategoryCard'
+import {
+  DragDropContext,
+  Droppable,
+  DroppableProvided,
+} from '@hello-pangea/dnd'
+import { useTransition, useOptimistic } from 'react'
+import { updateCategoriesAction } from '@/app/_lib/actions'
+
+type Props = {
+  categories: Tables<'categories'>[]
+}
+
+function CategoriesIIndexList({ categories }: Props) {
+  // eslint-disable-next-line no-unused-vars
+  const [_, startTransition] = useTransition()
+  const [optimisticState, setOptimisticState] = useOptimistic(
+    categories,
+    (currentState, params: any) => {
+      return currentState.map((category) => {
+        if (category.id === params.draggedCategory?.id) {
+          return {
+            ...category,
+            orderIndex: params.replacedCategory?.orderIndex,
+          }
+        }
+
+        if (category.id === params.replacedCategory?.id) {
+          return {
+            ...category,
+            orderIndex: params.draggedCategory?.orderIndex,
+          }
+        }
+        return category
+      })
+    },
+  )
+
+  async function onDragEnd(result: any) {
+    const { source, destination, draggableId } = result
+
+    if (!destination) return
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return
+
+    const draggedCategory = optimisticState?.find(
+      (category) => category.orderIndex === Number(draggableId),
+    )
+
+    const replacedCategory = optimisticState
+      ?.sort((a, b) => (a.orderIndex as number) - (b.orderIndex as number))
+      .at(destination.index)
+
+    startTransition(() =>
+      setOptimisticState({ draggedCategory, replacedCategory }),
+    )
+
+    await updateCategoriesAction(
+      categories.map((category) => {
+        if (category.id === draggedCategory?.id) {
+          return {
+            ...category,
+            orderIndex: replacedCategory?.orderIndex ?? 0,
+          }
+        }
+
+        if (category.id === replacedCategory?.id) {
+          return {
+            ...category,
+            orderIndex: draggedCategory?.orderIndex ?? 0,
+          }
+        }
+        return category
+      }),
+    )
+  }
+
+  const indexes = optimisticState?.map((category) => category.orderIndex).sort()
+  return (
+    <div className="h-full bg-gray-100 p-4">
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId={'categories'} direction="horizontal">
+          {(provided: DroppableProvided) => {
+            return (
+              <div
+                className="grid h-full gap-3"
+                style={{
+                  gridTemplateColumns: `repeat(${indexes?.length ?? 0}, 1fr)`,
+                }}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {indexes?.map((index, itemIndex) => {
+                  const category = optimisticState?.find(
+                    (c) => c.orderIndex === index,
+                  ) as Tables<'categories'>
+                  return (
+                    <CategoryCard
+                      key={category.orderIndex}
+                      index={itemIndex}
+                      category={category}
+                    />
+                  )
+                })}
+
+                {provided.placeholder}
+              </div>
+            )
+          }}
+        </Droppable>
+      </DragDropContext>
+    </div>
+  )
+}
+
+export default CategoriesIIndexList

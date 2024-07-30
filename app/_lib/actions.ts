@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { taskSchema } from '../_utils/validations/taskSchema'
 import { categorySchema } from '../_utils/validations/categorySchema'
+import { Tables } from '@/database.types'
 
 export async function loginAction() {
   const origin = headers().get('origin')
@@ -200,6 +201,31 @@ export async function updateCategoryAction(id: number, data: any) {
     .select()
     .single()
 
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/planner')
+  revalidatePath('/categories')
+
+  return { success: true, data: updatedCategory }
+}
+
+export async function updateCategoriesAction(data: Tables<'categories'>[]) {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { error, data: updatedCategory } = await createClient()
+    .from('categories')
+    .upsert(data)
+    .match({ userId: user?.id })
+
+  console.log({ error })
   if (error) {
     throw new Error(error.message)
   }
