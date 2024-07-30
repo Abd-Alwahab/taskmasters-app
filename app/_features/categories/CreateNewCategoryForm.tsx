@@ -24,7 +24,6 @@ type Props = {
 
 const defaultValues = {
   name: '',
-  orderIndex: 0,
 }
 
 const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
@@ -32,7 +31,6 @@ const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
     formState: { errors, isSubmitting },
     control,
     handleSubmit,
-    setValue,
     reset,
   } = useForm<CategoryFormData>({
     resolver: zodResolver(categorySchema),
@@ -65,24 +63,6 @@ const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
           control={control}
           render={({ field }) => (
             <Input placeholder="Category Name" {...field} />
-          )}
-        />
-      </FormRow>
-
-      <FormRow error={errors?.orderIndex?.message ?? ''}>
-        <Controller
-          name="orderIndex"
-          control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="Order Index"
-              type="number"
-              {...field}
-              onChange={(e) => {
-                field.onChange(parseInt(e.target.value, 10))
-                setValue('orderIndex', parseInt(e.target.value, 10))
-              }}
-            />
           )}
         />
       </FormRow>

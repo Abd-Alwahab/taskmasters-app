@@ -7,6 +7,8 @@ import { revalidatePath } from 'next/cache'
 import { taskSchema } from '../_utils/validations/taskSchema'
 import { categorySchema } from '../_utils/validations/categorySchema'
 import { Tables } from '@/database.types'
+import { cache } from 'react'
+import { getCategoriesIndexes } from '../_services/categoriesService'
 
 export async function loginAction() {
   const origin = headers().get('origin')
@@ -162,12 +164,18 @@ export async function createNewCategoryAction(formData: {
 
   if (!validatedCategory.success) return null
 
+  const categoriesIndexesPromise = cache(
+    async () => await getCategoriesIndexes(),
+  )
+  const categoriesIndexes = await categoriesIndexesPromise()
+  const lastCategory = categoriesIndexes?.[categoriesIndexes.length - 1]
   const { error } = await createClient()
     .from('categories')
     .insert([
       {
-        ...validatedCategory.data,
+        name: validatedCategory.data.name,
         userId: user?.id,
+        orderIndex: (lastCategory?.orderIndex || 0) + 1,
       },
     ])
     .select()
