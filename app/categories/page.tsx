@@ -34,10 +34,16 @@ async function Categories() {
           </Modal>
         </div>
 
-        <CategoriesIIndexList
-          categories={categories ?? []}
-          categoriesTasks={categoriesTasks ?? []}
-        />
+        {categories?.length ? (
+          <CategoriesIIndexList
+            categories={categories ?? []}
+            categoriesTasks={categoriesTasks ?? []}
+          />
+        ) : (
+          <div className="flex size-full flex-col items-center justify-center gap-8">
+            <span className="text-4xl font-semibold">No categories found</span>
+          </div>
+        )}
       </div>
     </Menus>
   )

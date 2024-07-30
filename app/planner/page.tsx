@@ -1,8 +1,6 @@
 import { cache, Suspense } from 'react'
-import CreateNewTask from '../_features/tasks/CreateNewTask'
 import { getCategories } from '../_services/categoriesService'
 import Spinner from '../_components/Spinner'
-import Filter from '../_components/Filter'
 import Categories from '../_features/tasks/Categories'
 
 type Props = {
@@ -17,22 +15,9 @@ async function Planner({ searchParams }: Props) {
 
   return (
     <div className="flex h-full flex-col gap-3">
-      <div className=" flex w-full justify-between">
-        <Filter
-          options={[
-            { label: 'All', value: 'all' },
-            { label: 'Low', value: 'low' },
-            { label: 'Medium', value: 'medium' },
-            { label: 'High', value: 'high' },
-          ]}
-          filterField="priority"
-        />
-        <CreateNewTask />
-      </div>
-
       <Suspense
         fallback={
-          <div className="flex w-full items-center justify-center">
+          <div className="flex size-full items-center justify-center">
             <Spinner />
           </div>
         }
