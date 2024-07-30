@@ -55,7 +55,7 @@ function CategoriesList({ categories = [], filter, tasks = [] }: Props) {
       <div
         className="grid h-full gap-4 overflow-x-auto"
         style={{
-          gridTemplateColumns: `repeat(${categories.length}, minmax(300px, 1fr))`,
+          gridTemplateColumns: `repeat(${categories.length}, minmax(350px, 1fr))`,
         }}
       >
         {categories

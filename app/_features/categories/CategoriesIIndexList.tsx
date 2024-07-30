@@ -91,9 +91,9 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
           {(provided: DroppableProvided) => {
             return (
               <div
-                className="grid h-full gap-3"
+                className="grid h-full gap-3 overflow-x-auto"
                 style={{
-                  gridTemplateColumns: `repeat(${indexes?.length ?? 0}, 1fr)`,
+                  gridTemplateColumns: `repeat(${indexes?.length ?? 0}, minmax(350px, 1fr))`,
                 }}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
