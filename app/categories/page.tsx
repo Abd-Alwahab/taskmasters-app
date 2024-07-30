@@ -5,10 +5,14 @@ import { HiOutlinePlus } from 'react-icons/hi2'
 import Modal, { ModalWindow, OpenModal } from '../_components/Modal'
 import CreateNewCategoryForm from '../_features/categories/CreateNewCategoryForm'
 import CategoriesIIndexList from '../_features/categories/CategoriesIIndexList'
+import { getCategoriesTasks } from '../_services/tasksServices'
 
 async function Categories() {
   const categoriesPromise = cache(async () => await getCategories())
   const categories = await categoriesPromise()
+
+  const categoriesTasksPromise = cache(async () => await getCategoriesTasks())
+  const categoriesTasks = await categoriesTasksPromise()
 
   return (
     <Menus>
@@ -30,7 +34,10 @@ async function Categories() {
           </Modal>
         </div>
 
-        <CategoriesIIndexList categories={categories ?? []} />
+        <CategoriesIIndexList
+          categories={categories ?? []}
+          categoriesTasks={categoriesTasks ?? []}
+        />
       </div>
     </Menus>
   )

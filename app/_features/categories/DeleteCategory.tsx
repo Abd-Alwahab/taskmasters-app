@@ -23,6 +23,7 @@ function DeleteCategory({ categoryId, onCloseModal }: Props) {
       <DeleteModal
         onConfirm={() => handleDeleteCategory(categoryId)}
         pending={pending}
+        onCloseModal={onCloseModal}
       />
     </div>
   )

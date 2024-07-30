@@ -5,12 +5,14 @@ import DeleteCategory from './DeleteCategory'
 import EditCategory from './EditCategory'
 import { Tables } from '@/database.types'
 import { Draggable, DraggableProvided } from '@hello-pangea/dnd'
+import WarningModal from './WarningModal'
 
 type Props = {
   category: Tables<'categories'>
   index: number
+  categoryTasks: { category: number }[]
 }
-function CategoryCard({ category, index }: Props) {
+function CategoryCard({ category, index, categoryTasks }: Props) {
   return (
     <Draggable
       draggableId={String(category.orderIndex) ?? ''}
@@ -27,8 +29,10 @@ function CategoryCard({ category, index }: Props) {
             className="bg-white"
           >
             <Modal>
-              <div className="flex items-center justify-between gap-8 rounded-lg p-3">
-                <span className="text-lg">{category.name}</span>
+              <div className="flex items-center justify-between gap-8 rounded-l p-3">
+                <span className="flex items-center gap-2">
+                  <span className="text-lg"> {category.name}</span>{' '}
+                </span>
 
                 <div className="relative flex flex-1 items-center justify-end">
                   <Menu>
@@ -51,13 +55,26 @@ function CategoryCard({ category, index }: Props) {
                 </div>
               </div>
 
-              <ModalWindow name="delete-category" label="Delete Category">
-                <DeleteCategory categoryId={category.id} />
+              <ModalWindow
+                name="delete-category"
+                label={categoryTasks?.length ? 'Warning' : 'Delete Category'}
+              >
+                {categoryTasks?.length > 0 ? (
+                  <WarningModal />
+                ) : (
+                  <DeleteCategory categoryId={category.id} />
+                )}
               </ModalWindow>
 
               <ModalWindow name="edit-category" label="Edit Category">
                 <EditCategory categoryToEdit={category} />
               </ModalWindow>
+
+              <div className="mt-28 text-center text-9xl text-gray-200">
+                {categoryTasks?.length}
+                <br />
+                Tasks
+              </div>
             </Modal>
           </div>
         )

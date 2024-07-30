@@ -44,3 +44,24 @@ export async function getTask(taskId: number) {
 
   return task as Tables<'tasks'>
 }
+
+export async function getCategoriesTasks() {
+  const {
+    data: { session },
+  } = await createClient().auth.getSession()
+
+  if (!session) return null
+
+  const { user } = session
+
+  const { data: tasks, error } = await createClient()
+    .from('tasks')
+    .select('category')
+    .eq('userId', user?.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  return tasks
+}

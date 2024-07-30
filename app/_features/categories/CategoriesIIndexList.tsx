@@ -12,9 +12,10 @@ import { updateCategoriesAction } from '@/app/_lib/actions'
 
 type Props = {
   categories: Tables<'categories'>[]
+  categoriesTasks: { category: number }[]
 }
 
-function CategoriesIIndexList({ categories }: Props) {
+function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
   // eslint-disable-next-line no-unused-vars
   const [_, startTransition] = useTransition()
   const [optimisticState, setOptimisticState] = useOptimistic(
@@ -101,11 +102,17 @@ function CategoriesIIndexList({ categories }: Props) {
                   const category = optimisticState?.find(
                     (c) => c.orderIndex === index,
                   ) as Tables<'categories'>
+
+                  const categoryTasks = categoriesTasks?.filter(
+                    (task) => task.category === category.id,
+                  )
+
                   return (
                     <CategoryCard
                       key={category.orderIndex}
                       index={itemIndex}
                       category={category}
+                      categoryTasks={categoryTasks}
                     />
                   )
                 })}
