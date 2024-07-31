@@ -30,7 +30,7 @@ function TaskCard({ task, index }: { task: Tables<'tasks'>; index: number }) {
           >
             <Modal key={task.id}>
               <div
-                className={`relative h-40 cursor-pointer rounded-lg border-b-8 bg-white p-3 ${getPriorityBorderColor(task.priority ?? '')}`}
+                className={`relative h-40 cursor-pointer rounded-lg border-b-8 bg-white p-3 shadow-lg ${getPriorityBorderColor(task.priority ?? '')}`}
               >
                 <OpenModal name="task-details">
                   <div className="absolute right-0 top-0 size-full " />

@@ -20,12 +20,12 @@ function Filter({ options, filterField }: Props) {
   }
 
   return (
-    <div className="flex w-fit gap-6 overflow-hidden rounded-lg border border-gray-900 bg-white shadow-lg">
+    <div className="flex w-fit gap-4 overflow-hidden rounded-md bg-white shadow-md">
       {options?.map((option) => (
         <button
           key={option.label}
           onClick={() => handleFilter(option.value)}
-          className={`px-6 py-4 font-semibold text-gray-900 ${activeFilter === option.value ? ` ${getPriorityBackgroundColor(option.value)}` : ''}`}
+          className={`px-4 py-3 font-medium text-gray-900 ${activeFilter === option.value ? ` ${getPriorityBackgroundColor(option.value)}` : ''}`}
         >
           {option.label}
         </button>
