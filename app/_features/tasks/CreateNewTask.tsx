@@ -6,7 +6,7 @@ function CreateNewTask() {
   return (
     <Modal>
       <OpenModal name="new-task">
-        <button className="flex items-center gap-1 rounded-lg bg-gray-900 px-4 py-2 text-white">
+        <button className="flex items-center gap-1 rounded-lg bg-gray-900 px-4 py-3 text-white">
           <span> New Task</span>
           <HiOutlinePlus fontSize={20} />
         </button>

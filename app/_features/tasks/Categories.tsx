@@ -15,7 +15,7 @@ async function Categories({ categories = [], filter }: Props) {
   const tasks = await tasksPromise()
   return (
     <div className="flex h-full flex-col gap-4 ">
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full items-center justify-between rounded-lg bg-white px-5 py-2">
         {tasks?.length ? (
           <Filter
             options={[

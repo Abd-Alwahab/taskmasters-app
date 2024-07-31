@@ -20,7 +20,7 @@ function Filter({ options, filterField }: Props) {
   }
 
   return (
-    <div className="flex w-fit gap-4 overflow-hidden rounded-md bg-white shadow-md">
+    <div className="flex w-fit gap-4 overflow-hidden rounded-md border border-solid border-gray-100 bg-white">
       {options?.map((option) => (
         <button
           key={option.label}
