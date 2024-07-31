@@ -19,8 +19,8 @@ async function Categories() {
 
   return (
     <Menus>
-      <div className="flex h-full flex-col gap-6 bg-white">
-        <div className="flex justify-between">
+      <div className="flex h-full flex-col gap-4">
+        <div className="flex items-center justify-between rounded-lg bg-white px-5 py-2">
           <h1 className="text-3xl font-bold">Categories</h1>
 
           <Modal>

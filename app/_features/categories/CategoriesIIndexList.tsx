@@ -85,7 +85,7 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
 
   const indexes = optimisticState?.map((category) => category.orderIndex).sort()
   return (
-    <div className="h-full bg-gray-100 p-4">
+    <div className="h-full bg-gray-100">
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={'categories'} direction="horizontal">
           {(provided: DroppableProvided) => {

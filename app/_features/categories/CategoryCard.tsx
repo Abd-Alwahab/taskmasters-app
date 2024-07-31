@@ -26,10 +26,10 @@ function CategoryCard({ category, index, categoryTasks }: Props) {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={{ ...provided.draggableProps.style }}
-            className="bg-white"
+            className="gap-8 rounded-lg bg-white p-3"
           >
             <Modal>
-              <div className="flex items-center justify-between gap-8 rounded-l p-3">
+              <div className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <span className="text-lg"> {category.name}</span>{' '}
                 </span>
@@ -70,7 +70,7 @@ function CategoryCard({ category, index, categoryTasks }: Props) {
                 <EditCategory categoryToEdit={category} />
               </ModalWindow>
 
-              <div className="mt-28 text-center text-9xl text-gray-200">
+              <div className="mt-28 text-center text-7xl text-gray-200">
                 {categoryTasks?.length}
                 <br />
                 Tasks
