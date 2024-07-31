@@ -1,11 +1,15 @@
 import type { Metadata } from 'next'
-import { Source_Sans_3 } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import './globals.css'
 import { ReactNode } from 'react'
 import Sidebar from './_components/Sidebar'
 import Header from './_components/Header'
 
-const sourceSans3 = Source_Sans_3({ subsets: ['latin'] })
+const sourceSans3 = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Task Planner - Organize Your Day & Boost Productivity',
@@ -21,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceSans3.className} grid h-screen w-screen grid-cols-[18rem_1fr] gap-3 overflow-hidden bg-white p-4`}
+        className={`${sourceSans3.className} grid h-screen w-screen grid-cols-[18rem_1fr] gap-2 overflow-hidden bg-gray-100 p-3`}
       >
         <Sidebar />
 

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FaTasks } from 'react-icons/fa'
-import { FaCircleInfo } from 'react-icons/fa6'
+import { GoInfo } from 'react-icons/go'
 import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
 
@@ -11,47 +11,73 @@ function Navigation() {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col gap-8 py-6">
+    <div className="flex flex-col py-6 pl-6">
       <nav>
-        <ul className="flex flex-col">
+        <ul className="flex flex-col gap-5">
           <li>
             <Link
-              className={`flex w-full items-center gap-2 text-white ${pathname === '/' ? 'bg-gray-800 text-white' : ''} py-3 pl-3 text-base`}
+              className={`flex w-full items-center gap-3 font-medium ${pathname === '/' ? 'border-r-4 border-solid border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
               href="/"
             >
-              <IoMdHome fontSize={20} />
-              <span>Home</span>
+              <IoMdHome
+                fontSize={20}
+                className={`${pathname === '/' ? 'text-amber-500' : ''}`}
+              />
+              <span className={`${pathname === '/' ? 'text-amber-500' : ''}`}>
+                Home
+              </span>
             </Link>
           </li>
 
           <li>
             <Link
-              className={`flex w-full items-center gap-2 text-white ${pathname === '/planner' ? 'bg-gray-800 text-white' : ''} py-3 pl-3 text-base`}
+              className={`flex w-full items-center gap-3 font-medium ${pathname === '/planner' ? 'border-r-4 border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
               href="/planner"
             >
-              <FaTasks fontSize={20} />
-              <span>Planner</span>
+              <FaTasks
+                fontSize={20}
+                className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+              />
+              <span
+                className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+              >
+                Planner
+              </span>
             </Link>
           </li>
 
           <li>
             <Link
-              className={`flex w-full items-center gap-2 text-white ${pathname === '/categories' ? 'bg-gray-800 text-white' : ''} py-3 pl-3 text-base`}
+              className={`flex w-full items-center gap-3 font-medium ${pathname === '/categories' ? 'border-r-4 border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
               href="/categories"
             >
-              <TbCategory fontSize={20} />
-              <span>Categories</span>
+              <TbCategory
+                fontSize={20}
+                className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+              />
+              <span
+                className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+              >
+                Categories
+              </span>
             </Link>
           </li>
 
           <li>
             <Link
-              className={`flex w-full items-center gap-2 text-white ${pathname === '/about' ? 'bg-gray-800 text-white' : ''} py-3 pl-3 text-base`}
+              className={`flex w-full items-center gap-3 font-medium ${pathname === '/about' ? 'border-r-4 border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
               href="/about"
             >
-              <FaCircleInfo fontSize={20} />
+              <GoInfo
+                fontSize={20}
+                className={`${pathname === '/about' ? 'text-amber-500' : ''}`}
+              />
 
-              <span>About</span>
+              <span
+                className={`${pathname === '/about' ? 'text-amber-500' : ''}`}
+              >
+                About
+              </span>
             </Link>
           </li>
         </ul>

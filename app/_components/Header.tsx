@@ -8,7 +8,7 @@ async function Header() {
 
   if (!user) return null
   return (
-    <header className="flex justify-end rounded-lg bg-[#FBB13C] px-6 py-4">
+    <header className="flex justify-end rounded-lg bg-white px-6 py-4">
       <CurrentUserBadge />
     </header>
   )
