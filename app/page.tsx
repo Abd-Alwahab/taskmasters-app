@@ -4,6 +4,7 @@ import { FaChevronRight, FaTasks } from 'react-icons/fa'
 import { getCategories } from './_services/categoriesService'
 import { BiCategory } from 'react-icons/bi'
 import Link from 'next/link'
+import TasksChart from './_features/dashboard/TasksChart'
 
 export default async function Home() {
   const tasksPromise = cache(async () => await getTasks())
@@ -130,6 +131,16 @@ export default async function Home() {
                 ))}
               </div>
             ) : null}
+          </div>
+        )}
+      </div>
+
+      <div className="h-full flex-1 bg-white">
+        {tasks?.length ? (
+          <TasksChart tasks={tasks ?? []} />
+        ) : (
+          <div className="flex size-full items-center justify-center">
+            <span className="text-4xl font-semibold">No tasks found</span>
           </div>
         )}
       </div>
