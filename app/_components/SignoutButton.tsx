@@ -7,7 +7,7 @@ function SignOutButton() {
   return (
     <button
       onClick={() => logoutAction()}
-      className="flex items-center gap-2 pl-3 text-white"
+      className="flex items-center gap-2 text-gray-700"
     >
       <LuLogOut className="text-3xl lg:text-xl" />
       <span className="text-base">Logout</span>

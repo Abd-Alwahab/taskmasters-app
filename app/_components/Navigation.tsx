@@ -11,7 +11,7 @@ function Navigation() {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col py-6 pl-6">
+    <div className="flex flex-col py-6">
       <nav>
         <ul className="flex flex-col gap-5">
           <li>

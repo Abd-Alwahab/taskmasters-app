@@ -26,111 +26,107 @@ export default async function Home() {
   })
 
   return (
-    <div className="flex h-full flex-col gap-4 bg-gray-100 p-4 shadow-lg">
+    <div className="flex h-full flex-col gap-4">
       <div className="grid grid-cols-2 gap-4">
         <Link
-          className="transition-all hover:translate-y-[-3px] hover:border-curious-blue-800 hover:shadow-xl"
+          className="overflow-hidden rounded-lg transition-all  hover:translate-y-[-3px] hover:shadow-xl"
           href="/planner"
         >
-          <div className="flex items-center gap-4 rounded-lg bg-gray-800 p-4">
-            <div className="flex size-16 items-center justify-center rounded-full bg-curious-blue-800">
+          <div className="flex items-center gap-4 bg-white p-4">
+            <div className="flex size-16 items-center justify-center rounded-full bg-blue-800">
               <FaTasks fontSize={32} color="white" />
             </div>
 
             <div className="flex flex-col">
-              <span className="text-sm font-semibold text-gray-200">TASKS</span>
-              <span className="text-3xl font-bold text-gray-300">
+              <span className="text-sm font-semibold text-gray-900">TASKS</span>
+              <span className="text-3xl font-bold text-gray-700">
                 {tasks?.length ?? 0}
               </span>
             </div>
 
             <div className="ml-auto">
-              <FaChevronRight fontSize={18} color="white" />
+              <FaChevronRight fontSize={18} color="text-gray-700" />
             </div>
           </div>
         </Link>
 
         <Link
-          className="transition-all hover:translate-y-[-4px] hover:shadow-2xl"
+          className="overflow-hidden rounded-lg transition-all hover:translate-y-[-4px] hover:shadow-xl"
           href="/categories"
         >
-          <div className="flex items-center gap-4 rounded-lg bg-gray-800 p-4">
-            <div className="flex size-16 items-center justify-center rounded-full bg-[#FBB13C]">
+          <div className="flex items-center gap-4  bg-white p-4">
+            <div className="flex size-16 items-center justify-center rounded-full bg-amber-500">
               <BiCategory fontSize={32} color="white" />
             </div>
 
             <div className="flex flex-col">
-              <span className="text-sm font-semibold text-gray-200">
+              <span className="text-sm font-semibold text-gray-900">
                 CATEGORIES
               </span>
-              <span className="text-3xl font-bold text-gray-300">
+              <span className="text-3xl font-bold text-gray-700">
                 {categories?.length ?? 0}
               </span>
             </div>
 
             <div className="ml-auto">
-              <FaChevronRight fontSize={18} color="white" />
+              <FaChevronRight fontSize={18} color="text-gray-700" />
             </div>
           </div>
         </Link>
       </div>
 
-      <div className="h-[400px] rounded-lg bg-gray-800">
-        {tasksCreatedToday?.length ? (
-          <div className="flex flex-col gap-5 p-8">
-            <span className="text-3xl font-semibold text-white">Today</span>
+      <div className="flex h-[400px] flex-col gap-4 rounded-lg bg-white p-8">
+        <span className="text-3xl font-semibold text-gray-900">Today</span>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="grid h-fit max-h-[400px] grid-cols-1  gap-4 overflow-y-auto">
-                {tasksCreatedToday?.map((task) => (
-                  <div
-                    key={task.id}
-                    className="flex h-fit items-center gap-2 rounded-lg bg-curious-blue-800 p-3"
-                  >
-                    <div>
-                      <FaTasks fontSize={18} color="white" />
-                    </div>
-                    <span className="font-semibold text-gray-300">
-                      {task.title}
-                    </span>
-
-                    <span className="ml-auto rounded-lg bg-red-600 px-2 py-1 text-sm font-semibold text-gray-300">
-                      {
-                        categories?.find(
-                          (category) => category.id === task.category,
-                        )?.name
-                      }
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid h-fit max-h-[400px] grid-cols-1 gap-4  overflow-y-auto">
-                {categoriesCreatedToday?.map((category) => (
-                  <div
-                    key={category.id}
-                    className="flex h-fit items-center gap-2 rounded-lg bg-curious-blue-800 p-3"
-                  >
-                    <div>
-                      <BiCategory fontSize={18} color="white" />
-                    </div>
-                    <span className="font-semibold text-gray-300">
-                      {category.name}
-                    </span>
-
-                    <span className="ml-auto rounded-lg bg-red-600 px-2 py-1 text-sm font-semibold text-gray-300">
-                      {
-                        tasks?.filter((task) => task.category === category.id)
-                          ?.length
-                      }
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {!tasksCreatedToday?.length && !categoriesCreatedToday?.length ? (
+          <div className="mt-14 h-full text-center text-3xl">
+            No tasks or categories created today
           </div>
         ) : (
-          <span> No tasks created today</span>
+          <div className="grid grid-cols-2 gap-12">
+            <div className="grid h-fit max-h-[400px] grid-cols-1 overflow-y-auto">
+              {tasksCreatedToday?.map((task) => (
+                <div
+                  key={task.id}
+                  className="flex h-fit items-center gap-3 border-b  border-gray-300 py-5 last:border-b-0"
+                >
+                  <div className="flex size-7 items-center justify-center rounded-full bg-blue-800">
+                    <FaTasks fontSize={14} color="white" />
+                  </div>
+                  <span className="font-semibold">{task.title}</span>
+
+                  <span className="ml-auto rounded-lg bg-gray-800 px-2 py-1 text-sm font-semibold text-gray-300">
+                    {
+                      categories?.find(
+                        (category) => category.id === task.category,
+                      )?.name
+                    }
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid h-fit max-h-[400px] grid-cols-1  overflow-y-auto">
+              {categoriesCreatedToday?.map((category) => (
+                <div
+                  key={category.id}
+                  className="flex h-fit items-center gap-3 border-b  border-gray-300 py-5 last:border-b-0"
+                >
+                  <div className="flex size-7 items-center justify-center rounded-full bg-amber-500">
+                    <BiCategory fontSize={15} color="white" />
+                  </div>
+                  <span className="font-semibold">{category.name}</span>
+
+                  <span className="ml-auto flex size-6 items-center  justify-center rounded-full bg-gray-800 text-sm font-semibold text-gray-300">
+                    {
+                      tasks?.filter((task) => task.category === category.id)
+                        ?.length
+                    }
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </div>

@@ -14,7 +14,7 @@ const Sidebar = async () => {
       <div className="mx-auto">
         <Logo />
       </div>
-      <div className="z-10 hidden flex-1 justify-between  gap-6 pb-10 transition-all lg:flex lg:flex-col">
+      <div className="z-10 hidden flex-1 justify-between  gap-6 pb-10 pl-6 transition-all lg:flex lg:flex-col">
         <Navigation />
 
         {session?.user ? (
@@ -24,7 +24,7 @@ const Sidebar = async () => {
         ) : (
           <Link
             href="/login"
-            className="group mx-4 flex justify-center rounded-full border border-white px-4 py-3 transition-all hover:bg-quill-gray-950"
+            className="group mx-4 flex justify-center rounded-full border border-gray-600 px-4 py-3 transition-all hover:bg-quill-gray-950"
           >
             <span className="text-sm transition-all group-hover:text-white">
               Login / Signup

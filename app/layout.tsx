@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sourceSans3.className} grid h-screen w-screen grid-cols-[18rem_1fr] gap-2 overflow-hidden bg-gray-100 p-3`}
+        className={`${sourceSans3.className} grid h-screen w-screen grid-cols-[15rem_1fr] gap-2 overflow-hidden bg-gray-100 p-3`}
       >
         <Sidebar />
 
