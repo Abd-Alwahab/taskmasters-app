@@ -3,7 +3,7 @@ import { loginAction } from '../_lib/actions'
 
 const Login = () => {
   return (
-    <div className="flex flex-col items-center gap-12 pt-20">
+    <div className="flex h-full flex-col items-center justify-center gap-12 bg-white">
       <h1 className="text-3xl">Login to access the Planner</h1>
 
       <form action={loginAction}>
@@ -14,7 +14,7 @@ const Login = () => {
             height="24"
             width="24"
           />
-          <span className="text-lg font-medium transition-all group-hover:text-white">
+          <span className="text-lg font-medium transition-all hover:shadow-lg group-hover:text-white">
             Login with Google
           </span>
         </button>
