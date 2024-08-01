@@ -7,7 +7,7 @@ import {
   MdLowPriority,
   MdDragIndicator,
 } from 'react-icons/md'
-import EmblaCarousel from '../_components/Slider'
+import EmblaCarousel from '../_components/Slider/Slider'
 
 interface Feature {
   title: string
@@ -56,8 +56,8 @@ const features: Feature[] = [
 
 const About = () => {
   return (
-    <div className="flex h-full flex-col justify-between gap-4 rounded-lg  bg-white py-10 lg:gap-8 lg:px-14  lg:py-12">
-      <div className="flex flex-col items-center justify-center">
+    <div className="flex h-full flex-col justify-between gap-4 rounded-lg  bg-white py-8 lg:gap-2 lg:px-14 lg:py-12">
+      <div className="flex flex-col items-center justify-center lg:mx-auto lg:max-w-4xl">
         <h1 className="mb-4 w-fit border-b-2 border-amber-600 pb-2 text-xl font-bold lg:text-3xl">
           About
         </h1>
@@ -72,10 +72,10 @@ const About = () => {
       </div>
 
       <div className=" grid flex-1 grid-cols-1 gap-1 pt-8 lg:pt-0">
-        <EmblaCarousel slides={features?.length ?? 0}>
+        <EmblaCarousel>
           {features.map((feature) => (
             <div
-              className="embla__slide  bg-white px-3 py-8 lg:pt-0"
+              className="embla__slide bg-white py-8 lg:py-0"
               key={feature.title}
             >
               <div className="embla__slide__number px-4">

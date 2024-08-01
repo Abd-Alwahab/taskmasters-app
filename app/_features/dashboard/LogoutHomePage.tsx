@@ -8,7 +8,7 @@ function LogoutHomePage() {
       <div className="absolute left-10 top-8 size-10 rounded-full bg-amber-300 shadow-md lg:left-10 lg:top-12 lg:size-20" />
       <div className="absolute left-14 top-8 size-10 rounded-full bg-white lg:left-14  lg:top-14 lg:size-20" />
       <div className="absolute bottom-12 left-20 hidden rounded-full bg-blue-800 shadow-md lg:block  lg:size-20">
-        <div className="ml-[-10px] size-12 rounded-lg bg-white" />
+        <div className="ml-[-10px] size-12 bg-white" />
       </div>
 
       <div className="flex w-full flex-col items-center justify-center gap-4 text-center lg:max-w-4xl">
