@@ -10,8 +10,8 @@ const Sidebar = async () => {
   const { data: session } = await createClient().auth.getUser()
 
   return (
-    <div className="flex flex-col justify-between rounded-lg bg-white pt-4 shadow-lg">
-      <div className="mx-auto">
+    <div className="flex flex-col justify-between rounded-lg bg-white lg:pt-4 lg:shadow-lg">
+      <div className="relative size-14 lg:mx-auto lg:size-20">
         <Logo />
       </div>
       <div className="z-10 hidden flex-1 justify-between  gap-6 pb-10 pl-6 transition-all lg:flex lg:flex-col">

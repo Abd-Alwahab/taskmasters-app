@@ -3,14 +3,13 @@ import Link from 'next/link'
 
 const Logo = () => {
   return (
-    <Link href="/">
+    <Link href="/" className="relative block size-14 lg:size-20">
       <Image
         priority
         src="/logo.png"
         alt="logo"
-        width={70}
-        height={70}
-        className="rounded-full"
+        fill
+        className="rounded-full object-cover"
       />
     </Link>
   )
