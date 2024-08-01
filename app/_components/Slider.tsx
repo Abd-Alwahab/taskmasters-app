@@ -47,8 +47,6 @@ const EmblaCarousel = ({ children, options, slides }: PropType) => {
     (index: number) => {
       if (!emblaMainApi || !emblaThumbsApi) return
 
-      console.log({ index })
-
       emblaMainApi.scrollTo(index)
     },
     [emblaMainApi, emblaThumbsApi],
