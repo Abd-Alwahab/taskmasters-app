@@ -25,10 +25,9 @@ function MobileNavigation({ children, session }: Props) {
   return (
     <nav className="w-fit bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Mobile Menu Button */}
+        <div className="fixed right-4 top-6 z-20 flex items-center justify-between">
           <button
-            className="fixed right-4 top-9 z-20 text-black hover:text-black focus:outline-none"
+            className=" text-black hover:text-black focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Open Mobile Menu"
           >

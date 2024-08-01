@@ -11,7 +11,7 @@ const Sidebar = async () => {
 
   return (
     <div className="flex flex-col justify-between rounded-lg bg-white lg:pt-4 lg:shadow-lg">
-      <div className="relative size-14 lg:mx-auto lg:size-20">
+      <div className="fixed top-0 z-20 size-14 h-16 w-full bg-white pt-2 lg:relative lg:mx-auto lg:size-20">
         <Logo />
       </div>
       <div className="z-10 hidden flex-1 justify-between  gap-6 pb-10 pl-6 transition-all lg:flex lg:flex-col">
