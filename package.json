@@ -16,6 +16,8 @@
     "@hookform/resolvers": "^3.9.0",
     "@supabase/ssr": "^0.4.0",
     "@supabase/supabase-js": "^2.44.4",
+    "embla-carousel": "^8.1.8",
+    "embla-carousel-react": "^8.1.8",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-tailwindcss": "^3.17.4",

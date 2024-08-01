@@ -9,6 +9,7 @@ import {
   MdDragIndicator,
 } from 'react-icons/md'
 import AboutImage from '@/public/about-001.png'
+import EmblaCarousel from '../_components/Slider'
 
 interface Feature {
   title: string
@@ -78,8 +79,36 @@ const About = () => {
         </div>
       </div>
 
-      <div className="mt-12 grid grid-cols-2 gap-12">
-        {features.map((feature) => (
+      <div className="grid grid-cols-1 gap-12">
+        <EmblaCarousel slides={features?.length ?? 0}>
+          {features.map((feature) => (
+            <div
+              className="embla__slide relative overflow-hidden bg-white px-3"
+              key={feature.title}
+            >
+              {/* <div className="absolute right-0 top-0 z-0 size-full border border-gray-300" /> */}
+              <div className="embla__slide__number relative z-10 px-4">
+                <div className="mx-auto w-full">
+                  <div className="grid grid-cols-1 justify-items-center gap-4 text-center">
+                    <div className="flex size-16 items-center justify-center rounded-full bg-amber-600">
+                      <feature.icon fontSize={32} color="white" />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <span className="text-lg font-semibold text-gray-900">
+                        {feature.title}
+                      </span>
+                      <span className="text-base leading-7 text-gray-700">
+                        {feature.description}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </EmblaCarousel>
+        {/* {features.map((feature) => (
           <div key={feature.title} className="mx-auto w-full">
             <div className="grid grid-cols-[auto_1fr] gap-4">
               <div className="flex size-16 items-center justify-center rounded-full bg-amber-500">
@@ -96,7 +125,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   )

@@ -24,7 +24,7 @@ const Sidebar = async () => {
         ) : (
           <Link
             href="/login"
-            className="group mx-4 flex justify-center rounded-full border border-gray-600 px-4 py-3 transition-all hover:bg-quill-gray-950"
+            className="group flex w-4/5 justify-center rounded-full border border-gray-600 px-4 py-3 transition-all hover:bg-quill-gray-950"
           >
             <span className="text-sm transition-all group-hover:text-white">
               Login / Signup
