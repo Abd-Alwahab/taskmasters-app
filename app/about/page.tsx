@@ -56,9 +56,9 @@ const features: Feature[] = [
 
 const About = () => {
   return (
-    <div className="flex h-full flex-col justify-between gap-4 rounded-lg bg-white py-20 lg:gap-8 lg:px-14 lg:py-16">
+    <div className="flex h-full flex-col justify-between gap-4 rounded-lg  bg-white py-10 lg:gap-8 lg:px-14  lg:py-12">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="mb-6 w-fit border-b-2 border-amber-600 pb-2 text-xl font-bold lg:text-3xl">
+        <h1 className="mb-4 w-fit border-b-2 border-amber-600 pb-2 text-xl font-bold lg:text-3xl">
           About
         </h1>
         <p className="text-center text-base leading-9">

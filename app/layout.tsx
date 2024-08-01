@@ -31,7 +31,7 @@ export default function RootLayout({
 
         <div className="flex size-full flex-col gap-4 lg:overflow-hidden">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-20 lg:pt-0">{children}</main>
         </div>
       </body>
     </html>

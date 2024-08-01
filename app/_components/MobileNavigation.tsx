@@ -25,7 +25,9 @@ function MobileNavigation({ children, session }: Props) {
   return (
     <nav className="w-fit bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="fixed right-4 top-6 z-20 flex items-center justify-between">
+        <div className="fixed right-0 top-0 z-20 flex w-full items-center justify-between bg-white px-4 py-3 shadow-lg">
+          <Logo />
+
           <button
             className=" text-black hover:text-black focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}

@@ -47,9 +47,13 @@
   margin-left: calc(var(--thumbs-slide-spacing) * -1);
 }
 .embla-thumbs__slide {
-  flex: 0 0 22%;
+  flex: 0 0 15%;
   min-width: 0;
   padding-left: var(--thumbs-slide-spacing);
+
+  @media (min-width: 1024px) {
+    flex: 0 0 22%;
+  }
 }
 @media (min-width: 576px) {
   .embla-thumbs__slide {
@@ -76,12 +80,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--thumbs-slide-height);
-  width: 100%;
+  height: 40px;
+  width: 40px;
 
   @media (min-width: 1024px) {
     font-size: 1.8rem;
     font-weight: 600;
+    height: var(--thumbs-slide-height);
+    width: 100%;
   }
 }
 .embla-thumbs__slide--selected .embla-thumbs__slide__number {
