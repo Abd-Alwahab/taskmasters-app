@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi' // Hamburger icon
 import { AiOutlineClose } from 'react-icons/ai' // Close icon
 import Link from 'next/link'
@@ -13,11 +13,9 @@ import { GoInfo } from 'react-icons/go'
 import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
 import { RiLoginBoxLine } from 'react-icons/ri'
+import CurrentUserBadge from './CurrentUserBadge'
 
-type Props = {
-  children: ReactNode
-}
-function MobileNavigation({ children }: Props) {
+function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false)
   const { currentUser } = useAuth()
 
@@ -33,17 +31,21 @@ function MobileNavigation({ children }: Props) {
         <div className="fixed right-0 top-0 z-20 flex w-full items-center justify-between bg-white px-4 py-3 shadow-lg">
           <Logo />
 
-          <button
-            className=" text-black hover:text-black focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Open Mobile Menu"
-          >
-            {isOpen ? (
-              <AiOutlineClose size={24} /> // Close icon when open
-            ) : (
-              <GiHamburgerMenu size={24} /> // Hamburger icon when closed
-            )}
-          </button>
+          <div className="flex items-center gap-3">
+            <CurrentUserBadge />
+
+            <button
+              className=" text-black hover:text-black focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Open Mobile Menu"
+            >
+              {isOpen ? (
+                <AiOutlineClose size={24} /> // Close icon when open
+              ) : (
+                <GiHamburgerMenu size={24} /> // Hamburger icon when closed
+              )}
+            </button>
+          </div>
         </div>
 
         <div
@@ -122,9 +124,7 @@ function MobileNavigation({ children }: Props) {
 
             <li>
               {currentUser ? (
-                <div className="flex flex-col items-center gap-6">
-                  {children}
-
+                <div className="flex flex-col items-start gap-6 py-3 pl-3">
                   <SignOutButton />
                 </div>
               ) : (

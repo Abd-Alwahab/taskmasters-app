@@ -5,7 +5,6 @@ import { ReactNode } from 'react'
 import Sidebar from './_components/Sidebar'
 import Header from './_components/Header'
 import AppAuthProvider from './_lib/AppAuthProvider'
-import CurrentUserBadge from './_components/CurrentUserBadge'
 import MobileNavigation from './_components/MobileNavigation'
 
 const sourceSans3 = Poppins({
@@ -41,9 +40,7 @@ export default function RootLayout({
             </div>
 
             <div className="relative z-20 block lg:hidden">
-              <MobileNavigation>
-                <CurrentUserBadge />
-              </MobileNavigation>
+              <MobileNavigation />
             </div>
 
             <main className="h-full flex-1">{children}</main>
