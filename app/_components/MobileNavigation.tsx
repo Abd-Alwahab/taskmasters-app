@@ -7,14 +7,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 import SignOutButton from './SignoutButton'
-import { User } from '@supabase/supabase-js'
+import { useAuth } from '../context/auth'
 
 type Props = {
-  session: { user: User | null } | null
   children: ReactNode
 }
-function MobileNavigation({ children, session }: Props) {
+function MobileNavigation({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false)
+  const { currentUser } = useAuth()
 
   const pathname = usePathname()
 
@@ -67,7 +67,7 @@ function MobileNavigation({ children, session }: Props) {
               </Link>
             </li>
             <li>
-              {session?.user ? (
+              {currentUser ? (
                 <div className="flex flex-col items-center gap-6">
                   {children}
 

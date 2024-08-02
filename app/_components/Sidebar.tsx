@@ -1,20 +1,18 @@
 import Link from 'next/link'
 import { createClient } from '../_utils/supabase/server'
-import CurrentUserBadge from './CurrentUserBadge'
 import Navigation from './Navigation'
 import Logo from './Logo'
-import MobileNavigation from './MobileNavigation'
 import SignOutButton from './SignoutButton'
 
 const Sidebar = async () => {
   const { data: session } = await createClient().auth.getUser()
 
   return (
-    <div className="flex flex-col justify-between rounded-lg bg-white lg:pt-4 lg:shadow-lg">
-      <div className="hidden pt-2 lg:relative lg:mx-auto lg:block lg:size-20">
+    <div className="flex h-full flex-col justify-between rounded-lg bg-white pt-4 shadow-lg">
+      <div className="relative mx-auto block size-20 pt-2">
         <Logo />
       </div>
-      <div className="z-10 hidden flex-1 justify-between  gap-6 pb-10 pl-6 transition-all lg:flex lg:flex-col">
+      <div className="z-10  flex flex-1  flex-col justify-between gap-6 pb-10 pl-6 transition-all">
         <Navigation />
 
         {session?.user ? (
@@ -31,12 +29,6 @@ const Sidebar = async () => {
             </span>
           </Link>
         )}
-      </div>
-
-      <div className="relative z-20 block lg:hidden">
-        <MobileNavigation session={session}>
-          <CurrentUserBadge />
-        </MobileNavigation>
       </div>
     </div>
   )
