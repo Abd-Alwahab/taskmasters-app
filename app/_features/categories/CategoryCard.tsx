@@ -6,6 +6,7 @@ import EditCategory from './EditCategory'
 import { Tables } from '@/database.types'
 import { Draggable, DraggableProvided } from '@hello-pangea/dnd'
 import WarningModal from './WarningModal'
+import { useDevice } from '@/app/context/device'
 
 type Props = {
   category: Tables<'categories'>
@@ -13,6 +14,7 @@ type Props = {
   categoryTasks: { category: number }[]
 }
 function CategoryCard({ category, index, categoryTasks }: Props) {
+  const { isDesktop } = useDevice()
   return (
     <Draggable
       draggableId={String(category.orderIndex) ?? ''}
@@ -30,8 +32,13 @@ function CategoryCard({ category, index, categoryTasks }: Props) {
           >
             <Modal>
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-4">
                   <span className="text-lg"> {category.name}</span>{' '}
+                  {isDesktop ? null : (
+                    <div className="rounded-lg bg-gray-900 px-2 py-1 text-center text-xs text-gray-200">
+                      {categoryTasks?.length} Tasks
+                    </div>
+                  )}
                 </span>
 
                 <div className="relative flex flex-1 items-center justify-end">
@@ -70,11 +77,13 @@ function CategoryCard({ category, index, categoryTasks }: Props) {
                 <EditCategory categoryToEdit={category} />
               </ModalWindow>
 
-              <div className="mt-28 text-center text-7xl text-gray-200">
-                {categoryTasks?.length}
-                <br />
-                Tasks
-              </div>
+              {isDesktop ? (
+                <div className="mt-28 block text-center text-7xl text-gray-200">
+                  {categoryTasks?.length}
+                  <br />
+                  Tasks
+                </div>
+              ) : null}
             </Modal>
           </div>
         )

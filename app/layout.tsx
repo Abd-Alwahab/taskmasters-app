@@ -6,6 +6,7 @@ import Sidebar from './_components/Sidebar'
 import Header from './_components/Header'
 import AppAuthProvider from './_lib/AppAuthProvider'
 import MobileNavigation from './_components/MobileNavigation'
+import AppDeviceProvider from './_lib/AppDeviceProvider'
 
 const sourceSans3 = Poppins({
   subsets: ['latin'],
@@ -29,23 +30,25 @@ export default function RootLayout({
       <body
         className={`${sourceSans3.className}flex  h-screen w-screen gap-4 bg-white px-2 lg:grid lg:grid-cols-[15rem_1fr] lg:overflow-hidden lg:bg-gray-100 lg:p-3`}
       >
-        <AppAuthProvider>
-          <div className="hidden h-full lg:block">
-            <Sidebar />
-          </div>
-
-          <div className="grid size-full grid-rows-[72px_1fr] flex-col gap-4 lg:flex lg:gap-0 lg:overflow-hidden">
-            <div className="hidden lg:block">
-              <Header />
+        <AppDeviceProvider>
+          <AppAuthProvider>
+            <div className="hidden h-full lg:block">
+              <Sidebar />
             </div>
 
-            <div className="relative z-20 block lg:hidden">
-              <MobileNavigation />
-            </div>
+            <div className="grid size-full grid-rows-[72px_1fr] flex-col gap-4 lg:flex lg:gap-0 lg:overflow-hidden">
+              <div className="hidden lg:block">
+                <Header />
+              </div>
 
-            <main className="h-full flex-1">{children}</main>
-          </div>
-        </AppAuthProvider>
+              <div className="relative z-20 block lg:hidden">
+                <MobileNavigation />
+              </div>
+
+              <main className="h-full flex-1">{children}</main>
+            </div>
+          </AppAuthProvider>
+        </AppDeviceProvider>
       </body>
     </html>
   )

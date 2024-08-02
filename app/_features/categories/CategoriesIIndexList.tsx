@@ -9,6 +9,7 @@ import {
 } from '@hello-pangea/dnd'
 import { useTransition, useOptimistic } from 'react'
 import { updateCategoriesAction } from '@/app/_lib/actions'
+import { useDevice } from '@/app/context/device'
 
 type Props = {
   categories: Tables<'categories'>[]
@@ -16,6 +17,8 @@ type Props = {
 }
 
 function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
+  const { isDesktop } = useDevice()
+
   // eslint-disable-next-line no-unused-vars
   const [_, startTransition] = useTransition()
   const [optimisticState, setOptimisticState] = useOptimistic(
@@ -87,11 +90,14 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
   return (
     <div className="h-full bg-gray-100">
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId={'categories'} direction="horizontal">
+        <Droppable
+          droppableId={'categories'}
+          direction={isDesktop ? 'horizontal' : 'vertical'}
+        >
           {(provided: DroppableProvided) => {
             return (
               <div
-                className="grid h-full gap-3 overflow-x-auto"
+                className="flex h-full flex-col gap-3 overflow-x-auto lg:grid"
                 style={{
                   gridTemplateColumns: `repeat(${indexes?.length ?? 0}, minmax(350px, 1fr))`,
                 }}

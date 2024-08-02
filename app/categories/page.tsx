@@ -19,14 +19,14 @@ async function Categories() {
 
   return (
     <Menus>
-      <div className="flex h-full flex-col gap-4">
-        <div className="flex items-center justify-between rounded-lg bg-white px-5 py-2">
-          <h1 className="text-3xl font-bold">Categories</h1>
+      <div className="flex h-full flex-col gap-4 bg-gray-100">
+        <div className="flex items-center justify-between rounded-lg bg-white px-1 py-2 lg:px-5">
+          <h1 className="text-xl font-bold lg:text-3xl">Categories</h1>
 
           <Modal>
             <OpenModal name="add-category">
-              <button className="flex items-center gap-1 rounded-lg bg-gray-900 px-4 py-3 text-white">
-                <span> New Category</span>
+              <button className="flex items-center gap-1 rounded-lg bg-gray-900 px-2 py-1.5 text-white lg:px-4 lg:py-3">
+                <span className="text-xs lg:text-base"> New Category</span>
                 <HiOutlinePlus fontSize={20} />
               </button>
             </OpenModal>
@@ -61,7 +61,9 @@ async function Categories() {
           />
         ) : (
           <div className="flex size-full flex-col items-center justify-center gap-8">
-            <span className="text-4xl font-semibold">No categories found</span>
+            <span className="text-2xl font-semibold lg:text-4xl">
+              No categories found
+            </span>
           </div>
         )}
       </div>

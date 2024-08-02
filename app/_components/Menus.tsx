@@ -77,7 +77,7 @@ export function Toggle({ id }: ToggleProps) {
     <button
       aria-label="open menu"
       onClick={handleClick}
-      className="translate-x-3 rounded-sm border-none bg-transparent p-1 transition-all duration-200 hover:bg-gray-100"
+      className="translate-x-3 rounded-sm border-none bg-transparent p-1 transition-all duration-200"
     >
       <HiEllipsisVertical className="size-6 text-gray-700" />
     </button>
