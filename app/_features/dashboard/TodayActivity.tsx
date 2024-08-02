@@ -21,17 +21,17 @@ function TodayActivity({ tasks, categories }: Props) {
   })
 
   return (
-    <div className="flex h-[400px] flex-col gap-4 rounded-lg bg-white p-8">
+    <div className="flex h-fit max-h-full flex-col gap-4 overflow-y-auto rounded-lg bg-white px-1 py-3 lg:max-h-[300px] lg:p-8">
       <span className="text-3xl font-semibold text-gray-900">Today</span>
 
       {!tasksCreatedToday?.length && !categoriesCreatedToday?.length ? (
-        <div className="mt-14 h-full text-center text-3xl">
+        <div className="mt-2 h-full text-center text-xl lg:mt-6 lg:text-3xl">
           No tasks or categories created today
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-12">
+        <div className="flex  grid-cols-2 flex-col gap-4 lg:grid lg:gap-12">
           {tasksCreatedToday?.length ? (
-            <div className="grid h-fit max-h-[400px] grid-cols-1 overflow-y-auto">
+            <div className="grid h-fit grid-cols-1">
               {tasksCreatedToday?.map((task) => (
                 <div
                   key={task.id}
@@ -55,7 +55,7 @@ function TodayActivity({ tasks, categories }: Props) {
           ) : null}
 
           {categoriesCreatedToday?.length ? (
-            <div className="grid h-fit max-h-[400px] grid-cols-1  overflow-y-auto">
+            <div className="grid h-fit  grid-cols-1">
               {categoriesCreatedToday?.map((category) => (
                 <div
                   key={category.id}

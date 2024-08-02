@@ -21,7 +21,7 @@ export default async function Home() {
   const isLoggedIn = user?.data.user !== null
 
   return (
-    <div className="flex h-full flex-col gap-4">
+    <div className="flex h-full flex-col gap-6 bg-white lg:gap-4">
       {isLoggedIn ? (
         <>
           {' '}
@@ -32,7 +32,9 @@ export default async function Home() {
           <TodayActivity tasks={tasks ?? []} categories={categories ?? []} />
           <div className="h-full flex-1 bg-white">
             {tasks?.length ? (
-              <TasksChart tasks={tasks ?? []} />
+              <div className="hidden h-full lg:block">
+                <TasksChart tasks={tasks ?? []} />
+              </div>
             ) : (
               <div className="flex size-full items-center justify-center">
                 <span className="text-4xl font-semibold">No tasks found</span>

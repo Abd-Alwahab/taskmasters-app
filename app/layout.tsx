@@ -29,9 +29,12 @@ export default function RootLayout({
       >
         <Sidebar />
 
-        <div className="flex size-full flex-col gap-4 lg:overflow-hidden">
-          <Header />
-          <main className="flex-1 pt-20 lg:pt-0">{children}</main>
+        <div className=" flex  size-full flex-col gap-4 lg:overflow-hidden">
+          <div className="hidden lg:block">
+            <Header />
+          </div>
+
+          <main className="h-full flex-1 pt-20 lg:pt-0">{children}</main>
         </div>
       </body>
     </html>

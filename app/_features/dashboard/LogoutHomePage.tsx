@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 function LogoutHomePage() {
   return (
-    <div className="relative flex h-full flex-col items-center rounded-lg bg-white pt-28 lg:pt-32">
+    <div className="relative flex h-full flex-col items-center rounded-lg bg-white pt-44 lg:pt-32">
       <div className="absolute right-10 top-16 size-6 rounded-full bg-amber-400 shadow-md lg:right-10 lg:top-24 lg:size-11" />
       <div className="absolute left-10 top-8 size-10 rounded-full bg-amber-300 shadow-md lg:left-10 lg:top-12 lg:size-20" />
       <div className="absolute left-14 top-8 size-10 rounded-full bg-white lg:left-14  lg:top-14 lg:size-20" />
