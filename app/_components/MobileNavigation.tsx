@@ -8,6 +8,11 @@ import { usePathname } from 'next/navigation'
 import Logo from './Logo'
 import SignOutButton from './SignoutButton'
 import { useAuth } from '../context/auth'
+import { FaTasks } from 'react-icons/fa'
+import { GoInfo } from 'react-icons/go'
+import { IoMdHome } from 'react-icons/io'
+import { TbCategory } from 'react-icons/tb'
+import { RiLoginBoxLine } from 'react-icons/ri'
 
 type Props = {
   children: ReactNode
@@ -42,30 +47,79 @@ function MobileNavigation({ children }: Props) {
         </div>
 
         <div
-          className={` fixed left-0 top-0 z-10 mt-2 flex h-screen w-screen flex-col gap-11 space-y-1 bg-white pt-40  transition-all ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
+          className={`fixed left-0 top-0 z-10 mt-2 flex h-screen w-screen justify-center gap-11 space-y-1 bg-white  transition-all ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
         >
-          <div className="flex justify-center">
-            <Logo />
-          </div>
-
-          <ul className="flex flex-col items-center justify-center gap-8">
+          <ul className="mx-auto flex w-fit flex-col justify-center gap-5 ">
             <li>
-              <Link href="/" className="text-2xl transition-colors">
-                Home
+              <Link
+                className={`relative flex w-full items-center justify-start gap-3 font-medium ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                href="/"
+              >
+                <div
+                  className={`absolute left-0 top-0 ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''}`}
+                />
+                <IoMdHome
+                  fontSize={20}
+                  className={`${pathname === '/' ? 'text-amber-500' : ''}`}
+                />
+                <span className={`${pathname === '/' ? 'text-amber-500' : ''}`}>
+                  Home
+                </span>
               </Link>
             </li>
 
             <li>
-              <Link href="/about" className="text-2xl transition-colors">
-                About
+              <Link
+                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/planner' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                href="/planner"
+              >
+                <FaTasks
+                  fontSize={20}
+                  className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+                />
+                <span
+                  className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+                >
+                  Planner
+                </span>
               </Link>
             </li>
 
             <li>
-              <Link href="/developer" className="text-2xl transition-colors">
-                Developer
+              <Link
+                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/categories' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                href="/categories"
+              >
+                <TbCategory
+                  fontSize={20}
+                  className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+                />
+                <span
+                  className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+                >
+                  Categories
+                </span>
               </Link>
             </li>
+
+            <li>
+              <Link
+                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/about' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                href="/about"
+              >
+                <GoInfo
+                  fontSize={20}
+                  className={`${pathname === '/about' ? 'text-amber-500' : ''}`}
+                />
+
+                <span
+                  className={`${pathname === '/about' ? 'text-amber-500' : ''}`}
+                >
+                  About
+                </span>
+              </Link>
+            </li>
+
             <li>
               {currentUser ? (
                 <div className="flex flex-col items-center gap-6">
@@ -74,15 +128,20 @@ function MobileNavigation({ children }: Props) {
                   <SignOutButton />
                 </div>
               ) : (
-                <Link href="/account" className="text-2xl transition-colors">
-                  <button
-                    className="group flex items-center rounded-full border border-quill-gray-950 px-5 py-2 transition-all hover:bg-quill-gray-950"
-                    aria-label="Login"
+                <Link
+                  className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/login' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                  href="/about"
+                >
+                  <RiLoginBoxLine
+                    fontSize={20}
+                    className={`${pathname === '/login' ? 'text-amber-500' : ''}`}
+                  />
+
+                  <span
+                    className={`${pathname === '/login' ? 'text-amber-500' : ''}`}
                   >
-                    <span className="text-lg text-quill-gray-950 transition-all group-hover:text-white">
-                      Login / Signup
-                    </span>
-                  </button>
+                    Login
+                  </span>
                 </Link>
               )}
             </li>
