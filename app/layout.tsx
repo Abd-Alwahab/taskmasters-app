@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import './globals.css'
 import { ReactNode } from 'react'
 import Sidebar from './_components/Sidebar'
-import Header from './_components/Header'
 import AppAuthProvider from './_lib/AppAuthProvider'
-import MobileNavigation from './_components/MobileNavigation'
+import dynamic from 'next/dynamic'
+import './globals.css'
+const Header = dynamic(() => import('./_components/Header'))
+const MobileNavigation = dynamic(() => import('./_components/MobileNavigation'))
 
 const sourceSans3 = Poppins({
   subsets: ['latin'],

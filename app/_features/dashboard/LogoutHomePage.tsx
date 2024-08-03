@@ -30,7 +30,13 @@ function LogoutHomePage() {
       </div>
 
       <div className="relative mt-auto size-full rounded-lg shadow-lg lg:size-3/5">
-        <Image src="/home-page.svg" alt="home page" fill draggable={false} />
+        <Image
+          src="/home-page.svg"
+          alt="home page"
+          fill
+          draggable={false}
+          priority
+        />
       </div>
     </div>
   )
