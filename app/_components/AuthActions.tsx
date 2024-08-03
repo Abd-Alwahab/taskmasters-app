@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import SignOutButton from './SignoutButton'
-import { useAuth } from '../context/auth'
+import { useAuth } from '../_context/auth'
 
 function AuthActions() {
   const { currentUser } = useAuth()

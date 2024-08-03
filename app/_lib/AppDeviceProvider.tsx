@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { DeviceProvider } from '../context/device'
+import { DeviceProvider } from '../_context/device'
 import * as Device from 'react-device-detect'
 import { headers } from 'next/headers'
 import { userAgent } from 'next/server'

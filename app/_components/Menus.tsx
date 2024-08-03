@@ -9,7 +9,7 @@ import {
   MouseEvent,
 } from 'react'
 import { HiEllipsisVertical } from 'react-icons/hi2'
-import { useClickOutside } from '../hooks/useClickOutside'
+import { useClickOutside } from '../_hooks/useClickOutside'
 
 interface MenusContextType {
   openId: string

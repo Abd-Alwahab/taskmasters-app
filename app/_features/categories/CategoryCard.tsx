@@ -6,7 +6,7 @@ import EditCategory from './EditCategory'
 import { Tables } from '@/database.types'
 import { Draggable, DraggableProvided } from '@hello-pangea/dnd'
 import WarningModal from './WarningModal'
-import { useDevice } from '@/app/context/device'
+import { useDevice } from '@/app/_context/device'
 
 type Props = {
   category: Tables<'categories'>

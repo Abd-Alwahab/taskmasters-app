@@ -1,7 +1,7 @@
 'use client'
 
 /* eslint-disable @next/next/no-img-element */
-import { useAuth } from '../context/auth'
+import { useAuth } from '../_context/auth'
 
 function CurrentUserBadge() {
   const { currentUser } = useAuth()

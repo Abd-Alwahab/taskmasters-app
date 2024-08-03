@@ -9,8 +9,8 @@ import { createNewTaskAction, updateTaskAction } from '@/app/_lib/actions'
 import { taskSchema } from '../../_utils/validations/taskSchema'
 import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
-import { useCategories } from '@/app/context/categories'
-import { useTasks } from '@/app/context/tasks'
+import { useCategories } from '@/app/_context/categories'
+import { useTasks } from '@/app/_context/tasks'
 import ErrorMessage from '@/app/_components/ErrorMessage'
 
 type TaskFormData = {

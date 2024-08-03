@@ -1,5 +1,5 @@
 import { createClient } from '../_utils/supabase/server'
-import { AuthProvider } from '../context/auth'
+import { AuthProvider } from '../_context/auth'
 import { ReactNode } from 'react'
 
 async function AppAuthProvider({ children }: { children: ReactNode }) {

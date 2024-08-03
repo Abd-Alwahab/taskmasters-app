@@ -9,7 +9,7 @@ import {
 } from '@hello-pangea/dnd'
 import { useTransition, useOptimistic } from 'react'
 import { updateCategoriesAction } from '@/app/_lib/actions'
-import { useDevice } from '@/app/context/device'
+import { useDevice } from '@/app/_context/device'
 
 type Props = {
   categories: Tables<'categories'>[]

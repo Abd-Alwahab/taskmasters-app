@@ -1,7 +1,7 @@
 import { cache, ReactNode } from 'react'
 import { getCategories } from '../_services/categoriesService'
-import { CategoriesProvider } from '../context/categories'
-import { TasksProvider } from '../context/tasks'
+import { CategoriesProvider } from '../_context/categories'
+import { TasksProvider } from '../_context/tasks'
 import { getTasks } from '../_services/tasksServices'
 
 async function PlannerLayout({ children }: { children: ReactNode }) {
