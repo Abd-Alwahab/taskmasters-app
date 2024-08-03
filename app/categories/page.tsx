@@ -1,4 +1,3 @@
-import { cache } from 'react'
 import { getCategories } from '../_services/categoriesService'
 import Menus from '../_components/Menus'
 import { HiOutlinePlus } from 'react-icons/hi2'
@@ -11,11 +10,10 @@ import { RiErrorWarningFill } from 'react-icons/ri'
 const MAX_CATEGORIES = 10
 
 async function Categories() {
-  const categoriesPromise = cache(async () => await getCategories())
-  const categories = await categoriesPromise()
-
-  const categoriesTasksPromise = cache(async () => await getCategoriesTasks())
-  const categoriesTasks = await categoriesTasksPromise()
+  const [categories, categoriesTasks] = await Promise.all([
+    getCategories(),
+    getCategoriesTasks(),
+  ])
 
   return (
     <Menus>
@@ -34,12 +32,12 @@ async function Categories() {
             <ModalWindow
               name="add-category"
               label={
-                (categories?.length ?? 0) === MAX_CATEGORIES
+                categories?.length === MAX_CATEGORIES
                   ? 'Reach the maximum number of categories'
                   : 'Create New Category'
               }
             >
-              {(categories?.length ?? 0) === MAX_CATEGORIES ? (
+              {categories?.length === MAX_CATEGORIES ? (
                 <div className="flex flex-col items-center justify-center gap-4 text-xl">
                   <RiErrorWarningFill fontSize={80} color="red" />
                   <span>
@@ -56,7 +54,7 @@ async function Categories() {
 
         {categories?.length ? (
           <CategoriesIIndexList
-            categories={categories ?? []}
+            categories={categories}
             categoriesTasks={categoriesTasks ?? []}
           />
         ) : (
