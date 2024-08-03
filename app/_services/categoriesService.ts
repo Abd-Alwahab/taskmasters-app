@@ -3,11 +3,10 @@ import { createClient } from '../_utils/supabase/server'
 
 export async function getCategories() {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-  const { user } = session
+  if (!user) return null
 
   const { data: categories, error } = await createClient()
     .from('categories')
@@ -23,11 +22,10 @@ export async function getCategories() {
 
 export async function getCategoriesIndexes() {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-  const { user } = session
+  if (!user) return null
 
   const { data: categories, error } = await createClient()
     .from('categories')

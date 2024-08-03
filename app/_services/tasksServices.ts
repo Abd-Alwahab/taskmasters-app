@@ -3,12 +3,10 @@ import { createClient } from '../_utils/supabase/server'
 
 export async function getTasks() {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { data: tasks, error } = await createClient()
     .from('tasks')
@@ -24,12 +22,10 @@ export async function getTasks() {
 
 export async function getTask(taskId: number) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { data: task, error } = await createClient()
     .from('tasks')
@@ -47,12 +43,10 @@ export async function getTask(taskId: number) {
 
 export async function getCategoriesTasks() {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { data: tasks, error } = await createClient()
     .from('tasks')

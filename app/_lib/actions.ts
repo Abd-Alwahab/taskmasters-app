@@ -41,12 +41,10 @@ export type NewTaskDataType = {
 }
 export async function createNewTaskAction(formData: NewTaskDataType) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const validatedUser = taskSchema.safeParse(formData)
 
@@ -73,12 +71,10 @@ export async function createNewTaskAction(formData: NewTaskDataType) {
 
 export async function deleteTaskAction(id: number) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { error } = await createClient()
     .from('tasks')
@@ -97,12 +93,10 @@ export async function deleteTaskAction(id: number) {
 
 export async function updateTaskAction(id: any, data: any) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { error, data: updatedTask } = await createClient()
     .from('tasks')
@@ -125,12 +119,10 @@ export async function updateTaskAction(id: any, data: any) {
 
 export async function deleteCategoryAction(id: number) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { error } = await createClient()
     .from('categories')
@@ -153,12 +145,10 @@ export async function createNewCategoryAction(formData: {
   orderIndex: number
 }) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const validatedCategory = categorySchema.safeParse(formData)
 
@@ -192,12 +182,10 @@ export async function createNewCategoryAction(formData: {
 
 export async function updateCategoryAction(id: number, data: any) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { error, data: updatedCategory } = await createClient()
     .from('categories')
@@ -221,19 +209,16 @@ export async function updateCategoryAction(id: number, data: any) {
 
 export async function updateCategoriesAction(data: Tables<'categories'>[]) {
   const {
-    data: { session },
-  } = await createClient().auth.getSession()
+    data: { user },
+  } = await createClient().auth.getUser()
 
-  if (!session) return null
-
-  const { user } = session
+  if (!user) return null
 
   const { error, data: updatedCategory } = await createClient()
     .from('categories')
     .upsert(data)
     .match({ userId: user?.id })
 
-  console.log({ error })
   if (error) {
     throw new Error(error.message)
   }
