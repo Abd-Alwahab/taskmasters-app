@@ -29,7 +29,7 @@ function WarningModal({ onCloseModal }: Props) {
         <button
           type="submit"
           className="rounded-lg bg-gray-950 px-3 py-2 text-center text-sm font-medium text-white  focus:outline-none focus:ring-4 focus:ring-gray-300"
-          onClick={() => push('/planner')}
+          onClick={() => push('/tasks')}
         >
           Open Tasks
         </button>

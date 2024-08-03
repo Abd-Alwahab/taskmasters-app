@@ -31,17 +31,17 @@ function Navigation() {
 
           <li>
             <Link
-              className={`flex w-full items-center gap-3 font-medium ${pathname === '/planner' ? 'border-r-4 border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
-              href="/planner"
+              className={`flex w-full items-center gap-3 font-medium ${pathname === '/tasks' ? 'border-r-4 border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
+              href="/tasks"
             >
               <FaTasks
                 fontSize={20}
-                className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+                className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
               />
               <span
-                className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+                className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
               >
-                Planner
+                Tasks
               </span>
             </Link>
           </li>

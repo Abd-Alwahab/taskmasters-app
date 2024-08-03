@@ -12,7 +12,7 @@ function TotalItems({ totalCategories, totalTasks }: Props) {
     <div className="flex grid-cols-2 flex-col gap-4 lg:grid">
       <Link
         className="overflow-hidden rounded-lg transition-all  hover:translate-y-[-3px] hover:shadow-xl"
-        href="/planner"
+        href="/tasks"
       >
         <div className="flex items-center gap-4 bg-white px-1 py-2 lg:p-4">
           <div className="flex size-12 items-center justify-center rounded-full bg-blue-800 lg:size-16">

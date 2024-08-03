@@ -16,7 +16,7 @@ export async function loginAction() {
   const { data, error } = await createClient().auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${origin}/auth/callback`,
+      redirectTo: `${origin}/api/auth/callback`,
     },
   })
 
@@ -29,7 +29,7 @@ export async function loginAction() {
 
 export async function logoutAction() {
   await createClient().auth.signOut()
-  redirect('/login')
+  redirect('/')
 }
 
 export type NewTaskDataType = {
@@ -64,7 +64,7 @@ export async function createNewTaskAction(formData: NewTaskDataType) {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
 
   return { success: true }
 }
@@ -86,7 +86,7 @@ export async function deleteTaskAction(id: number) {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
 
   return { success: true }
 }
@@ -112,7 +112,7 @@ export async function updateTaskAction(id: any, data: any) {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
 
   return { success: true, data: updatedTask }
 }
@@ -134,7 +134,7 @@ export async function deleteCategoryAction(id: number) {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
   revalidatePath('/categories')
 
   return { success: true }
@@ -174,7 +174,7 @@ export async function createNewCategoryAction(formData: {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
   revalidatePath('/categories')
 
   return { success: true }
@@ -201,7 +201,7 @@ export async function updateCategoryAction(id: number, data: any) {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
   revalidatePath('/categories')
 
   return { success: true, data: updatedCategory }
@@ -223,7 +223,7 @@ export async function updateCategoriesAction(data: Tables<'categories'>[]) {
     throw new Error(error.message)
   }
 
-  revalidatePath('/planner')
+  revalidatePath('/tasks')
   revalidatePath('/categories')
 
   return { success: true, data: updatedCategory }

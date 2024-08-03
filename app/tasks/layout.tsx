@@ -4,7 +4,7 @@ import { CategoriesProvider } from '../_context/categories'
 import { TasksProvider } from '../_context/tasks'
 import { getTasks } from '../_services/tasksServices'
 
-async function PlannerLayout({ children }: { children: ReactNode }) {
+async function TasksLayout({ children }: { children: ReactNode }) {
   const categoriesPromise = cache(async () => await getCategories())
   const categories = await categoriesPromise()
   const tasksPromise = cache(async () => await getTasks())
@@ -16,4 +16,4 @@ async function PlannerLayout({ children }: { children: ReactNode }) {
   )
 }
 
-export default PlannerLayout
+export default TasksLayout

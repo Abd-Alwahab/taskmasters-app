@@ -8,7 +8,7 @@ type Props = {
     priority?: string
   }
 }
-async function Planner({ searchParams }: Props) {
+async function Tasks({ searchParams }: Props) {
   const categories = cache(async () => await getCategories())
   const categoriesResult = await categories()
   const priority = searchParams.priority ?? 'all'
@@ -28,4 +28,4 @@ async function Planner({ searchParams }: Props) {
   )
 }
 
-export default Planner
+export default Tasks

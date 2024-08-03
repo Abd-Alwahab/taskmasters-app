@@ -72,17 +72,17 @@ function MobileNavigation() {
 
             <li>
               <Link
-                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/planner' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
-                href="/planner"
+                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/tasks' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                href="/tasks"
               >
                 <FaTasks
                   fontSize={20}
-                  className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+                  className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
                 />
                 <span
-                  className={`${pathname === '/planner' ? 'text-amber-500' : ''}`}
+                  className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
                 >
-                  Planner
+                  Tasks
                 </span>
               </Link>
             </li>
