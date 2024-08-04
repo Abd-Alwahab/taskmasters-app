@@ -15,7 +15,7 @@ async function Categories({ categories = [], filter }: Props) {
   const tasks = await tasksPromise()
   return (
     <div className="flex h-full flex-col gap-4 ">
-      <div className="flex w-full items-center justify-between rounded-lg bg-white px-5 py-2">
+      <div className="flex w-full flex-col-reverse items-start justify-between gap-4 rounded-lg bg-white py-2 lg:flex-row lg:items-center lg:gap-0 lg:px-5">
         {tasks?.length ? (
           <Filter
             options={[
@@ -29,7 +29,7 @@ async function Categories({ categories = [], filter }: Props) {
         ) : null}
 
         {categories?.length ? (
-          <div className="ml-auto">
+          <div className="lg:ml-auto">
             <CreateNewTask />
           </div>
         ) : null}
