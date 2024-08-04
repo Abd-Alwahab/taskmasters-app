@@ -11,7 +11,7 @@ function TaskDetailsModal({ task }: Props) {
   if (!task) return null
 
   return (
-    <div className="grid w-[600px] grid-cols-[1fr_10rem] gap-6">
+    <div className="flex w-full grid-cols-[1fr_10rem] flex-col gap-6 lg:grid lg:w-[600px]">
       <p className="flex-1 border-r">{task.description}</p>
 
       <div className="flex flex-col gap-2">
@@ -66,7 +66,10 @@ function TaskDetailsModal({ task }: Props) {
         >
           <BsCalendarEvent />
 
-          <span className="text-sm"> {formatDate(task?.created_at)}</span>
+          <span className="whitespace-nowrap text-sm">
+            {' '}
+            {formatDate(task?.created_at)}
+          </span>
         </div>
       </div>
     </div>

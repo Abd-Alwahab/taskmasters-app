@@ -6,6 +6,7 @@ import {
   ReactElement,
   ReactNode,
   useContext,
+  useEffect,
   useState,
 } from 'react'
 import { createPortal } from 'react-dom'
@@ -58,13 +59,28 @@ export const ModalWindow = ({
 }) => {
   const { openName, close } = useContext(ModalContext)
 
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow // Store previous overflow
+    const prevPosition = document.body.style.position // Store previous position
+
+    if (openName === name) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed' // Prevent body from scrolling
+      document.body.style.width = '100%' // Ensure body takes up full viewport width
+    }
+
+    return () => {
+      document.body.style.overflow = prevOverflow // Restore previous overflow
+      document.body.style.position = prevPosition // Restore previous position
+      document.body.style.width = '' // Remove the fixed width
+    }
+  }, [openName, name])
+
   return (
     openName === name &&
     createPortal(
-      <div
-        className={`fixed left-0 top-0 z-10 h-screen w-screen  animate-modalBounce bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur transition-all`}
-      >
-        <div className="absolute left-1/2 top-1/2 size-fit -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4">
+      <div className="fixed left-0 top-0 z-30 h-screen w-screen animate-modalBounce bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur transition-all lg:z-10">
+        <div className="absolute left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-4 lg:size-fit">
           <div
             onClick={close}
             className="absolute right-4 top-4 cursor-pointer"
@@ -74,10 +90,8 @@ export const ModalWindow = ({
 
           <div>
             <h3 className="mb-6 text-lg font-bold">{label}</h3>
-
             {cloneElement(children, {
-              key: Math.random(),
-              onCloseModal: () => close(),
+              onCloseModal: () => close(), // Pass the close function to children
             })}
           </div>
         </div>
