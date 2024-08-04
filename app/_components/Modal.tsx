@@ -89,7 +89,9 @@ export const ModalWindow = ({
           </div>
 
           <div>
-            <h3 className="mb-6 text-lg font-bold">{label}</h3>
+            <h3 className="mb-6 max-w-[90%] text-lg font-bold lg:max-w-full">
+              {label}
+            </h3>
             {cloneElement(children, {
               onCloseModal: () => close(), // Pass the close function to children
             })}
