@@ -28,7 +28,7 @@ const SubmitFormButton = ({ label, pending }: Props) => {
       <span className="sr-only">Loading...</span>
     </button>
   ) : (
-    <button className="rounded-lg bg-gray-900 px-2 py-3 text-white">
+    <button className="rounded-lg bg-gray-900 px-2 py-3 text-sm text-white lg:text-base">
       {label}
     </button>
   )

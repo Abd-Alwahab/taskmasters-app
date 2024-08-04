@@ -55,7 +55,7 @@ const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-[600px] flex-col gap-5"
+      className="flex w-full flex-col gap-5 lg:w-[600px]"
     >
       <FormRow error={errors?.name?.message ?? ''}>
         <Controller

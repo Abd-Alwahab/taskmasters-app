@@ -10,7 +10,7 @@ function WarningModal({ onCloseModal }: Props) {
   const { push } = useRouter()
 
   return (
-    <div className="flex w-[500px] flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-6 lg:w-[500px]">
       <RiErrorWarningFill fontSize={80} color="red" />
 
       <p className="text-center text-lg">
