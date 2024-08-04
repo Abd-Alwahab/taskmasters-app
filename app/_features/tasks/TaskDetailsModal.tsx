@@ -1,5 +1,7 @@
+import { formatDate, FULL_DATE_FORMAT } from '@/app/_utils/dates'
 import { getPriorityBackgroundColor } from '@/app/_utils/helpers'
 import { Tables } from '@/database.types'
+import { BsCalendarEvent } from 'react-icons/bs'
 
 type Props = {
   task?: Tables<'tasks'>
@@ -56,6 +58,15 @@ function TaskDetailsModal({ task }: Props) {
           className={`rounded-md p-2 text-center font-semibold ${getPriorityBackgroundColor(task?.priority ?? '')}`}
         >
           {task?.priority}
+        </div>
+
+        <div
+          className={`mt-4 flex items-center gap-4 rounded-md bg-gray-200 p-2 text-center text-gray-900`}
+          title={formatDate(task?.created_at, FULL_DATE_FORMAT)}
+        >
+          <BsCalendarEvent />
+
+          <span className="text-sm"> {formatDate(task?.created_at)}</span>
         </div>
       </div>
     </div>
