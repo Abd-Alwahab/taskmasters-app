@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import Spinner from '../_components/Spinner'
-import Categories from '../_features/tasks/TasksCategories'
+import TasksCategories from '../_features/tasks/TasksCategories'
 
 type Props = {
   searchParams: {
@@ -19,7 +19,7 @@ async function Tasks({ searchParams }: Props) {
           </div>
         }
       >
-        <Categories filter={priority} />
+        <TasksCategories filter={priority} />
       </Suspense>
     </div>
   )

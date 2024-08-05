@@ -3,7 +3,7 @@
 import { Tables } from '@/database.types'
 import TasksColumn from './TasksColumn'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
-import { memo, useOptimistic, useTransition } from 'react'
+import { useOptimistic, useTransition } from 'react'
 import { updateTaskAction } from '@/app/_lib/actions'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   filter?: string
   tasks?: Tables<'tasks'>[]
 }
-function CategoriesList({ categories = [], filter, tasks = [] }: Props) {
+function TasksCategoriesList({ categories = [], filter, tasks = [] }: Props) {
   // eslint-disable-next-line no-unused-vars
   const [_, startTransition] = useTransition()
   const [optimisticState, setOptimisticState] = useOptimistic(
@@ -77,4 +77,4 @@ function CategoriesList({ categories = [], filter, tasks = [] }: Props) {
   )
 }
 
-export default memo(CategoriesList)
+export default TasksCategoriesList

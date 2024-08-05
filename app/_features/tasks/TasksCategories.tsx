@@ -1,5 +1,5 @@
 import { getTasks } from '@/app/_services/tasksServices'
-import CategoriesList from './CategoriesList'
+import TasksCategoriesList from './TasksCategoriesList'
 import Filter from '@/app/_components/Filter'
 import CreateNewTask from './CreateNewTask'
 import NoCategoriesFound from './NoCategoriesFound'
@@ -33,7 +33,7 @@ async function Categories({ filter }: Props) {
         ) : null}
       </div>
       {categories?.length ? (
-        <CategoriesList
+        <TasksCategoriesList
           categories={categories}
           filter={filter}
           tasks={tasks ?? []}
