@@ -7,6 +7,7 @@ import {
   ReactNode,
   RefObject,
   MouseEvent,
+  useRef,
 } from 'react'
 import { HiEllipsisVertical } from 'react-icons/hi2'
 import { useClickOutside } from '../_hooks/useClickOutside'
@@ -60,21 +61,29 @@ interface ToggleProps {
 
 export function Toggle({ id }: ToggleProps) {
   const { open, openId, close, setPosition } = useContext(MenusContext)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
     e.stopPropagation()
-    const rect = e?.currentTarget?.closest?.('button')?.getBoundingClientRect()
 
-    setPosition({
-      x: 8,
-      y: rect?.height ?? 0 + 12,
-    })
+    const buttonRect = buttonRef.current?.getBoundingClientRect()
+
+    if (buttonRect) {
+      // Check if the button is outside the viewport to the left
+      const isOutsideViewport = buttonRect.right + 8 > window.innerWidth - 8
+
+      setPosition({
+        x: isOutsideViewport ? -70 : 8,
+        y: buttonRect.height,
+      })
+    }
 
     openId === '' || openId !== id ? open(id) : close()
   }
 
   return (
     <button
+      ref={buttonRef}
       aria-label="open menu"
       onClick={handleClick}
       className="translate-x-3 rounded-sm border-none bg-transparent p-1 transition-all duration-200"
