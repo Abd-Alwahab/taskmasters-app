@@ -10,11 +10,17 @@ const config: Config = {
     extend: {
       animation: {
         modalBounce: 'modalBounce 0.15s ease-in-out',
+        shimmer: 'shimmer 1.5s infinite',
       },
       keyframes: {
         modalBounce: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        shimmer: {
+          '0%': { transform: 'translateX(-150%)' },
+          '50%': { transform: 'translateX(-60%)' },
+          '100%': { transform: 'translateX(150%)' },
         },
       },
       colors: {
