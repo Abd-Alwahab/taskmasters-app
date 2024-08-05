@@ -21,7 +21,7 @@ function TodayActivity({ tasks, categories }: Props) {
   })
 
   return (
-    <div className="flex h-fit max-h-full flex-col gap-4 overflow-y-auto rounded-lg bg-white px-1 py-3 lg:max-h-[300px] lg:p-8">
+    <div className="flex h-fit max-h-full flex-col gap-4 overflow-y-auto rounded-lg bg-white px-1 py-3 lg:max-h-[300px] lg:min-h-[230px] lg:p-8">
       <span className="text-3xl font-semibold text-gray-900">Today</span>
 
       {!tasksCreatedToday?.length && !categoriesCreatedToday?.length ? (
