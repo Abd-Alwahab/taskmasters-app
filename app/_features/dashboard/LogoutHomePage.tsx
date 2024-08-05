@@ -24,13 +24,13 @@ function LogoutHomePage() {
 
         <Link
           href="/login"
-          className="rounded-lg bg-amber-500 px-3 py-2 text-lg text-white transition-all hover:translate-y-[-3px] hover:scale-[1.02] hover:shadow-lg"
+          className="mb-4 rounded-lg bg-amber-500 px-3 py-2 text-lg text-white transition-all hover:translate-y-[-3px] hover:scale-[1.02] hover:shadow-lg lg:mb-0"
         >
           Get Started
         </Link>
       </div>
 
-      <div className="relative mb-4 mt-auto size-full rounded-lg shadow-lg lg:size-3/5 lg:h-fit">
+      <div className="relative mt-auto size-full rounded-lg shadow-lg lg:size-3/5 lg:h-fit">
         <Image
           src={HomeImage}
           alt="home page"
