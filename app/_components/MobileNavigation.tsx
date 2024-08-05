@@ -130,7 +130,7 @@ function MobileNavigation() {
               ) : (
                 <Link
                   className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/login' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
-                  href="/about"
+                  href="/login"
                 >
                   <RiLoginBoxLine
                     fontSize={20}
