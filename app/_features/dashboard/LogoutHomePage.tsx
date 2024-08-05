@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import HomeImage from '@/public/home-page.png'
 
 function LogoutHomePage() {
   return (
@@ -29,13 +30,13 @@ function LogoutHomePage() {
         </Link>
       </div>
 
-      <div className="relative mt-auto size-full rounded-lg shadow-lg lg:size-3/5">
+      <div className="relative mb-4 mt-auto size-full rounded-lg shadow-lg lg:size-3/5 lg:h-fit">
         <Image
-          src="/home-page.svg"
+          src={HomeImage}
           alt="home page"
-          fill
           draggable={false}
           priority
+          className="object-cover"
         />
       </div>
     </div>
