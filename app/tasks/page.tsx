@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import Spinner from '../_components/Spinner'
 import TasksCategories from '../_features/tasks/TasksCategories'
+import TaskListSkeletonLoader from '../_features/tasks/TaskListSkeletonLoader'
 
 type Props = {
   searchParams: {
@@ -12,13 +12,7 @@ async function Tasks({ searchParams }: Props) {
 
   return (
     <div className="flex h-full flex-col gap-3">
-      <Suspense
-        fallback={
-          <div className="flex size-full items-center justify-center">
-            <Spinner />
-          </div>
-        }
-      >
+      <Suspense fallback={<TaskListSkeletonLoader />}>
         <TasksCategories filter={priority} />
       </Suspense>
     </div>
