@@ -1,8 +1,14 @@
 import { HiOutlinePlus } from 'react-icons/hi'
 import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
 import CreateTaskForm from './CreateTaskForm'
+import { Tables } from '@/database.types'
 
-function CreateNewTask() {
+type Props = {
+  categories?: Tables<'categories'>[]
+  tasks?: Tables<'tasks'>[]
+}
+
+function CreateNewTask({ categories, tasks }: Props) {
   return (
     <Modal>
       <OpenModal name="new-task">
@@ -13,7 +19,7 @@ function CreateNewTask() {
       </OpenModal>
 
       <ModalWindow name="new-task" label="Create New Task">
-        <CreateTaskForm />
+        <CreateTaskForm categories={categories} tasks={tasks} />
       </ModalWindow>
     </Modal>
   )

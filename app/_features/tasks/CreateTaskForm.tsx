@@ -9,9 +9,8 @@ import { createNewTaskAction, updateTaskAction } from '@/app/_lib/actions'
 import { taskSchema } from '../../_utils/validations/taskSchema'
 import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
-import { useCategories } from '@/app/_context/categories'
-import { useTasks } from '@/app/_context/tasks'
 import ErrorMessage from '@/app/_components/ErrorMessage'
+import { Tables } from '@/database.types'
 
 type TaskFormData = {
   title: string
@@ -25,6 +24,8 @@ type TaskFormData = {
 type Props = {
   onCloseModal?: () => void
   taskToEdit?: TaskFormData
+  tasks?: Tables<'tasks'>[]
+  categories?: Tables<'categories'>[]
 }
 
 const defaultValues = {
@@ -37,9 +38,12 @@ const defaultValues = {
 
 const MAX_TASKS_PER_CATEGORY = 10
 
-const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
-  const { categories } = useCategories()
-  const { tasks } = useTasks()
+const CreateTaskForm = ({
+  onCloseModal,
+  taskToEdit,
+  tasks,
+  categories,
+}: Props) => {
   const {
     formState: { errors, isSubmitting },
     control,
@@ -70,7 +74,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
     }
   }
 
-  const tasksWithSameCategory = tasks.filter(
+  const tasksWithSameCategory = tasks?.filter(
     (task) => task.category === selectedCategory,
   ).length
 
@@ -153,7 +157,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
               }}
               placeholder="Category"
               options={
-                categories.map((category) => ({
+                categories?.map((category) => ({
                   label: category.name ?? '',
                   value: category.id.toString() ?? '',
                 })) ?? []

@@ -1,7 +1,6 @@
-import { cache, Suspense } from 'react'
-import { getCategories } from '../_services/categoriesService'
+import { Suspense } from 'react'
 import Spinner from '../_components/Spinner'
-import Categories from '../_features/tasks/Categories'
+import Categories from '../_features/tasks/TasksCategories'
 
 type Props = {
   searchParams: {
@@ -9,8 +8,6 @@ type Props = {
   }
 }
 async function Tasks({ searchParams }: Props) {
-  const categories = cache(async () => await getCategories())
-  const categoriesResult = await categories()
   const priority = searchParams.priority ?? 'all'
 
   return (
@@ -22,7 +19,7 @@ async function Tasks({ searchParams }: Props) {
           </div>
         }
       >
-        <Categories categories={categoriesResult ?? []} filter={priority} />
+        <Categories filter={priority} />
       </Suspense>
     </div>
   )
