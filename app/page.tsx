@@ -10,9 +10,12 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const supabase = createClient()
-  const userPromise = cache(async () => await supabase.auth.getUser())
-  const user = await userPromise()
-  const isLoggedIn = user?.data.user !== null
+
+  const sessionPromise = cache(async () => await supabase.auth.getSession())
+  const {
+    data: { session },
+  } = await sessionPromise()
+  const isLoggedIn = session !== null
 
   return (
     <div className="flex h-full flex-col gap-6 lg:gap-4">
