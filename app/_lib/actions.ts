@@ -1,6 +1,5 @@
 'use server'
 
-import { headers } from 'next/headers'
 import { createClient } from '../_utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
@@ -11,12 +10,12 @@ import { cache } from 'react'
 import { getCategoriesIndexes } from '../_services/categoriesService'
 
 export async function loginAction() {
-  const origin = headers().get('origin')
+  const redirectTo = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`
 
   const { data, error } = await createClient().auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${origin}/api/auth/callback`,
+      redirectTo,
     },
   })
 
