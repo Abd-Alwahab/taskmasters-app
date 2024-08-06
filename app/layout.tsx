@@ -15,7 +15,10 @@ const sourceSans3 = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Task Planner - Organize Your Day & Boost Productivity',
+  title: {
+    template: '%s | Task Masters App',
+    default: 'Task Masters | Task Masters App',
+  },
   description:
     'Simplify your life with our easy-to-use task planner. Manage to-do lists, set reminders, and achieve your goals.',
 }

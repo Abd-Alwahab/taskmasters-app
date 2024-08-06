@@ -8,6 +8,11 @@ import {
   MdDragIndicator,
 } from 'react-icons/md'
 import EmblaCarousel from '../_components/Slider/Slider'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About',
+}
 
 interface Feature {
   title: string

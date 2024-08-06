@@ -1,7 +1,11 @@
 import { Suspense } from 'react'
 import TasksCategories from '../_features/tasks/TasksCategories'
 import TaskListSkeletonLoader from '../_features/tasks/TaskListSkeletonLoader'
+import { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  title: 'Tasks',
+}
 type Props = {
   searchParams: {
     priority?: string
