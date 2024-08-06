@@ -69,11 +69,8 @@ export function Toggle({ id }: ToggleProps) {
     const buttonRect = buttonRef.current?.getBoundingClientRect()
 
     if (buttonRect) {
-      // Check if the button is outside the viewport to the left
-      const isOutsideViewport = buttonRect.right + 8 > window.innerWidth - 8
-
       setPosition({
-        x: isOutsideViewport ? -70 : 8,
+        x: -70,
         y: buttonRect.height,
       })
     }

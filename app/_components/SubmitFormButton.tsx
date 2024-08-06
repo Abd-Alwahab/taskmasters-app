@@ -11,7 +11,7 @@ const SubmitFormButton = ({ label, pending }: Props) => {
     >
       <svg
         aria-hidden="true"
-        className="size-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+        className="h-7 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
