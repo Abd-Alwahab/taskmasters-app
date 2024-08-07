@@ -14,6 +14,7 @@ import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
 import { RiLoginBoxLine } from 'react-icons/ri'
 import CurrentUserBadge from './CurrentUserBadge'
+import { MdAnalytics } from 'react-icons/md'
 
 function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -49,60 +50,88 @@ function MobileNavigation() {
         </div>
 
         <div
-          className={`fixed left-0 top-0 z-10 mt-2 flex h-screen w-screen justify-center gap-11 space-y-1 bg-white  transition-all ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
+          className={`fixed left-0 top-0 z-10 flex h-screen w-screen justify-center gap-11 space-y-1 bg-white  transition-all ${isOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}
         >
-          <ul className="mx-auto flex w-fit flex-col justify-center gap-5 ">
-            <li>
-              <Link
-                className={`relative flex w-full items-center justify-start gap-3 font-medium ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''} py-3 pl-3 text-base`}
-                href="/"
-              >
-                <div
-                  className={`absolute left-0 top-0 ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''}`}
-                />
-                <IoMdHome
-                  fontSize={20}
-                  className={`${pathname === '/' ? 'text-amber-500' : ''}`}
-                />
-                <span className={`${pathname === '/' ? 'text-amber-500' : ''}`}>
-                  Home
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/tasks' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
-                href="/tasks"
-              >
-                <FaTasks
-                  fontSize={20}
-                  className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
-                />
-                <span
-                  className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
+          <ul className="mx-auto flex w-fit flex-col justify-start gap-5 pt-36">
+            {currentUser ? (
+              <li>
+                <Link
+                  className={`relative flex w-full items-center justify-start gap-3 font-medium ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                  href="/dashboard"
                 >
-                  Tasks
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/categories' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
-                href="/categories"
-              >
-                <TbCategory
-                  fontSize={20}
-                  className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
-                />
-                <span
-                  className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+                  <div
+                    className={`absolute left-0 top-0 ${pathname === '/dashboard' ? 'border-b-4 border-solid border-amber-400 ' : ''}`}
+                  />
+                  <MdAnalytics
+                    fontSize={20}
+                    className={`${pathname === '/dashboard' ? 'text-amber-500' : ''}`}
+                  />
+                  <span
+                    className={`${pathname === '/dashboard' ? 'text-amber-500' : ''}`}
+                  >
+                    Dashboard
+                  </span>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link
+                  className={`relative flex w-full items-center justify-start gap-3 font-medium ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                  href="/"
                 >
-                  Categories
-                </span>
-              </Link>
-            </li>
+                  <div
+                    className={`absolute left-0 top-0 ${pathname === '/' ? 'border-b-4 border-solid border-amber-400 ' : ''}`}
+                  />
+                  <IoMdHome
+                    fontSize={20}
+                    className={`${pathname === '/' ? 'text-amber-500' : ''}`}
+                  />
+                  <span
+                    className={`${pathname === '/' ? 'text-amber-500' : ''}`}
+                  >
+                    Home
+                  </span>
+                </Link>
+              </li>
+            )}
+
+            {currentUser ? (
+              <>
+                {' '}
+                <li>
+                  <Link
+                    className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/tasks' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                    href="/tasks"
+                  >
+                    <FaTasks
+                      fontSize={20}
+                      className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
+                    />
+                    <span
+                      className={`${pathname === '/tasks' ? 'text-amber-500' : ''}`}
+                    >
+                      Tasks
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/categories' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                    href="/categories"
+                  >
+                    <TbCategory
+                      fontSize={20}
+                      className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+                    />
+                    <span
+                      className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
+                    >
+                      Categories
+                    </span>
+                  </Link>
+                </li>
+              </>
+            ) : null}
 
             <li>
               <Link
