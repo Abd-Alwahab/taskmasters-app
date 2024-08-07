@@ -78,7 +78,7 @@ export const ModalWindow = ({
 
   return createPortal(
     <div
-      className={`fixed left-0 top-0 z-30 h-screen w-screen ${openName === name ? 'animate-modalBounce bg-[rgba(0,0,0,0.5)] backdrop-blur transition-opacity duration-300' : 'pointer-events-none opacity-0'}`}
+      className={`fixed left-0 top-0 z-30 h-screen w-screen ${openName === name ? 'visible bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur' : 'pointer-events-none invisible opacity-0'}`}
     >
       <div className="absolute left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-white p-4 lg:size-fit lg:rounded-lg">
         <div onClick={close} className="absolute right-4 top-4 cursor-pointer">
