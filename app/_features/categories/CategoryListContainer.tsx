@@ -26,14 +26,14 @@ async function CategoryListContainer() {
   return (
     <Menus>
       <div className="flex h-full flex-col gap-4 bg-gray-100">
-        <div className="flex items-center justify-between rounded-lg bg-white px-1 py-2 lg:px-5">
-          <h1 className="text-xl font-bold lg:text-3xl">Categories</h1>
+        <div className="flex items-center justify-between rounded-lg bg-white px-1 py-2 lg:pl-5">
+          <h1 className="text-xl font-bold lg:text-2xl">Categories</h1>
 
           <Modal>
             <OpenModal name="add-category">
               <button className="flex items-center gap-1 rounded-lg bg-gray-900 px-2 py-1.5 text-white lg:px-4 lg:py-3">
-                <span className="text-xs lg:text-base"> New Category</span>
-                <HiOutlinePlus fontSize={20} />
+                <span className="text-xs lg:text-sm"> New Category</span>
+                <HiOutlinePlus fontSize={18} />
               </button>
             </OpenModal>
 

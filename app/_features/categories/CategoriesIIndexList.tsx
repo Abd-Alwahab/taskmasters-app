@@ -23,23 +23,36 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
   const [_, startTransition] = useTransition()
   const [optimisticState, setOptimisticState] = useOptimistic(
     categories,
-    (currentState, params: any) => {
-      return currentState.map((category) => {
-        if (category.id === params.draggedCategory?.id) {
-          return {
-            ...category,
-            orderIndex: params.replacedCategory?.orderIndex,
-          }
-        }
+    (currentState, params: { draggedCategory: any; replacedCategory: any }) => {
+      const { draggedCategory, replacedCategory } = params
 
-        if (category.id === params.replacedCategory?.id) {
-          return {
-            ...category,
-            orderIndex: params.draggedCategory?.orderIndex,
-          }
-        }
-        return category
-      })
+      if (!draggedCategory || !replacedCategory) return currentState
+
+      const newCategories = [...currentState]
+
+      const draggedIndex = newCategories.findIndex(
+        (c) => c.id === draggedCategory.id,
+      )
+      const replacedIndex = newCategories.findIndex(
+        (c) => c.id === replacedCategory.id,
+      )
+
+      // 1. Remove the dragged category from its original position
+      newCategories.splice(draggedIndex, 1)
+
+      // 2. Insert the dragged category at the new position
+      newCategories.splice(replacedIndex, 0, draggedCategory)
+
+      // 3. Re-calculate orderIndex for all affected categories
+      for (
+        let i = Math.min(draggedIndex, replacedIndex);
+        i <= Math.max(draggedIndex, replacedIndex);
+        i++
+      ) {
+        newCategories[i].orderIndex = i
+      }
+
+      return newCategories
     },
   )
 
@@ -87,6 +100,7 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
   }
 
   const indexes = optimisticState?.map((category) => category.orderIndex).sort()
+
   return (
     <div className="h-full bg-gray-100">
       <DragDropContext onDragEnd={onDragEnd}>

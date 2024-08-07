@@ -9,6 +9,7 @@ function Input({ hasError, ...props }: Props) {
     <input
       className={`w-full rounded-lg border ${hasError ? 'border-red-500' : 'border-gray-300'} px-2.5 py-3`}
       {...props}
+      autoComplete="off"
     />
   )
 }

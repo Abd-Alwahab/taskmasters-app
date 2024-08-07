@@ -8,6 +8,7 @@ import { categorySchema } from '../_utils/validations/categorySchema'
 import { Tables } from '@/database.types'
 import { cache } from 'react'
 import { getCategoriesIndexes } from '../_services/categoriesService'
+import { findCategoryWithHighestOrderIndex } from '../_utils/helpers'
 
 export async function loginAction() {
   const redirectTo = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`
@@ -157,14 +158,16 @@ export async function createNewCategoryAction(formData: {
     async () => await getCategoriesIndexes(),
   )
   const categoriesIndexes = await categoriesIndexesPromise()
-  const lastCategory = categoriesIndexes?.[categoriesIndexes.length - 1]
+  const categoryWithHighestOrderIndex =
+    findCategoryWithHighestOrderIndex(categoriesIndexes)
+
   const { error } = await createClient()
     .from('categories')
     .insert([
       {
         name: validatedCategory.data.name,
         userId: user?.id,
-        orderIndex: (lastCategory?.orderIndex || 0) + 1,
+        orderIndex: (categoryWithHighestOrderIndex?.orderIndex || 0) + 1,
       },
     ])
     .select()
