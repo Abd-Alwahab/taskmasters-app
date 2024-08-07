@@ -14,7 +14,7 @@ import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
 import { RiLoginBoxLine } from 'react-icons/ri'
 import CurrentUserBadge from './CurrentUserBadge'
-import { MdAnalytics } from 'react-icons/md'
+import { MdOutlineAnalytics } from 'react-icons/md'
 
 function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -62,7 +62,7 @@ function MobileNavigation() {
                   <div
                     className={`absolute left-0 top-0 ${pathname === '/dashboard' ? 'border-b-4 border-solid border-amber-400 ' : ''}`}
                   />
-                  <MdAnalytics
+                  <MdOutlineAnalytics
                     fontSize={20}
                     className={`${pathname === '/dashboard' ? 'text-amber-500' : ''}`}
                   />

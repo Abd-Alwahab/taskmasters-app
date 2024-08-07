@@ -7,7 +7,7 @@ import { GoInfo } from 'react-icons/go'
 import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
 import { useAuth } from '../_context/auth'
-import { MdAnalytics } from 'react-icons/md'
+import { MdOutlineAnalytics } from 'react-icons/md'
 
 function Navigation() {
   const pathname = usePathname()
@@ -24,7 +24,7 @@ function Navigation() {
                 className={`flex w-full items-center gap-3 font-medium ${pathname === '/dashboard' ? 'border-r-4 border-solid border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
                 href="/dashboard"
               >
-                <MdAnalytics
+                <MdOutlineAnalytics
                   fontSize={20}
                   className={`${pathname === '/dashboard' ? 'text-amber-500' : ''}`}
                 />

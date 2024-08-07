@@ -54,7 +54,7 @@ async function CategoryListContainer() {
                   </span>
                 </div>
               ) : (
-                <CreateNewCategoryForm />
+                <CreateNewCategoryForm categories={categories ?? []} />
               )}
             </ModalWindow>
           </Modal>

@@ -10,6 +10,8 @@ import {
 import { categorySchema } from '../../_utils/validations/categorySchema'
 import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
+import { Tables } from '@/database.types'
+import ErrorMessage from '@/app/_components/ErrorMessage'
 
 type CategoryFormData = {
   id?: number
@@ -20,22 +22,30 @@ type CategoryFormData = {
 type Props = {
   onCloseModal?: () => void
   categoryToEdit?: CategoryFormData
+  categories?: Tables<'categories'>[]
 }
 
 const defaultValues = {
   name: '',
 }
 
-const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
+const CreateTaskForm = ({
+  onCloseModal,
+  categoryToEdit,
+  categories,
+}: Props) => {
   const {
     formState: { errors, isSubmitting },
     control,
     handleSubmit,
     reset,
+    watch,
   } = useForm<CategoryFormData>({
     resolver: zodResolver(categorySchema),
     defaultValues: categoryToEdit || defaultValues,
   })
+
+  const newCategoryName = watch('name')
 
   const onSubmit = async (data: any) => {
     let result: { success: boolean; data?: any } | null
@@ -67,10 +77,17 @@ const CreateTaskForm = ({ onCloseModal, categoryToEdit }: Props) => {
         />
       </FormRow>
 
-      <SubmitFormButton
-        label={categoryToEdit ? 'Update Category' : 'Create Category'}
-        pending={isSubmitting}
-      />
+      {categories?.find(
+        (category) =>
+          category.name?.toLowerCase() === newCategoryName?.toLowerCase(),
+      ) ? (
+        <ErrorMessage message="Category already exists" />
+      ) : (
+        <SubmitFormButton
+          label={categoryToEdit ? 'Update Category' : 'Create Category'}
+          pending={isSubmitting}
+        />
+      )}
     </form>
   )
 }
