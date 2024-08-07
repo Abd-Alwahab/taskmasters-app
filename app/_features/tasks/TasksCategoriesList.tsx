@@ -53,7 +53,7 @@ function TasksCategoriesList({ categories = [], filter, tasks = [] }: Props) {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div
-        className="grid h-full gap-6 overflow-x-auto"
+        className="grid h-[calc(100vh-160px)] gap-6 overflow-auto"
         style={{
           gridTemplateColumns: `repeat(${categories.length}, minmax(350px, 1fr))`,
         }}

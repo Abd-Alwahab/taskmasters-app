@@ -25,7 +25,7 @@ function Filter({ options, filterField }: Props) {
         <button
           key={option.label}
           onClick={() => handleFilter(option.value)}
-          className={`px-4 py-3 font-medium text-gray-900 ${activeFilter === option.value ? ` ${getPriorityBackgroundColor(option.value)}` : ''}`}
+          className={`px-4 py-3 text-base font-medium text-gray-900 ${activeFilter === option.value ? ` ${getPriorityBackgroundColor(option.value)}` : ''}`}
         >
           {option.label}
         </button>

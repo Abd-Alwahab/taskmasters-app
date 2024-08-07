@@ -11,6 +11,8 @@ import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
 import ErrorMessage from '@/app/_components/ErrorMessage'
 import { Tables } from '@/database.types'
+import { useTasks } from '@/app/_context/tasks'
+import { useCategories } from '@/app/_context/categories'
 
 type TaskFormData = {
   title: string
@@ -38,12 +40,10 @@ const defaultValues = {
 
 const MAX_TASKS_PER_CATEGORY = 10
 
-const CreateTaskForm = ({
-  onCloseModal,
-  taskToEdit,
-  tasks,
-  categories,
-}: Props) => {
+const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
+  const { tasks } = useTasks()
+  const { categories } = useCategories()
+
   const {
     formState: { errors, isSubmitting },
     control,

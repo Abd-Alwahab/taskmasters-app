@@ -5,8 +5,6 @@ function TaskListSkeletonLoader() {
 
   return (
     <div className="flex h-full flex-col gap-4 bg-gray-100">
-      <Skeleton height={80} borderRadius={8} />
-
       <div
         className="flex h-full flex-col gap-3 overflow-x-auto lg:grid"
         style={{

@@ -1,25 +1,19 @@
 import { HiOutlinePlus } from 'react-icons/hi'
 import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
 import CreateTaskForm from './CreateTaskForm'
-import { Tables } from '@/database.types'
 
-type Props = {
-  categories?: Tables<'categories'>[]
-  tasks?: Tables<'tasks'>[]
-}
-
-function CreateNewTask({ categories, tasks }: Props) {
+function CreateNewTask() {
   return (
     <Modal>
       <OpenModal name="new-task">
-        <button className="flex items-center gap-1 rounded-lg bg-gray-900 px-4 py-3 text-white">
-          <span> New Task</span>
-          <HiOutlinePlus fontSize={20} />
+        <button className="flex items-center gap-1 rounded-lg border-2 border-solid border-white bg-gray-900 px-3.5 py-2.5 text-white">
+          <span className="text-sm"> New Task</span>
+          <HiOutlinePlus fontSize={18} />
         </button>
       </OpenModal>
 
       <ModalWindow name="new-task" label="Create New Task">
-        <CreateTaskForm categories={categories} tasks={tasks} />
+        <CreateTaskForm />
       </ModalWindow>
     </Modal>
   )

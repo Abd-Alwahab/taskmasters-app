@@ -44,9 +44,12 @@ function TasksColumn({ tasks, label, categoryId, filter }: Props) {
 
   return (
     <Menus>
-      <div className="flex h-full flex-col rounded-lg bg-amber-50  shadow-lg">
-        <h3 className=" rounded-lg bg-gray-900 py-3 text-center text-lg font-bold text-white">
-          {label}
+      <div className="flex h-full flex-col rounded-lg bg-gray-50  shadow-lg">
+        <h3 className="flex items-center gap-1.5 rounded-lg py-3 pl-4 text-left text-base text-gray-950">
+          <span> {label}</span>
+          <span className="flex size-5 items-center justify-center rounded-full bg-gray-950  text-xs text-gray-100">
+            {tasks?.filter((task) => task.category === categoryId).length}
+          </span>
         </h3>
         <Droppable droppableId={String(categoryId) ?? ''} direction="vertical">
           {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => {
