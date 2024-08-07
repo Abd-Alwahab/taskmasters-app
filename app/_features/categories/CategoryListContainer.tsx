@@ -1,11 +1,19 @@
 import Menus from '@/app/_components/Menus'
-import Modal, { OpenModal, ModalWindow } from '@/app/_components/Modal'
+import Modal, { OpenModal } from '@/app/_components/Modal'
 import { getCategories } from '@/app/_services/categoriesService'
 import { getCategoriesTasks } from '@/app/_services/tasksServices'
 import { HiOutlinePlus } from 'react-icons/hi2'
 import { RiErrorWarningFill } from 'react-icons/ri'
 import CategoriesIIndexList from './CategoriesIIndexList'
 import CreateNewCategoryForm from './CreateNewCategoryForm'
+import dynamic from 'next/dynamic'
+
+const ModalWindow = dynamic(
+  () => import('@/app/_components/Modal').then((mod) => mod.ModalWindow),
+  {
+    ssr: false,
+  },
+)
 
 const MAX_CATEGORIES = 10
 

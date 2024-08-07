@@ -1,5 +1,5 @@
 import { Menu, Toggle, List, Button } from '@/app/_components/Menus'
-import Modal, { OpenModal, ModalWindow } from '@/app/_components/Modal'
+import Modal, { OpenModal } from '@/app/_components/Modal'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 import DeleteCategory from './DeleteCategory'
 import EditCategory from './EditCategory'
@@ -7,6 +7,14 @@ import { Tables } from '@/database.types'
 import { Draggable, DraggableProvided } from '@hello-pangea/dnd'
 import WarningModal from './WarningModal'
 import { useDevice } from '@/app/_context/device'
+import dynamic from 'next/dynamic'
+
+const ModalWindow = dynamic(
+  () => import('@/app/_components/Modal').then((mod) => mod.ModalWindow),
+  {
+    ssr: false,
+  },
+)
 
 type Props = {
   category: Tables<'categories'>

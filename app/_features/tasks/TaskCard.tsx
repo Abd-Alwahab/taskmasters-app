@@ -1,5 +1,5 @@
 import { Menu, Toggle, List, Button } from '@/app/_components/Menus'
-import Modal, { OpenModal, ModalWindow } from '@/app/_components/Modal'
+import Modal, { OpenModal } from '@/app/_components/Modal'
 import { Tables } from '@/database.types'
 import { Suspense } from 'react'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
@@ -13,6 +13,13 @@ import {
 const EditTask = dynamic(() => import('./EditTask'))
 const TaskDetailsModal = dynamic(() => import('./TaskDetailsModal'))
 const DeleteTask = dynamic(() => import('./DeleteTask'))
+
+const ModalWindow = dynamic(
+  () => import('@/app/_components/Modal').then((mod) => mod.ModalWindow),
+  {
+    ssr: false,
+  },
+)
 
 function TaskCard({ task, index }: { task: Tables<'tasks'>; index: number }) {
   return (

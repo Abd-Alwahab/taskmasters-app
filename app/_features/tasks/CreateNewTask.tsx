@@ -1,6 +1,14 @@
 import { HiOutlinePlus } from 'react-icons/hi'
-import Modal, { ModalWindow, OpenModal } from '../../_components/Modal'
+import Modal, { OpenModal } from '../../_components/Modal'
 import CreateTaskForm from './CreateTaskForm'
+import dynamic from 'next/dynamic'
+
+const ModalWindow = dynamic(
+  () => import('@/app/_components/Modal').then((mod) => mod.ModalWindow),
+  {
+    ssr: false,
+  },
+)
 
 function CreateNewTask() {
   return (

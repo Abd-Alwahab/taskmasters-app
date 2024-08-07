@@ -76,30 +76,26 @@ export const ModalWindow = ({
     }
   }, [openName, name])
 
-  return (
-    openName === name &&
-    createPortal(
-      <div className="fixed left-0 top-0 z-30 h-screen w-screen animate-modalBounce bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur transition-all lg:z-10">
-        <div className="absolute left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-white p-4 lg:size-fit lg:rounded-lg">
-          <div
-            onClick={close}
-            className="absolute right-4 top-4 cursor-pointer"
-          >
-            <IoCloseCircleOutline fontSize={30} />
-          </div>
-
-          <div>
-            <h3 className="mb-6 max-w-[90%] text-lg font-bold lg:max-w-full">
-              {label}
-            </h3>
-            {cloneElement(children, {
-              onCloseModal: () => close(), // Pass the close function to children
-            })}
-          </div>
+  return createPortal(
+    <div
+      className={`fixed left-0 top-0 z-30 h-screen w-screen ${openName === name ? 'animate-modalBounce bg-[rgba(0,0,0,0.5)] opacity-100 backdrop-blur transition-all lg:z-10' : 'pointer-events-none opacity-0'}`}
+    >
+      <div className="absolute left-1/2 top-1/2 size-full -translate-x-1/2 -translate-y-1/2 bg-white p-4 lg:size-fit lg:rounded-lg">
+        <div onClick={close} className="absolute right-4 top-4 cursor-pointer">
+          <IoCloseCircleOutline fontSize={30} />
         </div>
-      </div>,
-      document.body,
-    )
+
+        <div>
+          <h3 className="mb-6 max-w-[90%] text-lg font-bold lg:max-w-full">
+            {label}
+          </h3>
+          {cloneElement(children, {
+            onCloseModal: () => close(), // Pass the close function to children
+          })}
+        </div>
+      </div>
+    </div>,
+    document.body,
   )
 }
 
