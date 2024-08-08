@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Taskmasters App
 
-## Getting Started
+![App Logo](https://taskmasters-app.vercel.app/logo.png)
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Taskmasters App is an open-source task management web application designed to streamline organization and enhance productivity. Built with a modern tech stack, this app offers a user-friendly interface and a range of features to help users manage their tasks effectively.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Links
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Demo**: [Taskmasters App](https://taskmasters-app.vercel.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **GitHub Repository**: [taskmasters-app GitHub](https://github.com/Abd-Alwahab/taskmasters-app)
 
-## Learn More
+## Main Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Effortless Organization with Custom Categories**: Create and manage tasks using personalized categories tailored to your workflow.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Seamless Task Creation and Categorization**: Quickly add new tasks and assign them to categories with minimal effort.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Data-Driven Insights for Optimal Performance**: Gain insights into your task management efficiency through data analytics.
 
-## Deploy on Vercel
+- **Motivation with Task Points**: Earn points for completing tasks, adding a gamification element to your productivity.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Prioritize with Precision**: Easily prioritize tasks to focus on what matters most.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Instant Re-Categorization with Drag-and-Drop**: Quickly adjust task categories with a simple drag-and-drop interface.
+
+## Technical Details
+
+- **Tech Stack**:
+
+  - Next.js 14
+  - TypeScript
+  - TailwindCSS
+  - Zod
+  - React Hook Form
+  - Supabase
+  - Google OAuth
+  - Recharts
+
+- **Architecture**: Utilizes the new React Server Components architecture, with all data fetching performed on the server and mutations handled via server actions.
+
+- **Mobile Responsiveness**: The app is fully responsive, ensuring a seamless experience on mobile devices.
+
+Feel free to explore the app and contribute to its development!
