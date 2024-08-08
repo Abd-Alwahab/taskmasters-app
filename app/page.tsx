@@ -19,7 +19,7 @@ export default async function Home() {
 
       <div className="mt-auto flex w-full flex-col items-center justify-center gap-4 text-center lg:max-w-4xl">
         <h1 className="text-3xl font-bold lg:text-6xl">
-          <span className="text-amber-500">Daily</span> Tasks Planner
+          <span className="text-blue-600">Daily</span> Tasks Planner
         </h1>
 
         <p className="text-sm leading-7 lg:max-w-[70%]">
@@ -29,7 +29,7 @@ export default async function Home() {
 
         <Link
           href="/login"
-          className="mb-4 rounded-lg bg-amber-500 px-3 py-2 text-lg text-white transition-all hover:translate-y-[-3px] hover:scale-[1.02] hover:shadow-lg lg:mb-0"
+          className="mb-4 rounded-lg bg-blue-600 px-3 py-2 text-lg text-white transition-all hover:translate-y-[-3px] hover:scale-[1.02] hover:shadow-lg lg:mb-0"
         >
           Get Started
         </Link>
