@@ -78,7 +78,7 @@ const CreateNewCategoryForm = ({
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-full flex-col gap-5 lg:w-[600px]"
     >
-      <FormRow error={errors?.name?.message ?? ''}>
+      <FormRow error={errors?.name?.message ?? ''} label="Category Name">
         <Controller
           name="name"
           control={control}

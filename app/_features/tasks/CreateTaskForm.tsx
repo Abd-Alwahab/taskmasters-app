@@ -13,6 +13,7 @@ import ErrorMessage from '@/app/_components/ErrorMessage'
 import { Tables } from '@/database.types'
 import { useTasks } from '@/app/_context/tasks'
 import { useCategories } from '@/app/_context/categories'
+import { useEffect } from 'react'
 
 type TaskFormData = {
   title: string
@@ -53,10 +54,23 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
     watch,
   } = useForm<TaskFormData>({
     resolver: zodResolver(taskSchema),
-    defaultValues: taskToEdit || defaultValues,
+    defaultValues: taskToEdit || {
+      ...defaultValues,
+      category: categories?.[0].id,
+    },
   })
 
   const selectedCategory = watch('category')
+
+  // Reset form when modal closes or when taskToEdit changes
+  useEffect(() => {
+    reset(
+      taskToEdit || {
+        ...defaultValues,
+        category: categories?.[0].id,
+      },
+    ) // Reset to defaultValues when creating a new task
+  }, [onCloseModal, taskToEdit, reset, categories])
 
   const onSubmit = async (data: any) => {
     let result: { success: boolean; data?: any } | null
@@ -68,8 +82,6 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
     }
 
     if (result?.success) {
-      reset(result?.data ?? defaultValues)
-
       onCloseModal?.()
     }
   }
@@ -83,7 +95,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-full flex-col gap-5 lg:w-[600px]"
     >
-      <FormRow error={errors?.title?.message ?? ''}>
+      <FormRow error={errors?.title?.message ?? ''} label="Title">
         <Controller
           name="title"
           control={control}
@@ -91,7 +103,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
         />
       </FormRow>
 
-      <FormRow error={errors?.description?.message ?? ''}>
+      <FormRow error={errors?.description?.message ?? ''} label="Description">
         <Controller
           name="description"
           control={control}
@@ -105,7 +117,32 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
         />
       </FormRow>
 
-      <FormRow error={errors?.points?.message ?? ''}>
+      <FormRow error={errors?.category?.message ?? ''} label="Category">
+        <Controller
+          name="category"
+          control={control}
+          render={({ field }) => (
+            <Select
+              {...field}
+              onChange={(e) => {
+                field.onChange(parseInt(e.target.value, 10))
+                setValue('category', parseInt(e.target.value, 10))
+              }}
+              placeholder="Category"
+              options={
+                categories
+                  ?.sort((a, b) => (a?.orderIndex ?? 0) - (b?.orderIndex ?? 0))
+                  .map((category) => ({
+                    label: category.name ?? '',
+                    value: category.id.toString() ?? '',
+                  })) ?? []
+              }
+            />
+          )}
+        />
+      </FormRow>
+
+      <FormRow error={errors?.points?.message ?? ''} label="Points (1-100)">
         <Controller
           name="points"
           control={control}
@@ -123,7 +160,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
         />
       </FormRow>
 
-      <FormRow error={errors?.priority?.message ?? ''}>
+      <FormRow error={errors?.priority?.message ?? ''} label="Priority">
         <Controller
           name="priority"
           control={control}
@@ -139,29 +176,6 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
                 { label: 'Medium', value: 'Medium' },
                 { label: 'High', value: 'High' },
               ]}
-            />
-          )}
-        />
-      </FormRow>
-
-      <FormRow error={errors?.category?.message ?? ''}>
-        <Controller
-          name="category"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              onChange={(e) => {
-                field.onChange(parseInt(e.target.value, 10))
-                setValue('category', parseInt(e.target.value, 10))
-              }}
-              placeholder="Category"
-              options={
-                categories?.map((category) => ({
-                  label: category.name ?? '',
-                  value: category.id.toString() ?? '',
-                })) ?? []
-              }
             />
           )}
         />
