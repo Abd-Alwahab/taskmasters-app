@@ -12,6 +12,7 @@ import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
 import { Tables } from '@/database.types'
 import ErrorMessage from '@/app/_components/ErrorMessage'
+import { useState } from 'react'
 
 type CategoryFormData = {
   id?: number
@@ -34,20 +35,27 @@ const CreateTaskForm = ({
   categoryToEdit,
   categories,
 }: Props) => {
+  const [duplicatedCategoryName, setDuplicatedCategoryName] = useState(false)
   const {
     formState: { errors, isSubmitting },
     control,
     handleSubmit,
     reset,
-    watch,
   } = useForm<CategoryFormData>({
     resolver: zodResolver(categorySchema),
     defaultValues: categoryToEdit || defaultValues,
   })
 
-  const newCategoryName = watch('name')
-
   const onSubmit = async (data: any) => {
+    const duplicatedCategory = categories?.find(
+      (category) => category.name?.toLowerCase() === data.name?.toLowerCase(),
+    )
+
+    if (duplicatedCategory) {
+      setDuplicatedCategoryName(true)
+      return
+    }
+
     let result: { success: boolean; data?: any } | null
 
     if (categoryToEdit) {
@@ -72,15 +80,19 @@ const CreateTaskForm = ({
           name="name"
           control={control}
           render={({ field }) => (
-            <Input placeholder="Category Name" {...field} />
+            <Input
+              placeholder="Category Name"
+              {...field}
+              onChange={(e) => {
+                field.onChange(e)
+                setDuplicatedCategoryName(false)
+              }}
+            />
           )}
         />
       </FormRow>
 
-      {categories?.find(
-        (category) =>
-          category.name?.toLowerCase() === newCategoryName?.toLowerCase(),
-      ) ? (
+      {duplicatedCategoryName ? (
         <ErrorMessage message="Category already exists" />
       ) : (
         <SubmitFormButton
