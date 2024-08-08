@@ -43,19 +43,14 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
       // 2. Insert the dragged category at the new position
       newCategories.splice(replacedIndex, 0, draggedCategory)
 
-      // 3. Re-calculate orderIndex for all affected categories
-      for (
-        let i = Math.min(draggedIndex, replacedIndex);
-        i <= Math.max(draggedIndex, replacedIndex);
-        i++
-      ) {
-        newCategories[i].orderIndex = i
-      }
+      // 3. Re-calculate orderIndex for ALL categories, not just the affected range
+      newCategories.forEach((category, index) => {
+        category.orderIndex = index
+      })
 
       return newCategories
     },
   )
-
   async function onDragEnd(result: any) {
     const { source, destination, draggableId } = result
 
@@ -66,7 +61,6 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
       destination.index === source.index
     )
       return
-
     const draggedCategory = optimisticState?.find(
       (category) => category.orderIndex === Number(draggableId),
     )
@@ -79,27 +73,37 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
       setOptimisticState({ draggedCategory, replacedCategory }),
     )
 
-    await updateCategoriesAction(
-      categories.map((category) => {
-        if (category.id === draggedCategory?.id) {
-          return {
-            ...category,
-            orderIndex: replacedCategory?.orderIndex ?? 0,
-          }
-        }
+    const newCategories = [...optimisticState]
 
-        if (category.id === replacedCategory?.id) {
-          return {
-            ...category,
-            orderIndex: draggedCategory?.orderIndex ?? 0,
-          }
-        }
-        return category
-      }),
+    const draggedIndex = newCategories.findIndex(
+      (c) => c.id === draggedCategory?.id,
     )
+    const replacedIndex = newCategories.findIndex(
+      (c) => c.id === replacedCategory?.id,
+    )
+
+    // 1. Remove the dragged category from its original position
+    newCategories.splice(draggedIndex, 1)
+
+    // 2. Insert the dragged category at the new position
+    newCategories.splice(
+      replacedIndex,
+      0,
+      draggedCategory as Tables<'categories'>,
+    )
+
+    // 3. Re-calculate orderIndex for ALL categories, not just the affected range
+    newCategories.forEach((category, index) => {
+      category.orderIndex = index
+    })
+
+    // No changes needed in updateCategoriesAction
+    await updateCategoriesAction(newCategories)
   }
 
-  const indexes = optimisticState?.map((category) => category.orderIndex).sort()
+  const indexes = optimisticState
+    ?.sort((a, b) => (a.orderIndex as number) - (b.orderIndex as number))
+    .map((category) => category.orderIndex)
 
   return (
     <div className="h-full bg-gray-100">
