@@ -12,7 +12,7 @@ import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
 import { Tables } from '@/database.types'
 import ErrorMessage from '@/app/_components/ErrorMessage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type CategoryFormData = {
   id?: number
@@ -30,7 +30,7 @@ const defaultValues = {
   name: '',
 }
 
-const CreateTaskForm = ({
+const CreateNewCategoryForm = ({
   onCloseModal,
   categoryToEdit,
   categories,
@@ -45,6 +45,11 @@ const CreateTaskForm = ({
     resolver: zodResolver(categorySchema),
     defaultValues: categoryToEdit || defaultValues,
   })
+
+  // Reset form when modal closes or when categoryToEdit changes
+  useEffect(() => {
+    reset(categoryToEdit || defaultValues) // Reset to defaultValues when creating a new category
+  }, [onCloseModal, categoryToEdit, reset])
 
   const onSubmit = async (data: any) => {
     const duplicatedCategory = categories?.find(
@@ -65,8 +70,6 @@ const CreateTaskForm = ({
     }
 
     if (result?.success) {
-      reset(result?.data ?? defaultValues)
-
       onCloseModal?.()
     }
   }
@@ -104,4 +107,4 @@ const CreateTaskForm = ({
   )
 }
 
-export default CreateTaskForm
+export default CreateNewCategoryForm
