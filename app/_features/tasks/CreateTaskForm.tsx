@@ -56,7 +56,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
     resolver: zodResolver(taskSchema),
     defaultValues: taskToEdit || {
       ...defaultValues,
-      category: categories?.[0].id,
+      category: categories?.[0]?.id ?? 0,
     },
   })
 
@@ -67,7 +67,7 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
     reset(
       taskToEdit || {
         ...defaultValues,
-        category: categories?.[0].id,
+        category: categories?.[0]?.id ?? 0,
       },
     ) // Reset to defaultValues when creating a new task
   }, [onCloseModal, taskToEdit, reset, categories])
