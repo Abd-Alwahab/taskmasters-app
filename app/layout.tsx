@@ -34,20 +34,28 @@ export default function RootLayout({
         className={`${sourceSans3.className} grid h-screen  w-screen grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden bg-white px-2 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:bg-gray-100 lg:p-3`}
       >
         <AppAuthProvider>
-          <div className="hidden h-full lg:block">
+          <aside
+            aria-label="Main Navigation"
+            className="hidden h-full lg:block"
+          >
             <Sidebar />
-          </div>
+          </aside>
 
           <div className="grid size-full grid-cols-[minmax(0,1fr)] grid-rows-[72px_1fr] flex-col gap-4 lg:flex lg:gap-0">
-            <div className="hidden lg:block">
+            <header className="hidden lg:block">
               <Header />
-            </div>
+            </header>
 
-            <div className="relative z-20 block lg:hidden">
+            <nav
+              aria-label="Mobile Navigation"
+              className="relative z-20 block lg:hidden"
+            >
               <MobileNavigation />
-            </div>
+            </nav>
 
-            <main className="h-full flex-1">{children}</main>
+            <main className="h-full flex-1" tabIndex={0}>
+              {children}
+            </main>
           </div>
         </AppAuthProvider>
       </body>
