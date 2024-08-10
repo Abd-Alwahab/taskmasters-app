@@ -43,7 +43,9 @@ function TaskCard({ task, index }: { task: Tables<'tasks'>; index: number }) {
                   <div className="absolute right-0 top-0 size-full " />
                 </OpenModal>
                 <h3 className="mb-2 font-bold">{task.title}</h3>
-                <p>{task.description}</p>
+                <p className="line-clamp-2 overflow-hidden text-ellipsis text-sm">
+                  {task.description}
+                </p>
 
                 <div className="absolute right-3 top-2 flex items-center">
                   <Menu>
