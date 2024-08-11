@@ -15,7 +15,6 @@ function EditCategory({
       <CreateCategoryForm
         categoryToEdit={{
           name: categoryToEdit?.name ?? '',
-          orderIndex: categoryToEdit?.orderIndex ?? 0,
           id: categoryToEdit?.id ?? 0,
         }}
         onCloseModal={onCloseModal}

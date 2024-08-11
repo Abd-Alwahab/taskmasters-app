@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react'
 type CategoryFormData = {
   id?: number
   name: string
-  orderIndex: number
 }
 
 type Props = {
@@ -51,7 +50,7 @@ const CreateNewCategoryForm = ({
     reset(categoryToEdit || defaultValues) // Reset to defaultValues when creating a new category
   }, [onCloseModal, categoryToEdit, reset])
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: Partial<Tables<'categories'>>) => {
     const duplicatedCategory = categories?.find(
       (category) => category.name?.toLowerCase() === data.name?.toLowerCase(),
     )
@@ -61,12 +60,12 @@ const CreateNewCategoryForm = ({
       return
     }
 
-    let result: { success: boolean; data?: any } | null
+    let result: { success: boolean; data?: Tables<'categories'> } | null
 
     if (categoryToEdit) {
       result = await updateCategoryAction(categoryToEdit?.id as number, data)
     } else {
-      result = await createNewCategoryAction(data)
+      result = await createNewCategoryAction(data as CategoryFormData)
     }
 
     if (result?.success) {

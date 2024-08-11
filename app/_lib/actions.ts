@@ -32,14 +32,7 @@ export async function logoutAction() {
   redirect('/')
 }
 
-export type NewTaskDataType = {
-  title: string
-  description: string
-  priority: string
-  category: number
-  points: number
-}
-export async function createNewTaskAction(formData: NewTaskDataType) {
+export async function createNewTaskAction(formData: Tables<'tasks'>) {
   const {
     data: { user },
   } = await createClient().auth.getUser()
@@ -91,7 +84,10 @@ export async function deleteTaskAction(id: number) {
   return { success: true }
 }
 
-export async function updateTaskAction(id: any, data: any) {
+export async function updateTaskAction(
+  id: number,
+  data: Partial<Tables<'tasks'>>,
+) {
   const {
     data: { user },
   } = await createClient().auth.getUser()
@@ -140,10 +136,7 @@ export async function deleteCategoryAction(id: number) {
   return { success: true }
 }
 
-export async function createNewCategoryAction(formData: {
-  name: string
-  orderIndex: number
-}) {
+export async function createNewCategoryAction(formData: { name: string }) {
   const {
     data: { user },
   } = await createClient().auth.getUser()
@@ -182,7 +175,10 @@ export async function createNewCategoryAction(formData: {
   return { success: true }
 }
 
-export async function updateCategoryAction(id: number, data: any) {
+export async function updateCategoryAction(
+  id: number,
+  data: Partial<Tables<'categories'>>,
+) {
   const {
     data: { user },
   } = await createClient().auth.getUser()

@@ -72,13 +72,13 @@ const CreateTaskForm = ({ onCloseModal, taskToEdit }: Props) => {
     ) // Reset to defaultValues when creating a new task
   }, [onCloseModal, taskToEdit, reset, categories])
 
-  const onSubmit = async (data: any) => {
-    let result: { success: boolean; data?: any } | null
+  const onSubmit = async (data: Partial<Tables<'tasks'>>) => {
+    let result: { success: boolean; data?: Tables<'tasks'> } | null
 
     if (taskToEdit) {
-      result = await updateTaskAction(taskToEdit.id, data)
+      result = await updateTaskAction(taskToEdit?.id ?? -1, data)
     } else {
-      result = await createNewTaskAction(data)
+      result = await createNewTaskAction(data as Tables<'tasks'>)
     }
 
     if (result?.success) {

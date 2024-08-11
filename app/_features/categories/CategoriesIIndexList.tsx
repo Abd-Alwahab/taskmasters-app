@@ -6,6 +6,7 @@ import {
   DragDropContext,
   Droppable,
   DroppableProvided,
+  DropResult,
 } from '@hello-pangea/dnd'
 import { useTransition, useOptimistic } from 'react'
 import { updateCategoriesAction } from '@/app/_lib/actions'
@@ -23,7 +24,13 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
   const [_, startTransition] = useTransition()
   const [optimisticState, setOptimisticState] = useOptimistic(
     categories,
-    (currentState, params: { draggedCategory: any; replacedCategory: any }) => {
+    (
+      currentState,
+      params: {
+        draggedCategory: Tables<'categories'>
+        replacedCategory: Tables<'categories'>
+      },
+    ) => {
       const { draggedCategory, replacedCategory } = params
 
       if (!draggedCategory || !replacedCategory) return currentState
@@ -51,7 +58,7 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
       return newCategories
     },
   )
-  async function onDragEnd(result: any) {
+  async function onDragEnd(result: DropResult) {
     const { source, destination, draggableId } = result
 
     if (!destination) return
@@ -63,11 +70,11 @@ function CategoriesIIndexList({ categories, categoriesTasks }: Props) {
       return
     const draggedCategory = optimisticState?.find(
       (category) => category.orderIndex === Number(draggableId),
-    )
+    ) as Tables<'categories'>
 
     const replacedCategory = optimisticState
       ?.sort((a, b) => (a.orderIndex as number) - (b.orderIndex as number))
-      .at(destination.index)
+      .at(destination.index) as Tables<'categories'>
 
     startTransition(() =>
       setOptimisticState({ draggedCategory, replacedCategory }),

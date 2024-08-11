@@ -16,7 +16,13 @@ function TasksCategoriesList({ categories = [], filter, tasks = [] }: Props) {
   const [_, startTransition] = useTransition()
   const [optimisticState, setOptimisticState] = useOptimistic(
     tasks,
-    (currentState, params: any) => {
+    (
+      currentState,
+      params: {
+        targetTask: Tables<'tasks'>
+        targetCategory: Tables<'categories'>
+      },
+    ) => {
       return currentState.map((task) => {
         if (task.id === params.targetTask?.id) {
           return {
@@ -39,10 +45,12 @@ function TasksCategoriesList({ categories = [], filter, tasks = [] }: Props) {
     )
       return
 
-    const targetTask = tasks?.find((task) => task.id === Number(draggableId))
+    const targetTask = tasks?.find(
+      (task) => task.id === Number(draggableId),
+    ) as Tables<'tasks'>
     const targetCategory = categories?.find(
       (category) => category.id === Number(destination.droppableId),
-    )
+    ) as Tables<'categories'>
 
     startTransition(() => setOptimisticState({ targetTask, targetCategory }))
     await updateTaskAction(targetTask?.id, {
