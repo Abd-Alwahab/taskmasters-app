@@ -61,7 +61,7 @@ const features: Feature[] = [
 
 const About = () => {
   return (
-    <div className="flex h-full max-h-screen flex-col justify-between gap-4 overflow-y-auto  rounded-lg bg-white pb-28 pt-8 lg:gap-2 lg:px-14 lg:py-12">
+    <div className="flex h-full max-h-screen flex-col justify-between gap-4 overflow-y-auto  rounded-lg bg-white pb-44  pt-8 lg:gap-2 lg:px-14 lg:py-12">
       <div className="flex flex-col items-center justify-center lg:mx-auto lg:max-w-4xl">
         <h1 className="mb-4 w-fit border-b-2 border-amber-600 pb-2 text-xl font-bold lg:text-3xl">
           About
