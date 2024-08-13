@@ -12,8 +12,8 @@ async function Page() {
     data: { user },
   } = await createClient().auth.getUser()
   return (
-    <div className="flex h-full flex-col gap-6 rounded-lg bg-white lg:p-10">
-      <h1 className="lg:text-3xl">Account</h1>
+    <div className="flex h-full flex-col gap-6 rounded-lg bg-white px-3 py-5 lg:p-10">
+      <h1 className="text-lg lg:text-3xl">Account</h1>
 
       <div className="flex max-w-md flex-col gap-5">
         <Input

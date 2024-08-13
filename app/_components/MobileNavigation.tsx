@@ -12,7 +12,7 @@ import { FaTasks } from 'react-icons/fa'
 import { GoInfo } from 'react-icons/go'
 import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
-import { RiLoginBoxLine } from 'react-icons/ri'
+import { RiAccountCircleLine, RiLoginBoxLine } from 'react-icons/ri'
 import CurrentUserBadge from './CurrentUserBadge'
 import { MdOutlineAnalytics } from 'react-icons/md'
 
@@ -127,6 +127,22 @@ function MobileNavigation() {
                       className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
                     >
                       Categories
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`flex w-full items-center justify-start gap-3 font-medium ${pathname === '/account' ? 'border-b-4 border-amber-400 ' : ''} py-3 pl-3 text-base`}
+                    href="/account"
+                  >
+                    <RiAccountCircleLine
+                      fontSize={20}
+                      className={`${pathname === '/account' ? 'text-amber-500' : ''}`}
+                    />
+                    <span
+                      className={`${pathname === '/account' ? 'text-amber-500' : ''}`}
+                    >
+                      Account
                     </span>
                   </Link>
                 </li>
