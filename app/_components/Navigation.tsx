@@ -8,6 +8,7 @@ import { IoMdHome } from 'react-icons/io'
 import { TbCategory } from 'react-icons/tb'
 import { useAuth } from '../_context/auth'
 import { MdOutlineAnalytics } from 'react-icons/md'
+import { RiAccountCircleLine } from 'react-icons/ri'
 
 function Navigation() {
   const pathname = usePathname()
@@ -84,6 +85,22 @@ function Navigation() {
                     className={`${pathname === '/categories' ? 'text-amber-500' : ''}`}
                   >
                     Categories
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`flex w-full items-center gap-3 font-medium ${pathname === '/account' ? 'border-r-4 border-amber-400 bg-gradient-to-r from-amber-50 to-amber-200' : ''} py-3 pl-3 text-base`}
+                  href="/account"
+                >
+                  <RiAccountCircleLine
+                    fontSize={20}
+                    className={`${pathname === '/account' ? 'text-amber-500' : ''}`}
+                  />
+                  <span
+                    className={`${pathname === '/account' ? 'text-amber-500' : ''}`}
+                  >
+                    Account
                   </span>
                 </Link>
               </li>
