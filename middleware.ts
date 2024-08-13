@@ -3,7 +3,7 @@ import { updateSession } from '@/app/_utils/supabase/midddleware'
 import { createClient } from './app/_utils/supabase/server'
 
 export async function middleware(request: NextRequest) {
-  const protectedRoutes = ['/dashboard', '/tasks', '/categories'] // List of protected routes
+  const protectedRoutes = ['/dashboard', '/tasks', '/categories', '/account'] // List of protected routes
 
   if (
     request.nextUrl.pathname === '/' ||
@@ -28,5 +28,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/dashboard', '/tasks', '/categories', '/login'],
+  matcher: ['/', '/dashboard', '/tasks', '/categories', '/login', '/account'],
 }

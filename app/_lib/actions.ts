@@ -1,6 +1,6 @@
 'use server'
 
-import { createClient } from '../_utils/supabase/server'
+import { createClient, createServerSupabase } from '../_utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { taskSchema } from '../_utils/validations/taskSchema'
@@ -225,4 +225,29 @@ export async function updateCategoriesAction(data: Tables<'categories'>[]) {
   revalidatePath('/categories')
 
   return { success: true, data: updatedCategory }
+}
+
+export async function deleteAccountAction() {
+  const {
+    data: { user },
+  } = await createServerSupabase().auth.getUser()
+
+  if (!user) return null
+
+  const supabaseAuth = createServerSupabase().auth
+  const { error } = await supabaseAuth.admin.deleteUser(user.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  await supabaseAuth.signOut()
+
+  revalidatePath('/tasks')
+  revalidatePath('/categories')
+  revalidatePath('/account')
+
+  redirect('/')
+
+  return { success: true }
 }

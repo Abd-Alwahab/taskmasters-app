@@ -1,6 +1,11 @@
+import dynamic from 'next/dynamic'
 import Input from '../_components/Input'
 import Modal, { ModalWindow, OpenModal } from '../_components/Modal'
 import { createClient } from '../_utils/supabase/server'
+
+const DeleteAccountModal = dynamic(
+  () => import('../_features/account/DeleteAccountModal'),
+)
 
 async function Page() {
   const {
@@ -27,7 +32,7 @@ async function Page() {
         </OpenModal>
 
         <ModalWindow name="delete-account" label="Delete Account">
-          <span>Are you sure you want to delete your account?</span>
+          <DeleteAccountModal />
         </ModalWindow>
       </Modal>
       <span className="text-xs font-medium text-red-500">
