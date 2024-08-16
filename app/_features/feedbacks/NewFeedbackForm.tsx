@@ -3,43 +3,39 @@
 import { Controller, useForm } from 'react-hook-form'
 import FormRow from '../../_components/FormRow'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { categorySchema } from '../../_utils/validations/categorySchema'
+import { feedbackSchema } from '../../_utils/validations/feedbackSchema'
 import Input from '../../_components/Input'
 import SubmitFormButton from '../../_components/SubmitFormButton'
-import { useEffect } from 'react'
 import TextArea from '@/app/_components/TextArea'
+import { sendFeedbackAction } from '@/app/_lib/actions'
 
-type FeedbackFormData = {
+export type FeedbackFormData = {
   title: string
   description: string
 }
 
-type Props = {
-  onCloseModal?: () => void
-}
-
-const defaultValues = {
+const defaultValues: FeedbackFormData = {
   title: '',
+  description: '',
 }
 
-const NewFeedbackForm = ({ onCloseModal }: Props) => {
+const NewFeedbackForm = () => {
   const {
     formState: { errors, isSubmitting },
     control,
     handleSubmit,
     reset,
   } = useForm<FeedbackFormData>({
-    resolver: zodResolver(categorySchema),
+    resolver: zodResolver(feedbackSchema),
     defaultValues,
   })
 
-  // Reset form when modal closes or when categoryToEdit changes
-  useEffect(() => {
-    reset(defaultValues) // Reset to defaultValues when creating a new category
-  }, [onCloseModal, reset])
+  const onSubmit = async (data: FeedbackFormData) => {
+    const response = await sendFeedbackAction(data)
 
-  const onSubmit = async () => {
-    onCloseModal?.()
+    if (response?.success) {
+      reset()
+    }
   }
   return (
     <form

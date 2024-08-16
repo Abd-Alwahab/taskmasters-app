@@ -9,6 +9,7 @@ import { Tables } from '@/database.types'
 import { cache } from 'react'
 import { getCategoriesIndexes } from '../_services/categoriesService'
 import { findCategoryWithHighestOrderIndex } from '../_utils/helpers'
+import { FeedbackFormData } from '../_features/feedbacks/NewFeedbackForm'
 
 export async function loginAction() {
   const redirectTo = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback`
@@ -248,6 +249,27 @@ export async function deleteAccountAction() {
   revalidatePath('/account')
 
   redirect('/')
+
+  return { success: true }
+}
+
+export async function sendFeedbackAction(data: FeedbackFormData) {
+  const {
+    data: { user },
+  } = await createServerSupabase().auth.getUser()
+
+  if (!user) return null
+
+  const { error } = await createClient()
+    .from('feedbacks')
+    .insert({ ...data, userId: user?.id })
+    .eq('userId', user?.id)
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/feedbacks')
 
   return { success: true }
 }
