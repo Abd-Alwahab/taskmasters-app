@@ -3,10 +3,14 @@
     "next/core-web-vitals",
     "standard",
     "plugin:tailwindcss/recommended",
-    "prettier"
+    "prettier",
+    "plugin:vitest-globals/recommended"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "camelcase": "off"
+  },
+  "env": {
+    "vitest-globals/env": true
   }
 }
