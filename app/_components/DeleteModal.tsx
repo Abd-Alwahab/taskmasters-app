@@ -11,7 +11,7 @@ type Props = {
 function DeleteModal({ resource, onCloseModal, onConfirm, pending }: Props) {
   return (
     <div className="flex w-full flex-col items-center gap-5 lg:w-[400px]">
-      <FaTrashCan fontSize={40} />
+      <FaTrashCan fontSize={40} role="delete-icon" />
 
       <p>Are you sure you want to delete this {resource}?</p>
 
